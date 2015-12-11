@@ -35,14 +35,14 @@ jQuery( document ).ready( function () {
         var disable = false;
         if ( jQuery( this ).is( ':checked' ) && jQuery( this ).val() == 'simple' ) {
             disable = true;
-        } 
+        }
         if ( jQuery( this ).is( ':checked' ) ) {
-            if (!disable) {
-                 jQuery(".al-box.warning").hide('slow');
-                 jQuery(".advanced_mode_settings").show('slow');
+            if ( !disable ) {
+                jQuery( ".al-box.warning" ).hide( 'slow' );
+                jQuery( ".advanced_mode_settings" ).show( 'slow' );
             } else {
-                jQuery(".advanced_mode_settings").hide();
-                jQuery(".al-box.warning").show('slow');
+                jQuery( ".advanced_mode_settings" ).hide();
+                jQuery( ".al-box.warning" ).show( 'slow' );
             }
             jQuery.each( fields, function ( index, element ) {
                 jQuery( element ).prop( "disabled", disable );
@@ -148,11 +148,13 @@ jQuery( document ).ready( function () {
         clicked.hide();
     } );
     jQuery( "form#post" ).submit( function ( e ) {
-        if ( !jQuery( 'input[name="_price"]' ).valid() ) {
-            e.preventDefault();
-            jQuery( 'html, body' ).animate( {
-                scrollTop: jQuery( "#_price-error" ).offset().top - 200
-            }, 100 );
+        if ( jQuery( 'input[name="_price"]' ).length ) {
+            if ( !jQuery( 'input[name="_price"]' ).valid() ) {
+                e.preventDefault();
+                jQuery( 'html, body' ).animate( {
+                    scrollTop: jQuery( "#_price-error" ).offset().top - 200
+                }, 100 );
+            }
         }
     } );
 

@@ -15,8 +15,16 @@ if ( !defined( 'ABSPATH' ) ) {
 class related_products_widget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array( 'classname' => 'related_products_widget', 'description' => __( 'Shows related products.', 'al-ecommerce-product-catalog' ) );
-		parent::__construct( 'related_products_widget', __( 'Related Products', 'al-ecommerce-product-catalog' ), $widget_ops );
+		if ( is_plural_form_active() ) {
+			$names		 = get_catalog_names();
+			$label		 = sprintf( __( 'Related %s', 'ecommerce-product-catalog' ), ic_ucfirst( $names[ 'plural' ] ) );
+			$sublabel	 = sprintf( __( 'Shows related %s.', 'ecommerce-product-catalog' ), ic_lcfirst( $names[ 'plural' ] ) );
+		} else {
+			$label		 = __( 'Related Catalog Items', 'ecommerce-product-catalog' );
+			$sublabel	 = __( 'Shows related catalog items.', 'ecommerce-product-catalog' );
+		}
+		$widget_ops = array( 'classname' => 'related_products_widget', 'description' => $sublabel );
+		parent::__construct( 'related_products_widget', $label, $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -42,12 +50,12 @@ class related_products_widget extends WP_Widget {
 			$instance	 = wp_parse_args( (array) $instance, array( 'title' => '' ) );
 			$title		 = $instance[ 'title' ];
 			?>
-			<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'al-ecommerce-product-catalog' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></label></p><?php
+			<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'ecommerce-product-catalog' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" /></label></p><?php
 		} else {
 			if ( is_integration_mode_selected() ) {
-				implecode_warning( sprintf( __( 'Search widget is disabled with simple theme integration. Please see <a href="%s">Theme Integration Guide</a> to enable product search widget.', 'al-ecommerce-product-catalog' ), 'https://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=search-widget' ) );
+				implecode_warning( sprintf( __( 'Search widget is disabled with simple theme integration. Please see <a href="%s">Theme Integration Guide</a> to enable product search widget.', 'ecommerce-product-catalog' ), 'https://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=search-widget' ) );
 			} else {
-				implecode_warning( sprintf( __( 'Search widget is disabled due to a lack of theme integration.%s', 'al-ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
+				implecode_warning( sprintf( __( 'Search widget is disabled due to a lack of theme integration.%s', 'ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 <?php
+
 if ( !defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -97,7 +98,11 @@ add_shortcode( 'product_category_name', 'product_category_name' );
 function product_category_name() {
 	//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 	$the_tax = get_queried_object();
-	return $the_tax->name;
+	$name	 = '';
+	if ( is_ic_taxonomy_page() ) {
+		$name = $the_tax->name;
+	}
+	return $name;
 }
 
 function get_sub_product_subcategories( $args, $parent_cat ) {
@@ -324,111 +329,33 @@ function ic_product_breadcrumbs() {
 	return product_breadcrumbs();
 }
 
-add_shortcode( 'product_listing_products', 'ic_product_listing_products' );
+add_shortcode( 'product_listing_products', 'ic_product_listing_products_shortcode' );
 
 /**
  * Shows products on product listing for custom templates usage
  *
  * @return type
  */
-function ic_product_listing_products() {
+function ic_product_listing_products_shortcode() {
 	ob_start();
-	global $post;
 	$multiple_settings	 = get_multiple_settings();
 	$archive_template	 = get_product_listing_template();
-	if ( is_home_archive() ) {
-		$args	 = array( 'post_type' => 'al_product', 'posts_per_page' => $multiple_settings[ 'archive_products_limit' ] );
-		query_posts( $args );
-		$is_home = 1;
-	}
-	if ( (is_tax() || is_search() || !is_ic_only_main_cats()) && more_products() ) {
-		do_action( 'before_product_list', $archive_template, $multiple_settings );
-		$product_list = '';
-		while ( have_posts() ) : the_post();
-			$product_list .= get_catalog_template( $archive_template, $post );
-		endwhile;
-		if ( isset( $is_home ) ) {
-			wp_reset_query();
-		}
-		$product_list = apply_filters( 'product_list_ready', $product_list, $archive_template, 'auto_listing' );
-		echo '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class( $archive_template ) . '">' . $product_list . '</div><span class="clear"></span>';
-	} else if ( is_search() && !more_products() ) {
-		echo '<p>' . __( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'al-ecommerce-product-catalog' ) . '</p>';
-		product_search_form();
-	}
+	ic_product_listing_products( $archive_template, $multiple_settings );
 	return ob_get_clean();
 }
 
-add_shortcode( 'product_listing_categories', 'ic_product_listing_categories' );
+add_shortcode( 'product_listing_categories', 'ic_product_listing_categories_shortcode' );
 
 /**
  * Shows categories on product listing for custom templates usage
  *
  * @return string
  */
-function ic_product_listing_categories() {
+function ic_product_listing_categories_shortcode() {
 	ob_start();
 	$multiple_settings	 = get_multiple_settings();
 	$archive_template	 = get_product_listing_template();
-	$taxonomy_name		 = apply_filters( 'current_product_catalog_taxonomy', 'al_product-cat' );
-	if ( !is_tax() && !is_search() ) {
-		$before_archive = content_product_adder_archive_before();
-		if ( $before_archive != '<div class="entry-summary"></div>' ) {
-			echo $before_archive;
-		}
-		if ( $multiple_settings[ 'product_listing_cats' ] == 'on' || $multiple_settings[ 'product_listing_cats' ] == 'cats_only' ) {
-			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
-				$product_subcategories = wp_list_categories( 'show_option_none = No_cat&echo = 0&title_li = &taxonomy = ' . $taxonomy_name . '&parent = 0' );
-				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
-					do_action( 'before_product_listing_category_list' );
-					echo '<div class = "product-subcategories">' . $product_subcategories . '</div>';
-				}
-			} else {
-				$show_categories = do_shortcode( '[show_categories parent = "0" shortcode_query = "no"]' );
-				if ( !empty( $show_categories ) ) {
-					do_action( 'before_product_listing_category_list' );
-					echo $show_categories;
-					if ( $archive_template != 'list' && !is_ic_only_main_cats() ) {
-						echo '<hr>';
-					}
-				}
-			}
-		}
-	} else if ( is_tax() ) {
-		$term = get_queried_object()->term_id;
-		if ( is_ic_category_image_enabled() ) {
-			$term_img = get_product_category_image_id( $term );
-			echo wp_get_attachment_image( $term_img, apply_filters( 'product_cat_image_size', 'large' ), false, array( 'class' => 'product-category-image' ) );
-		}
-		$term_description = term_description();
-		if ( !empty( $term_description ) ) {
-			echo '<div class = "taxonomy-description">' . $term_description . '</div>';
-		}
-		if ( $multiple_settings[ 'category_top_cats' ] == 'on' || $multiple_settings[ 'category_top_cats' ] == 'only_subcategories' ) {
-			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
-				$product_subcategories = wp_list_categories( 'show_option_none = No_cat&echo = 0&title_li = &taxonomy = ' . $taxonomy_name . '&child_of = ' . $term );
-				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
-					?>
-					<div class="product-subcategories">
-						<?php
-						do_action( 'before_category_subcategories' );
-						echo $product_subcategories;
-						?>
-					</div>
-					<?php
-				}
-			} else {
-				$show_categories = do_shortcode( '[show_categories parent = ' . get_queried_object_id() . ' shortcode_query = no]' );
-				if ( !empty( $show_categories ) ) {
-					do_action( 'before_category_subcategories' );
-					echo $show_categories;
-					if ( $archive_template != 'list' && !is_ic_only_main_cats() ) {
-						echo '<hr>';
-					}
-				}
-			}
-		}
-	}
+	ic_product_listing_categories( $archive_template, $multiple_settings );
 	return ob_get_clean();
 }
 

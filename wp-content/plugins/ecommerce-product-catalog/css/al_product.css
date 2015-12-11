@@ -232,6 +232,7 @@
     text-decoration: none;
     cursor: pointer;
     margin: 0;
+    text-shadow: none;
 }
 
 .content-area.product-catalog {

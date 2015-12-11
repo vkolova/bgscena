@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 function register_product_settings_menu() {
-	add_submenu_page( 'edit.php?post_type=al_product', __( 'Settings', 'al-ecommerce-product-catalog' ), __( 'Settings', 'al-ecommerce-product-catalog' ), apply_filters( 'see_product_settings_cap', 'manage_product_settings' ), basename( __FILE__ ), 'product_settings' );
+	add_submenu_page( 'edit.php?post_type=al_product', __( 'Settings', 'ecommerce-product-catalog' ), __( 'Settings', 'ecommerce-product-catalog' ), apply_filters( 'see_product_settings_cap', 'manage_product_settings' ), basename( __FILE__ ), 'product_settings' );
 	do_action( 'product_settings_menu' );
 }
 
@@ -47,7 +47,7 @@ function product_settings() {
 	?>
 
 	<div id="implecode_settings" class="wrap">
-		<h2><?php _e( 'Settings', 'al-ecommerce-product-catalog' ) ?> - impleCode eCommerce Product Catalog</h2>
+		<h2><?php _e( 'Settings', 'ecommerce-product-catalog' ) ?> - impleCode eCommerce Product Catalog</h2>
 		<h2 class="nav-tab-wrapper">
 			<?php do_action( 'settings-menu' ); ?>
 		</h2>
@@ -162,11 +162,11 @@ function product_settings() {
 function doc_helper( $title, $url, $class = null ) {
 	$helper = '<div class="doc-helper ' . $class . '"><div class="doc-item">
 		<div class="doc-name green-box">' . sprintf(
-	__( '%s Settings in Docs', 'al-ecommerce-product-catalog' ), ucfirst( $title ) ) . '</div>
+	__( '%s Settings in Docs', 'ecommerce-product-catalog' ), ic_ucfirst( $title ) ) . '</div>
 		<div class="doc-description">' . sprintf(
-	__( 'See %s configuration tips in the impleCode documentation', 'al-ecommerce-product-catalog' ), $title ) . '.</div>
-		<div class="doc-button"><a href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'al-ecommerce-product-catalog' ) . '"></a></div>
-		<a title="' . __( 'Click the button to visit impleCode documentation', 'al-ecommerce-product-catalog' ) . '" href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
+	__( 'See %s configuration tips in the impleCode documentation', 'ecommerce-product-catalog' ), $title ) . '.</div>
+		<div class="doc-button"><a href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'ecommerce-product-catalog' ) . '"></a></div>
+		<a title="' . __( 'Click the button to visit impleCode documentation', 'ecommerce-product-catalog' ) . '" href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
 		</div></div>';
 	echo $helper;
 }
@@ -174,10 +174,10 @@ function doc_helper( $title, $url, $class = null ) {
 function did_know_helper( $name, $desc, $url, $class = null ) {
 	$helper = '<div class="doc-helper ' . $class . '"><div class="doc-item">
 		<div class="doc-name green-box">' .
-	__( 'Did you know?', 'al-ecommerce-product-catalog' ) . '</div>
+	__( 'Did you know?', 'ecommerce-product-catalog' ) . '</div>
 		<div class="doc-description">' . $desc . '.</div>
-		<div class="doc-button"><a href="' . $url . '?cam=catalog-know-box&key=' . $name . '"><input class="doc_button classic-button" type="button" value="' . __( 'See Now', 'al-ecommerce-product-catalog' ) . '"></a></div>
-		<a title="' . __( 'Click the button to visit impleCode website', 'al-ecommerce-product-catalog' ) . '" href="' . $url . '?cam=catalog-docs-box&key=' . $name . '" class="background-url"></a>
+		<div class="doc-button"><a href="' . $url . '?cam=catalog-know-box&key=' . $name . '"><input class="doc_button classic-button" type="button" value="' . __( 'See Now', 'ecommerce-product-catalog' ) . '"></a></div>
+		<a title="' . __( 'Click the button to visit impleCode website', 'ecommerce-product-catalog' ) . '" href="' . $url . '?cam=catalog-docs-box&key=' . $name . '" class="background-url"></a>
 		</div></div>';
 	echo $helper;
 }
@@ -192,15 +192,15 @@ function text_helper( $title, $desc, $class = null ) {
 
 function review_helper() {
 	$helper = '<div class="doc-helper review"><div class="doc-item">
-		<div class="doc-name green-box">' . __( 'Rate this Plugin!', 'al-ecommerce-product-catalog' ) . '</div>
-		<div class="doc-description">' . sprintf( __( 'Please <a href="%s">rate</a> this plugin and tell me if it works for you or not. It really helps development.', 'al-ecommerce-product-catalog' ), 'https://wordpress.org/support/view/plugin-reviews/ecommerce-product-catalog#postform' ) . '</div>
+		<div class="doc-name green-box">' . __( 'Rate this Plugin!', 'ecommerce-product-catalog' ) . '</div>
+		<div class="doc-description">' . sprintf( __( 'Please <a href="%s">rate</a> this plugin and tell me if it works for you or not. It really helps development.', 'ecommerce-product-catalog' ), 'https://wordpress.org/support/view/plugin-reviews/ecommerce-product-catalog#postform' ) . '</div>
 		</div></div>';
 	echo $helper;
 }
 
 function main_helper() {
 	$helper = '<div class="doc-helper main"><div class="doc-item">
-		<div class="doc-name green-box">' . __( 'Need Help?', 'al-ecommerce-product-catalog' ) . '</div>
+		<div class="doc-name green-box">' . __( 'Need Help?', 'ecommerce-product-catalog' ) . '</div>
 		<div class="doc-description">
 			<form role="search" method="get" class="search-form" action="https://implecode.com/docs/">
 				<label>

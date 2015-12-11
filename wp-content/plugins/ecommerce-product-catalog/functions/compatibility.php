@@ -97,3 +97,33 @@ function product_page_image_html( $html ) {
 	}
 	return $html;
 }
+
+/**
+ * Compatibility with PHP <5.3 for ic_lcfirst
+ *
+ * @param string $string
+ * @return string
+ */
+function ic_lcfirst( $string ) {
+	if ( function_exists( 'lcfirst' ) ) {
+		return lcfirst( $string );
+	} else {
+		$string[ '0' ] = strtolower( $string[ '0' ] );
+		return $string;
+	}
+}
+
+/**
+ * Compatibility with PHP <5.3 for ic_ucfirst
+ *
+ * @param type $string
+ * @return type
+ */
+function ic_ucfirst( $string ) {
+	if ( function_exists( 'ucfirst' ) ) {
+		return ucfirst( $string );
+	} else {
+		$string[ '0' ] = strtoupper( $string[ '0' ] );
+		return $string;
+	}
+}

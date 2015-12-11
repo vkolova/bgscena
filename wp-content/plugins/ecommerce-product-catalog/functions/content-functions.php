@@ -25,6 +25,9 @@ if ( !defined( 'ABSPATH' ) ) {
  * @return string|float
  */
 function price_format( $price_value, $clear = 0, $format = 1, $raw = 0 ) {
+	if ( empty( $price_value ) ) {
+		return '';
+	}
 	$set			 = get_currency_settings();
 	$th_symbol		 = addslashes( $set[ 'th_sep' ] );
 	$dec_symbol		 = addslashes( $set[ 'dec_sep' ] );
@@ -145,10 +148,10 @@ function get_back_to_products_url( $v_single_names = null ) {
  * Shows product search form
  */
 function product_search_form() {
-	$search_button_text = __( 'Search', 'al-ecommerce-product-catalog' );
+	$search_button_text = __( 'Search', 'ecommerce-product-catalog' );
 	echo '<form role="search" method="get" class="search-form product_search_form" action="' . esc_url( home_url( '/' ) ) . '">
 <input type="hidden" name="post_type" value="' . get_current_screen_post_type() . '" />
-<input class="product-search-box" type="search" value="' . get_search_query() . '" id="s" name="s" placeholder="' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '" />
+<input class="product-search-box" type="search" value="' . get_search_query() . '" id="s" name="s" placeholder="' . __( 'Product Search', 'ecommerce-product-catalog' ) . '" />
 <input class="search-submit product-search-submit" type="submit" value="' . $search_button_text . '" />
 </form>';
 }

@@ -15,8 +15,16 @@ if ( !defined( 'ABSPATH' ) ) {
 class product_cat_widget extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array( 'classname' => 'widget_product_categories widget_categories', 'description' => __( 'A list or dropdown of product categories', 'al-ecommerce-product-catalog' ) );
-		parent::__construct( 'product_categories', __( 'Product Categories', 'al-ecommerce-product-catalog' ), $widget_ops );
+		if ( is_plural_form_active() ) {
+			$names		 = get_catalog_names();
+			$label		 = sprintf( __( '%s Categories', 'ecommerce-product-catalog' ), ic_ucfirst( $names[ 'singular' ] ) );
+			$sublabel	 = sprintf( __( 'A list or dropdown of %s categories', 'ecommerce-product-catalog' ), ic_lcfirst( $names[ 'singular' ] ) );
+		} else {
+			$label		 = __( 'Catalog Categories', 'ecommerce-product-catalog' );
+			$sublabel	 = __( 'A list or dropdown of catalog categories', 'ecommerce-product-catalog' );
+		}
+		$widget_ops = array( 'classname' => 'widget_product_categories widget_categories', 'description' => $sublabel );
+		parent::__construct( 'product_categories', $label, $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -34,20 +42,26 @@ class product_cat_widget extends WP_Widget {
 			$cat_args = array( 'orderby' => 'name', 'show_count' => $c, 'hierarchical' => $h, 'taxonomy' => 'al_product-cat' );
 
 			if ( $d ) {
-				$cat_args = array( 'orderby' => 'name', 'show_count' => $c, 'hierarchical' => $h, 'taxonomy' => 'al_product-cat', 'walker' => new my_Walker_CategoryDropdown, 'show_option_none' => __( 'Select Product Category', 'al-ecommerce-product-catalog' ) );
+				if ( is_plural_form_active() ) {
+					$names	 = get_catalog_names();
+					$label	 = sprintf( __( 'Select %s Category', 'ecommerce-product-catalog' ), ic_ucfirst( $names[ 'singular' ] ) );
+				} else {
+					$label = __( 'Select Category', 'ecommerce-product-catalog' );
+				}
+				$cat_args = array( 'orderby' => 'name', 'show_count' => $c, 'hierarchical' => $h, 'taxonomy' => 'al_product-cat', 'walker' => new my_Walker_CategoryDropdown, 'show_option_none' => $label );
 				wp_dropdown_categories( apply_filters( 'widget_product_categories_dropdown_args', $cat_args ) );
 				?>
 
 				<script type='text/javascript'>
-					/* <![CDATA[ */
-					var dropdown = document.getElementById( "cat" );
-					function onCatChange() {
-						if ( dropdown.options[dropdown.selectedIndex].value != '' ) {
-							location.href = "<?php echo home_url(); ?>/?al_product-cat=" + dropdown.options[dropdown.selectedIndex].value;
-						}
-					}
-					dropdown.onchange = onCatChange;
-					/* ]]> */
+				    /* <![CDATA[ */
+				    var dropdown = document.getElementById( "cat" );
+				    function onCatChange() {
+				        if ( dropdown.options[dropdown.selectedIndex].value != '' ) {
+				            location.href = "<?php echo home_url(); ?>/?al_product-cat=" + dropdown.options[dropdown.selectedIndex].value;
+				        }
+				    }
+				    dropdown.onchange = onCatChange;
+				    /* ]]> */
 				</script>
 
 				<?php
@@ -88,7 +102,7 @@ class product_cat_widget extends WP_Widget {
 			$dropdown		 = isset( $instance[ 'dropdown' ] ) ? (bool) $instance[ 'dropdown' ] : false;
 			?>
 			<p><label
-					for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'al-ecommerce-product-catalog' ); ?></label>
+					for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'ecommerce-product-catalog' ); ?></label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
 					   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
 			</p>
@@ -96,26 +110,26 @@ class product_cat_widget extends WP_Widget {
 			<p><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'dropdown' ); ?>"
 					  name="<?php echo $this->get_field_name( 'dropdown' ); ?>"<?php checked( $dropdown ); ?> />
 				<label
-					for="<?php echo $this->get_field_id( 'dropdown' ); ?>"><?php _e( 'Display as dropdown', 'al-ecommerce-product-catalog' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'dropdown' ); ?>"><?php _e( 'Display as dropdown', 'ecommerce-product-catalog' ); ?></label><br/>
 
 				<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'count' ); ?>"
 					   name="<?php echo $this->get_field_name( 'count' ); ?>"<?php checked( $count ); ?> />
 				<label
-					for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Show product counts', 'al-ecommerce-product-catalog' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Show product counts', 'ecommerce-product-catalog' ); ?></label><br/>
 
 				<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'hierarchical' ); ?>"
 					   name="<?php echo $this->get_field_name( 'hierarchical' ); ?>"<?php checked( $hierarchical ); ?> />
 				<label
-					for="<?php echo $this->get_field_id( 'hierarchical' ); ?>"><?php _e( 'Show hierarchy', 'al-ecommerce-product-catalog' ); ?></label>
+					for="<?php echo $this->get_field_id( 'hierarchical' ); ?>"><?php _e( 'Show hierarchy', 'ecommerce-product-catalog' ); ?></label>
 					<?php
 					$object			 = $this;
 					do_action( 'product_categories_widget_settings', $instance, $object );
 					?> </p> <?php
 		} else {
 			if ( is_integration_mode_selected() ) {
-				implecode_warning( sprintf( __( 'Category widget is disabled with simple theme integration. Please see <a href="%s">Theme Integration Guide</a> to enable product category widget.', 'al-ecommerce-product-catalog' ), 'https://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=category-widget' ) );
+				implecode_warning( sprintf( __( 'Category widget is disabled with simple theme integration. Please see <a href="%s">Theme Integration Guide</a> to enable product category widget.', 'ecommerce-product-catalog' ), 'https://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=category-widget' ) );
 			} else {
-				implecode_warning( sprintf( __( 'Category widget is disabled due to a lack of theme integration.%s', 'al-ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
+				implecode_warning( sprintf( __( 'Category widget is disabled due to a lack of theme integration.%s', 'ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
 			}
 		}
 	}

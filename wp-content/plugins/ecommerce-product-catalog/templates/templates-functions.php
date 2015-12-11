@@ -1,5 +1,4 @@
 <?php
-
 if ( !defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -12,6 +11,12 @@ if ( !defined( 'ABSPATH' ) ) {
  * @version		1.1.3
  * @package		ecommerce-product-catalog/
  * @author 		Norbert Dreszer
+ */
+add_shortcode( 'content_product_adder', 'content_product_adder' );
+
+/**
+ * The function wrapper to show product catalog content for current URL
+ *
  */
 function content_product_adder() {
 	if ( is_archive() || is_search() || is_home_archive() || is_ic_product_listing() ) {
@@ -89,6 +94,7 @@ function show_products_outside_loop( $atts ) {
 		'sort'				 => 0,
 		'orderby'			 => '',
 		'order'				 => '',
+		'pagination'		 => 0
 	) );
 	$args				 = shortcode_atts( $available_args, $atts );
 	$shortcode_args		 = $args;
@@ -139,6 +145,10 @@ function show_products_outside_loop( $atts ) {
 	if ( !empty( $args[ 'order' ] ) ) {
 		$query_param[ 'order' ] = esc_attr( $args[ 'order' ] );
 	}
+	if ( !empty( $args[ 'pagination' ] ) ) {
+		$paged					 = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
+		$query_param[ 'paged' ]	 = $paged;
+	}
 	$query_param	 = apply_filters( 'shortcode_query', $query_param, $args );
 	$shortcode_query = new WP_Query( $query_param );
 	$inside			 = '';
@@ -154,11 +164,17 @@ function show_products_outside_loop( $atts ) {
 		$i++;
 		$inside .= get_catalog_template( $archive_template, $post, $i, $design_scheme );
 	endwhile;
+	$pagination = '';
+	if ( !empty( $args[ 'pagination' ] ) ) {
+		ob_start();
+		product_archive_pagination( $shortcode_query );
+		$pagination = ob_get_clean();
+	}
 	$inside = apply_filters( 'product_list_ready', $inside, $archive_template, $args );
 	wp_reset_postdata();
 	reset_row_class();
 	unset( $shortcode_args );
-	return $before . '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class( $archive_template ) . '">' . $inside . '<div style="clear:both"></div></div>';
+	return $before . '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class( $archive_template ) . '">' . $inside . '<div style="clear:both"></div>' . $pagination . '</div>';
 }
 
 add_shortcode( 'show_products', 'show_products_outside_loop' );
@@ -192,12 +208,13 @@ add_action( 'product_listing_end', 'product_archive_pagination' );
  * @global object $wp_query
  * @return string
  */
-function product_archive_pagination() {
-	if ( !is_home_archive() && is_singular() || (is_ic_product_listing() && is_ic_only_main_cats()) ) {
+function product_archive_pagination( $wp_query = null ) {
+	if ( is_ic_product_listing() && is_ic_only_main_cats() ) {
 		return;
 	}
-
-	global $paged, $wp_query;
+	if ( !isset( $wp_query ) || !is_object( $wp_query ) ) {
+		global $paged, $wp_query;
+	}
 	if ( $wp_query->max_num_pages <= 1 ) {
 		return;
 	}
@@ -214,9 +231,10 @@ function product_archive_pagination() {
 		$links[] = $paged + 2;
 		$links[] = $paged + 1;
 	}
+	$names = get_archive_names();
 	echo '<div id="product_archive_nav" class="product-archive-nav ' . design_schemes( 'box', 0 ) . '"><ul>' . "\n";
-	if ( get_previous_posts_link() )
-		printf( '<li>%s</li> ' . "\n", get_previous_posts_link() );
+	if ( get_previous_posts_link( $names[ 'previous_products' ] ) )
+		printf( '<li>%s</li> ' . "\n", get_previous_posts_link( $names[ 'previous_products' ] ) );
 	if ( !in_array( 1, $links ) ) {
 		$class = 1 == $paged ? ' class="active"' : '';
 		printf( '<li%s><a href="%s">%s</a></li> ' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
@@ -234,8 +252,8 @@ function product_archive_pagination() {
 		$class = $paged == $max ? ' class="active"' : '';
 		printf( '<li%s><a href="%s">%s</a></li> ' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
 	}
-	if ( get_next_posts_link() ) {
-		printf( '<li>%s</li> ' . "\n", get_next_posts_link() );
+	if ( get_next_posts_link( $names[ 'next_products' ], $max ) ) {
+		printf( '<li>%s</li> ' . "\n", get_next_posts_link( $names[ 'next_products' ], $max ) );
 	}
 	echo '</ul></div>' . "\n";
 
@@ -419,7 +437,7 @@ function override_product_page_title( $page_title, $id = null ) {
 			$the_tax	 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 			$page_title	 = $archive_names[ 'all_prefix' ] . ' ' . $the_tax->name;
 		} else if ( is_ic_product_search() ) {
-			$page_title = __( 'Search Results for:', 'al-ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
+			$page_title = __( 'Search Results for:', 'ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
 		} else if ( is_ic_product_listing() ) {
 			$page_title = get_product_listing_title();
 		}
@@ -695,7 +713,7 @@ function advanced_mode_default_sided_sidebar() {
  */
 function get_related_products( $products_limit = null, $markup = false ) {
 	if ( !isset( $products_limit ) ) {
-		$products_limit = get_current_per_row();
+		$products_limit = apply_filters( 'related_products_count', get_current_per_row() );
 	}
 	$current_product_id	 = get_the_ID();
 	$taxonomy			 = get_current_screen_tax();
@@ -710,6 +728,7 @@ function get_related_products( $products_limit = null, $markup = false ) {
 		foreach ( $terms as $term ) {
 			$query_param = array(
 				'post_type'		 => $post_type,
+				'orderby'		 => 'rand',
 				'tax_query'		 => array(
 					array(
 						'taxonomy'	 => $taxonomy,
@@ -754,4 +773,161 @@ function get_related_products( $products_limit = null, $markup = false ) {
 		return $div;
 	}
 	return;
+}
+
+add_action( 'product_category_page_start', 'ic_add_product_category_image' );
+
+/**
+ * Shows product category image
+ *
+ * @param type $term_id
+ */
+function ic_add_product_category_image( $term_id ) {
+	if ( is_ic_category_image_enabled() ) {
+		$term_img = get_product_category_image_id( $term_id );
+		echo wp_get_attachment_image( $term_img, apply_filters( 'product_cat_image_size', 'large' ), false, array( 'class' => 'product-category-image' ) );
+	}
+}
+
+add_action( 'product_category_page_start', 'ic_add_product_category_description' );
+
+/**
+ * Shows product category description
+ *
+ * @param type $term_id
+ */
+function ic_add_product_category_description( $term_id ) {
+	$term_description = term_description();
+	if ( !empty( $term_description ) ) {
+		echo '<div class="taxonomy-description">' . $term_description . '</div>';
+	}
+}
+
+add_action( 'product_listing_entry_inside', 'ic_product_listing_categories', 10, 2 );
+
+/**
+ * Generates product listing categories
+ *
+ * @param type $archive_template
+ * @param type $multiple_settings
+ */
+function ic_product_listing_categories( $archive_template, $multiple_settings ) {
+	$taxonomy_name = apply_filters( 'current_product_catalog_taxonomy', 'al_product-cat' );
+	if ( !is_tax() && !is_search() ) {
+		$before_archive = content_product_adder_archive_before();
+		if ( $before_archive != '<div class="entry-summary"></div>' ) {
+			echo $before_archive;
+		}
+		if ( $multiple_settings[ 'product_listing_cats' ] == 'on' || $multiple_settings[ 'product_listing_cats' ] == 'cats_only' ) {
+			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
+				$product_subcategories = wp_list_categories( 'show_option_none=No_cat&echo=0&title_li=&taxonomy=' . $taxonomy_name . '&parent=0' );
+				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
+					do_action( 'before_product_listing_category_list' );
+					echo '<div class="product-subcategories">' . $product_subcategories . '</div>';
+				}
+			} else {
+				$show_categories = do_shortcode( '[show_categories parent="0" shortcode_query="no"]' );
+				if ( !empty( $show_categories ) ) {
+					do_action( 'before_product_listing_category_list' );
+					echo $show_categories;
+					if ( $archive_template != 'list' && !is_ic_only_main_cats() ) {
+						echo '<hr>';
+					}
+				}
+			}
+		}
+	} else if ( is_tax() ) {
+		$term = get_queried_object()->term_id;
+		do_action( 'product_category_page_start', $term );
+		if ( $multiple_settings[ 'category_top_cats' ] == 'on' || $multiple_settings[ 'category_top_cats' ] == 'only_subcategories' ) {
+			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
+				$product_subcategories = wp_list_categories( 'show_option_none=No_cat&echo=0&title_li=&taxonomy=' . $taxonomy_name . '&child_of=' . $term );
+				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
+					?>
+					<div class="product-subcategories">
+						<?php
+						do_action( 'before_category_subcategories' );
+						echo $product_subcategories;
+						?>
+					</div>
+					<?php
+				}
+			} else {
+				$show_categories = do_shortcode( '[show_categories parent=' . get_queried_object_id() . ' shortcode_query=no]' );
+				if ( !empty( $show_categories ) ) {
+					do_action( 'before_category_subcategories' );
+					echo $show_categories;
+					if ( $archive_template != 'list' && !is_ic_only_main_cats() ) {
+						echo '<hr>';
+					}
+				}
+			}
+		}
+	}
+}
+
+add_action( 'product_listing_entry_inside', 'ic_product_listing_products', 20, 2 );
+
+/**
+ * Generates product listing products
+ *
+ * @param type $archive_template
+ * @param type $multiple_settings
+ */
+function ic_product_listing_products( $archive_template, $multiple_settings ) {
+	global $post, $ic_is_home;
+	if ( is_home_archive() || (!more_products() && is_custom_product_listing_page()) ) {
+		if ( get_query_var( 'paged' ) ) {
+			$paged = get_query_var( 'paged' );
+		} elseif ( get_query_var( 'page' ) ) {
+			$paged = get_query_var( 'page' );
+		} else {
+			$paged = 1;
+		}
+		$args		 = apply_filters( 'home_product_listing_query', array( 'post_type' => 'al_product', 'posts_per_page' => $multiple_settings[ 'archive_products_limit' ], 'paged' => $paged ) );
+		query_posts( $args );
+		$ic_is_home	 = 1;
+	}
+	if ( (is_tax() || is_search() || !is_ic_only_main_cats() || is_product_filters_active()) && more_products() ) {
+		do_action( 'before_product_list', $archive_template, $multiple_settings );
+		$product_list = '';
+		while ( have_posts() ) : the_post();
+			$product_list .= get_catalog_template( $archive_template, $post );
+		endwhile;
+		$product_list = apply_filters( 'product_list_ready', $product_list, $archive_template, 'auto_listing' );
+		echo '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class( $archive_template ) . '">' . $product_list . '</div><span class="clear"></span>';
+	} else if ( (!is_product_filters_active() && is_search()) && !more_products() ) {
+		echo '<p>' . __( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'ecommerce-product-catalog' ) . '</p>';
+		product_search_form();
+	} else if ( is_product_filters_active() && !more_products() ) {
+		show_product_sort_bar();
+		$filters = get_active_product_filters();
+		if ( isset( $_GET[ 's' ] ) ) {
+			$filters[] = 's';
+		}
+		echo '<p>' . sprintf( __( 'Sorry, but nothing matched your search terms. Please try again with some different options or %sreset filters%s.', 'ecommerce-product-catalog' ), '<a href="' . esc_url( remove_query_arg( $filters ) ) . '">', '</a>' ) . '</p>';
+	}
+}
+
+add_action( 'product_listing_end', 'ic_reset_home_listing_query', 99 );
+
+/**
+ * Resets the query for home product listing
+ *
+ * @global type $ic_is_home
+ */
+function ic_reset_home_listing_query() {
+	global $ic_is_home;
+	if ( isset( $ic_is_home ) && $ic_is_home == 1 ) {
+		wp_reset_query();
+	}
+}
+
+add_filter('body_class', 'ic_catalog_page_body_class');
+
+function ic_catalog_page_body_class($classes) {
+        if (is_ic_catalog_page()) {
+			$classes[] = 'type-page';
+		}
+        return $classes;
 }

@@ -69,7 +69,7 @@ function set_product_filter() {
 				$session[ 'filters' ] = array();
 			}
 			$session[ 'filters' ][ 'product_category' ] = $filter_value;
-		} else {
+		} else if ( isset( $session[ 'filters' ][ 'product_category' ] ) ) {
 			unset( $session[ 'filters' ][ 'product_category' ] );
 		}
 	}
@@ -81,7 +81,7 @@ function set_product_filter() {
 				$session[ 'filters' ] = array();
 			}
 			$session[ 'filters' ][ 'min-price' ] = $filter_value;
-		} else {
+		} else if ( isset( $session[ 'filters' ][ 'min-price' ] ) ) {
 			unset( $session[ 'filters' ][ 'min-price' ] );
 		}
 	}
@@ -93,7 +93,7 @@ function set_product_filter() {
 				$session[ 'filters' ] = array();
 			}
 			$session[ 'filters' ][ 'max-price' ] = $filter_value;
-		} else {
+		} else if ( isset( $session[ 'filters' ][ 'max-price' ] ) ) {
 			unset( $session[ 'filters' ][ 'max-price' ] );
 		}
 	}

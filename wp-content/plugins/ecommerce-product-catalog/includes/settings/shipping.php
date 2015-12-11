@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function shipping_menu() {
 	?>
-	<a id="shipping-settings" class="nav-tab" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=shipping-settings&submenu=shipping' ) ?>"><?php _e( 'Product shipping', 'al-ecommerce-product-catalog' ); ?></a>
+	<a id="shipping-settings" class="nav-tab" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=shipping-settings&submenu=shipping' ) ?>"><?php _e( 'Product shipping', 'ecommerce-product-catalog' ); ?></a>
 	<?php
 }
 
@@ -36,7 +36,7 @@ function shipping_settings_content() {
 	<div class="shipping-product-settings settings-wrapper" style="clear:both;">
 		<div class="settings-submenu">
 			<h3>
-				<a id="shipping-settings" class="element current" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=shipping-settings&submenu=shipping' ) ?>"><?php _e( 'Shipping Settings', 'al-ecommerce-product-catalog' ); ?></a>
+				<a id="shipping-settings" class="element current" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=shipping-settings&submenu=shipping' ) ?>"><?php _e( 'Shipping Settings', 'ecommerce-product-catalog' ); ?></a>
 				<?php do_action( 'shipping_submenu' ); ?>
 			</h3>
 		</div><?php if ( $submenu == 'shipping' ) { ?>
@@ -45,24 +45,24 @@ function shipping_settings_content() {
 					jQuery( '.settings-submenu a' ).removeClass( 'current' );
 					jQuery( '.settings-submenu a#shipping-settings' ).addClass( 'current' );
 				</script>
-				<h2><?php _e( 'Shipping Settings', 'al-ecommerce-product-catalog' ); ?></h2>
+				<h2><?php _e( 'Shipping Settings', 'ecommerce-product-catalog' ); ?></h2>
 				<form method="post" action="options.php">
 					<?php settings_fields( 'product_shipping' );
 					$shipping_count = get_shipping_options_number();
 					?>
-					<h3><?php _e( 'Product shipping options', 'al-ecommerce-product-catalog' ); ?></h3>
+					<h3><?php _e( 'Product shipping options', 'ecommerce-product-catalog' ); ?></h3>
 					<table>
 						<tr>
-							<td colspan="2"><?php _e( 'Number of shipping options', 'al-ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_shipping_options_number" id="admin-number-field" value="<?php echo $shipping_count; ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'al-ecommerce-product-catalog' ); ?>" /></td>
+							<td colspan="2"><?php _e( 'Number of shipping options', 'ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_shipping_options_number" id="admin-number-field" value="<?php echo $shipping_count; ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'ecommerce-product-catalog' ); ?>" /></td>
 						</tr>
 					</table>
 					<?php
 					if ( $shipping_count > 0 ) {
 						?>
-						<div class="al-box info"><p><?php _e( "If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue has different shipping options you can leave all or just a part of these fields empty.", 'al-ecommerce-product-catalog' ); ?></p><p><?php _e( 'You can change these default values on every product page.', 'al-ecommerce-product-catalog' ); ?></p></div>
+						<div class="al-box info"><p><?php _e( "If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue has different shipping options you can leave all or just a part of these fields empty.", 'ecommerce-product-catalog' ); ?></p><p><?php _e( 'You can change these default values on every product page.', 'ecommerce-product-catalog' ); ?></p></div>
 
 						<table class="wp-list-table widefat product-settings-table dragable">
-							<thead><tr><th></th><th class="title"><b><?php _e( 'Shipping default name', 'al-ecommerce-product-catalog' ); ?></b></th><th></th><th class="title"><b><?php _e( 'Shipping default cost', 'al-ecommerce-product-catalog' ); ?></b></th><th class="dragger"></th></tr></thead><tbody>
+							<thead><tr><th></th><th class="title"><b><?php _e( 'Shipping default name', 'ecommerce-product-catalog' ); ?></b></th><th></th><th class="title"><b><?php _e( 'Shipping default cost', 'ecommerce-product-catalog' ); ?></b></th><th class="dragger"></th></tr></thead><tbody>
 								<?php
 								$shipping_cost	 = get_option( 'product_shipping_cost', DEF_VALUE );
 								$shipping_label	 = get_option( 'product_shipping_label' );
@@ -76,11 +76,11 @@ function shipping_settings_content() {
 							</tbody></table>
 			<?php //do_action('product-attributes');    ?>
 						<p class="submit">
-							<input type="submit" class="button-primary" value="<?php _e( 'Save changes', 'al-ecommerce-product-catalog' ); ?>" />
+							<input type="submit" class="button-primary" value="<?php _e( 'Save changes', 'ecommerce-product-catalog' ); ?>" />
 						</p>
 		<?php } else { ?>
 						<tr><td colspan="2">
-								<div class="al-box warning"><?php _e( 'Shipping disabled. To enable set minimum 1 shipping option.', 'al-ecommerce-product-catalog' ); ?></div>
+								<div class="al-box warning"><?php _e( 'Shipping disabled. To enable set minimum 1 shipping option.', 'ecommerce-product-catalog' ); ?></div>
 							</td></tr>
 						</table>
 		<?php } ?>

@@ -494,3 +494,17 @@ function is_filter_bar() {
 	}
 	return false;
 }
+
+/**
+ * Checks if current page has show_products shortcode
+ *
+ * @global type $post
+ * @return boolean
+ */
+function has_show_products_shortcode() {
+	global $post;
+	if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'show_products' ) ) {
+		return true;
+	}
+	return false;
+}

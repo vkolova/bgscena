@@ -16,16 +16,16 @@ add_filter( 'manage_edit-al_product_columns', 'add_product_columns' );
 function add_product_columns( $product_columns ) {
 	$product_currency		 = get_currency_settings();
 	$new_columns[ 'cb' ]	 = $product_columns[ 'cb' ];
-	$new_columns[ 'id' ]	 = __( 'ID', 'al-ecommerce-product-catalog' );
-	$new_columns[ 'image' ]	 = __( 'Image', 'al-ecommerce-product-catalog' );
-	$new_columns[ 'title' ]	 = __( 'Product Name', 'al-ecommerce-product-catalog' );
+	$new_columns[ 'id' ]	 = __( 'ID', 'ecommerce-product-catalog' );
+	$new_columns[ 'image' ]	 = __( 'Image', 'ecommerce-product-catalog' );
+	$new_columns[ 'title' ]	 = __( 'Product Name', 'ecommerce-product-catalog' );
 	if ( $product_currency[ 'price_enable' ] == 'on' ) {
-		$new_columns[ 'price' ] = __( 'Price', 'al-ecommerce-product-catalog' );
+		$new_columns[ 'price' ] = __( 'Price', 'ecommerce-product-catalog' );
 	}
-	$new_columns[ 'shortcode' ]					 = __( 'Shortcode', 'al-ecommerce-product-catalog' );
+	$new_columns[ 'shortcode' ]					 = __( 'Shortcode', 'ecommerce-product-catalog' );
 	//unset($new_columns['taxonomy-al_product-cat']);
-	$new_columns[ 'taxonomy-al_product-cat' ]	 = __( 'Product Categories', 'al-ecommerce-product-catalog' );
-	$new_columns[ 'date' ]						 = __( 'Date', 'al-ecommerce-product-catalog' );
+	$new_columns[ 'taxonomy-al_product-cat' ]	 = __( 'Product Categories', 'ecommerce-product-catalog' );
+	$new_columns[ 'date' ]						 = __( 'Date', 'ecommerce-product-catalog' );
 	return apply_filters( 'product_columns', $new_columns );
 }
 
@@ -123,7 +123,7 @@ function restrict_listings_by_product_cat() {
 		array(
 			'walker'			 => new ic_walker_tax_slug_dropdown(),
 			'value'				 => 'slug',
-			'show_option_all'	 => __( "All", "al-ecommerce-product-catalog" ) . ' ' . $current_taxonomy->label,
+			'show_option_all'	 => __( "All", "ecommerce-product-catalog" ) . ' ' . $current_taxonomy->label,
 			'taxonomy'			 => $taxonomy,
 			'name'				 => 'al_product-cat',
 			'orderby'			 => 'name',
@@ -132,6 +132,7 @@ function restrict_listings_by_product_cat() {
 			'depth'				 => 3,
 			'show_count'		 => true,
 			'hide_empty'		 => true,
+			'hide_if_empty'		 => true
 		)
 		);
 	}
@@ -186,7 +187,7 @@ function display_custom_quickedit_product( $column_name ) {
 			<label class="inline-edit-group">
 				<?php
 				if ( $column_name == 'price' ) {
-					?><span class="title"><?php _e( 'Price', 'al-ecommerce-product-catalog' ) ?></span><input type="number" min="0" step="0.01" name="_price" value="" class="widefat" /><?php
+					?><span class="title"><?php _e( 'Price', 'ecommerce-product-catalog' ) ?></span><input type="number" min="0" step="0.01" name="_price" value="" class="widefat" /><?php
 					echo product_currency();
 				} else {
 					do_action( 'product_quickedit', $column_name );

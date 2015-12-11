@@ -89,27 +89,27 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		<a href="#" class="button insert-media add_media" name="<?php echo $name; ?>_button"
 		   id="button_<?php echo $name; ?>"><span class="wp-media-buttons-icon"></span> <?php echo $button_value; ?></a>
 		<a class="button" id="reset-image-button"
-		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
+		   href="#"><?php _e( 'Reset image', 'ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-	    jQuery( document ).ready( function () {
-	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-	            wp.media.editor.send.attachment = function ( props, attachment ) {
-	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-	                jQuery( '.media-image' ).attr( "src", attachment.url );
-	            }
+		jQuery( document ).ready( function () {
+			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+				wp.media.editor.send.attachment = function ( props, attachment ) {
+					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+					jQuery( '.media-image' ).attr( "src", attachment.url );
+				}
 
-	            wp.media.editor.open( this );
+				wp.media.editor.open( this );
 
-	            return false;
-	        } );
-	    } );
+				return false;
+			} );
+		} );
 
-	    jQuery( '#reset-image-button' ).on( 'click', function () {
-	        jQuery( '#<?php echo $name; ?>' ).val( '' );
-	        src = jQuery( '#default' ).val();
-	        jQuery( '.media-image' ).attr( "src", src );
-	    } );
+		jQuery( '#reset-image-button' ).on( 'click', function () {
+			jQuery( '#<?php echo $name; ?>' ).val( '' );
+			src = jQuery( '#default' ).val();
+			jQuery( '.media-image' ).attr( "src", src );
+		} );
 	</script>
 	<?php
 }
@@ -141,7 +141,7 @@ if ( !function_exists( 'select_page' ) ) {
 			$select_box .= '<option name="' . $option_name . '[' . $page->ID . ']" value="' . $page->ID . '" ' . selected( $page->ID, $selected_value, 0 ) . '>' . $page->post_title . '</option>';
 		}
 		if ( $custom ) {
-			$select_box .= '<option value="custom"' . selected( 'custom', $selected_value, 0 ) . '>' . __( 'Custom URL', 'al-ecommerce-product-catalog' ) . '</option>';
+			$select_box .= '<option value="custom"' . selected( 'custom', $selected_value, 0 ) . '>' . __( 'Custom URL', 'ecommerce-product-catalog' ) . '</option>';
 		}
 		$select_box .= '</select>';
 		if ( $buttons && ($selected_value != 'noid' || $custom_view_url != '') ) {
@@ -258,7 +258,7 @@ function add_product_listing_name() {
 			$title = $the_tax->name;
 		}
 	} else if ( is_ic_product_search() ) {
-		$title = __( 'Search Results for:', 'al-ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
+		$title = __( 'Search Results for:', 'ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
 	} else if ( is_ic_product_listing() ) {
 		$title = get_product_listing_title();
 	} else {
@@ -409,7 +409,7 @@ function get_shipping_options( $product_id ) {
 
 function get_shipping_label( $i = 1, $product_id ) {
 	$label	 = get_post_meta( $product_id, "_shipping-label" . $i, true );
-	$label	 = empty( $label ) ? __( 'Shipping', 'al-ecommerce-product-catalog' ) : $label;
+	$label	 = empty( $label ) ? __( 'Shipping', 'ecommerce-product-catalog' ) : $label;
 	return $label;
 }
 
@@ -713,11 +713,11 @@ function product_breadcrumbs() {
 				}
 			}
 		} else if ( is_search() ) {
-			$current_product = __( 'Product Search', 'al-ecommerce-product-catalog' );
+			$current_product = __( 'Product Search', 'ecommerce-product-catalog' );
 		} else {
 			$current_product = '';
 		}
-		$bread = '<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a></span>';
+		$bread = '<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'ecommerce-product-catalog' ) . '</a></span>';
 		if ( !empty( $product_archive ) ) {
 			$bread .= ' » <span typeof="v:Breadcrumb"><a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a></span>';
 		}
@@ -924,7 +924,7 @@ function exclude_products_search( $search, &$wp_query ) {
 }
 
 function modify_product_search( $query ) {
-	if ( !is_admin() && $query->is_search == 1 && $query->is_main_query() && ((isset( $_GET[ 'post_type' ] ) && strpos( $_GET[ 'post_type' ], 'al_product' ) === false) || (!isset( $query->query_vars[ 'post_type' ] ) || (isset( $query->query_vars[ 'post_type' ] ) && strpos( $query->query_vars[ 'post_type' ], 'al_product' ) === false ))) ) {
+	if ( !is_admin() && $query->is_search == 1 && $query->is_main_query() && ((isset( $_GET[ 'post_type' ] ) && strpos( $_GET[ 'post_type' ], 'al_product' ) === false) || (!isset( $query->query_vars[ 'post_type' ] ) || (isset( $query->query_vars[ 'post_type' ] ) && !is_string( $query->query_vars[ 'post_type' ] )) || (isset( $query->query_vars[ 'post_type' ] ) && is_string( $query->query_vars[ 'post_type' ] ) && strpos( $query->query_vars[ 'post_type' ], 'al_product' ) === false ))) ) {
 		add_filter( 'posts_search', 'exclude_products_search', 10, 2 );
 	}
 }
@@ -1136,11 +1136,12 @@ function set_shortcode_product_order( $shortcode_query ) {
  * @param string $archive_template
  * @param array $multiple_settings
  */
-function show_product_order_dropdown( $archive_template = null, $multiple_settings = null ) {
+function show_product_order_dropdown( $archive_template = null, $multiple_settings = null, $instance = null ) {
 	$multiple_settings	 = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
 	$sort_options		 = get_product_sort_options();
 	$selected			 = isset( $_GET[ 'product_order' ] ) ? esc_attr( $_GET[ 'product_order' ] ) : $multiple_settings[ 'product_order' ];
-	echo '<form class="product_order"><select class="product_order_selector" name="product_order">';
+	$action				 = get_filter_widget_action( $instance );
+	echo '<form class="product_order" action="' . $action . '"><select class="product_order_selector" name="product_order">';
 	foreach ( $sort_options as $name => $value ) {
 		$option = '<option value="' . $name . '" ' . selected( $name, $selected, 0 ) . '>' . $value . '</option>';
 		echo apply_filters( 'product_order_dropdown_options', $option, $name, $value, $multiple_settings, $selected );
@@ -1193,10 +1194,10 @@ function show_default_product_sort_bar( $archive_template, $multiple_settings = 
 			$is_filter_bar	 = true;
 			echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
 			echo '<div class="empty-filters-info">';
-			echo '<h3>' . __( 'Product Filters Bar has no widgets', 'al-ecommerce-product-catalog' ) . '</h3>';
+			echo '<h3>' . __( 'Product Filters Bar has no widgets', 'ecommerce-product-catalog' ) . '</h3>';
 			$current_url	 = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ];
 			$customize_url	 = add_query_arg( array( 'url' => urlencode( $current_url ), urlencode( 'autofocus[panel]' ) => 'widgets' ), wp_customize_url() );
-			echo sprintf( __( 'Add widgets to the filters bar %snow%s or %sdismiss this notice%s.', 'al-ecommerce-product-catalog' ), '<a href="' . $customize_url . '">', '</a>', '<a class="dismiss-empty-bar" href="#">', '</a>' );
+			echo sprintf( __( 'Add widgets to the filters bar %snow%s or %sdismiss this notice%s.', 'ecommerce-product-catalog' ), '<a href="' . $customize_url . '">', '</a>', '<a class="dismiss-empty-bar" href="#">', '</a>' );
 			echo '</div>';
 			echo '</div>';
 			unset( $is_filter_bar );

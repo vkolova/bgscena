@@ -4,10 +4,10 @@
  * Plugin Name: eCommerce Product Catalog by impleCode
  * Plugin URI: https://implecode.com/wordpress/product-catalog/#cam=in-plugin-urls&key=plugin-url
  * Description: WordPress eCommerce easy to use, powerful and beautiful plugin from impleCode. Great choice if you want to sell easy and quick. Or just beautifully present your products on WordPress website. Full WordPress integration does great job not only for Merchants but also for Developers and Theme Constructors.
- * Version: 2.4.10
+ * Version: 2.4.14
  * Author: impleCode
  * Author URI: https://implecode.com/#cam=in-plugin-urls&key=author-url
- * Text Domain: al-ecommerce-product-catalog
+ * Text Domain: ecommerce-product-catalog
  * Domain Path: /lang/
 
   Copyright: 2015 impleCode.
@@ -71,7 +71,7 @@ if ( !class_exists( 'eCommerce_Product_Catalog' ) ) {
 		 */
 		public function __clone() {
 			// Cloning instances of the class is forbidden
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'al-ecommerce-product-catalog' ), '4.3' );
+			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'ecommerce-product-catalog' ), '4.3' );
 		}
 
 		/**
@@ -83,7 +83,7 @@ if ( !class_exists( 'eCommerce_Product_Catalog' ) ) {
 		 */
 		public function __wakeup() {
 			// Unserializing instances of the class is forbidden
-			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'al-ecommerce-product-catalog' ), '4.3' );
+			_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'ecommerce-product-catalog' ), '4.3' );
 		}
 
 		/**
@@ -178,7 +178,7 @@ if ( !class_exists( 'eCommerce_Product_Catalog' ) ) {
 		 * Loads Plugin textdomain
 		 */
 		public function load_textdomain() {
-			load_plugin_textdomain( 'al-ecommerce-product-catalog', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+			load_plugin_textdomain( 'ecommerce-product-catalog', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 		}
 
 		/**

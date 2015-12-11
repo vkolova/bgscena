@@ -21,7 +21,7 @@ $single_options		 = get_product_page_settings();
 do_action( 'single_product_begin', $product_id );
 ?>
 
-<article id="product-<?php the_ID(); ?>" <?php post_class( 'al_product responsive product-' . $product_id ); ?>>
+<article id="product-<?php the_ID(); ?>" <?php post_class( 'al_product responsive type-page product-' . $product_id ); ?>>
 	<?php do_action( 'before_product_entry', $post, $single_names ); ?>
 	<div class="entry-content product-entry"><?php
 		//do_action( 'start_product_entry', $post, $single_names );
@@ -33,7 +33,7 @@ do_action( 'single_product_begin', $product_id );
 		</div>
 		<?php if ( current_user_can( 'edit_products' ) ) { ?>
 			<div class="entry-meta">
-				<?php edit_post_link( __( 'Edit Product', 'al-ecommerce-product-catalog' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php edit_post_link( __( 'Edit Product', 'ecommerce-product-catalog' ), '<span class="edit-link">', '</span>' ); ?>
 			</div><?php } ?>
 		<div class="after-product-details">
 			<?php do_action( "after_product_details", $post, $single_names ); ?>

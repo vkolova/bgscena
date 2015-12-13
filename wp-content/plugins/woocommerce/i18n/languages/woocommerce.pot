@@ -7183,78 +7183,78 @@ msgstr ""
 #: templates/emails/customer-processing-order.php:27
 #: templates/emails/customer-refunded-order.php:34
 #: templates/order/order-details.php:20
-msgid "Product"
+msgid "Пиеса"
 msgstr ""
 
 #: includes/class-wc-post-types.php:240
-msgid "Add Product"
+msgid "Добави пиеса"
 msgstr ""
 
 #: includes/class-wc-post-types.php:241
-msgid "Add New Product"
+msgid "Добави нова пиеса"
 msgstr ""
 
 #: includes/class-wc-post-types.php:242 includes/class-wc-post-types.php:294
 #: includes/class-wc-post-types.php:353 includes/class-wc-post-types.php:391
 #: templates/myaccount/my-address.php:45
-msgid "Edit"
+msgid "Редактирай"
 msgstr ""
 
 #: includes/class-wc-post-types.php:243
-msgid "Edit Product"
+msgid "Редактирай пиесата"
 msgstr ""
 
 #: includes/class-wc-post-types.php:244
-msgid "New Product"
+msgid "Нова пиеса"
 msgstr ""
 
 #: includes/class-wc-post-types.php:245 includes/class-wc-post-types.php:246
-msgid "View Product"
+msgid "Виж пиесата"
 msgstr ""
 
 #: includes/class-wc-post-types.php:247
-msgid "Search Products"
+msgid "Търси в пиеси"
 msgstr ""
 
 #: includes/class-wc-post-types.php:248
-msgid "No Products found"
+msgid "Няма намерени пиеси"
 msgstr ""
 
 #: includes/class-wc-post-types.php:249
-msgid "No Products found in trash"
+msgid "В кошчето няма намерени пиеси"
 msgstr ""
 
 #: includes/class-wc-post-types.php:250
-msgid "Parent Product"
+msgid "Родителска пиеса"
 msgstr ""
 
 #: includes/class-wc-post-types.php:251
 #: templates/emails/email-order-items.php:25
-msgid "Product Image"
+msgid "Изображение за пиесата"
 msgstr ""
 
 #: includes/class-wc-post-types.php:252
-msgid "Set product image"
+msgid "Сложи изображение за пиесата"
 msgstr ""
 
 #: includes/class-wc-post-types.php:253
-msgid "Remove product image"
+msgid "Махни изображението на пиесата"
 msgstr ""
 
 #: includes/class-wc-post-types.php:254
-msgid "Use as product image"
+msgid "Използвай като изображение"
 msgstr ""
 
 #: includes/class-wc-post-types.php:256
-msgid "This is where you can add new products to your store."
+msgid "Тук можеш да добавиш пиеси съм каталога"
 msgstr ""
 
 #: includes/class-wc-post-types.php:276
-msgid "Variations"
+msgid "Варианти"
 msgstr ""
 
 #: includes/class-wc-post-types.php:290
-msgid "Orders"
+msgid "Поръчки"
 msgstr ""
 
 #: includes/class-wc-post-types.php:292

@@ -361,20 +361,6 @@ class WC_Install {
 		}
 
 		return "
-CREATE TABLE {$wpdb->prefix}woocommerce_api_keys (
-  key_id bigint(20) NOT NULL auto_increment,
-  user_id bigint(20) NOT NULL,
-  description longtext NULL,
-  permissions varchar(10) NOT NULL,
-  consumer_key char(64) NOT NULL,
-  consumer_secret char(43) NOT NULL,
-  nonces longtext NULL,
-  truncated_key char(7) NOT NULL,
-  last_access datetime NULL default null,
-  PRIMARY KEY  (key_id),
-  KEY consumer_key (consumer_key),
-  KEY consumer_secret (consumer_secret)
-) $collate;
 CREATE TABLE {$wpdb->prefix}woocommerce_attribute_taxonomies (
   attribute_id bigint(20) NOT NULL auto_increment,
   attribute_name varchar(200) NOT NULL,
@@ -394,66 +380,7 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
   KEY woocommerce_term_id (woocommerce_term_id),
   KEY meta_key (meta_key)
 ) $collate;
-CREATE TABLE {$wpdb->prefix}woocommerce_downloadable_product_permissions (
-  permission_id bigint(20) NOT NULL auto_increment,
-  download_id varchar(32) NOT NULL,
-  product_id bigint(20) NOT NULL,
-  order_id bigint(20) NOT NULL DEFAULT 0,
-  order_key varchar(200) NOT NULL,
-  user_email varchar(200) NOT NULL,
-  user_id bigint(20) NULL,
-  downloads_remaining varchar(9) NULL,
-  access_granted datetime NOT NULL default '0000-00-00 00:00:00',
-  access_expires datetime NULL default null,
-  download_count bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY  (permission_id),
-  KEY download_order_key_product (product_id,order_id,order_key,download_id),
-  KEY download_order_product (download_id,order_id,product_id)
-) $collate;
-CREATE TABLE {$wpdb->prefix}woocommerce_order_items (
-  order_item_id bigint(20) NOT NULL auto_increment,
-  order_item_name longtext NOT NULL,
-  order_item_type varchar(200) NOT NULL DEFAULT '',
-  order_id bigint(20) NOT NULL,
-  PRIMARY KEY  (order_item_id),
-  KEY order_id (order_id)
-) $collate;
-CREATE TABLE {$wpdb->prefix}woocommerce_order_itemmeta (
-  meta_id bigint(20) NOT NULL auto_increment,
-  order_item_id bigint(20) NOT NULL,
-  meta_key varchar(255) NULL,
-  meta_value longtext NULL,
-  PRIMARY KEY  (meta_id),
-  KEY order_item_id (order_item_id),
-  KEY meta_key (meta_key)
-) $collate;
-CREATE TABLE {$wpdb->prefix}woocommerce_tax_rates (
-  tax_rate_id bigint(20) NOT NULL auto_increment,
-  tax_rate_country varchar(200) NOT NULL DEFAULT '',
-  tax_rate_state varchar(200) NOT NULL DEFAULT '',
-  tax_rate varchar(200) NOT NULL DEFAULT '',
-  tax_rate_name varchar(200) NOT NULL DEFAULT '',
-  tax_rate_priority bigint(20) NOT NULL,
-  tax_rate_compound int(1) NOT NULL DEFAULT 0,
-  tax_rate_shipping int(1) NOT NULL DEFAULT 1,
-  tax_rate_order bigint(20) NOT NULL,
-  tax_rate_class varchar(200) NOT NULL DEFAULT '',
-  PRIMARY KEY  (tax_rate_id),
-  KEY tax_rate_country (tax_rate_country),
-  KEY tax_rate_state (tax_rate_state),
-  KEY tax_rate_class (tax_rate_class),
-  KEY tax_rate_priority (tax_rate_priority)
-) $collate;
-CREATE TABLE {$wpdb->prefix}woocommerce_tax_rate_locations (
-  location_id bigint(20) NOT NULL auto_increment,
-  location_code varchar(255) NOT NULL,
-  tax_rate_id bigint(20) NOT NULL,
-  location_type varchar(40) NOT NULL,
-  PRIMARY KEY  (location_id),
-  KEY tax_rate_id (tax_rate_id),
-  KEY location_type (location_type),
-  KEY location_type_code (location_type(40),location_code(90))
-) $collate;
+
 		";
 	}
 

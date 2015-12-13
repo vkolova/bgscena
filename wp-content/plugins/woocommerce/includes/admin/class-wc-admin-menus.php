@@ -57,9 +57,9 @@ class WC_Admin_Menus {
 			$menu[] = array( '', 'read', 'separator-woocommerce', '', 'wp-menu-separator woocommerce' );
 		}
 
-		add_menu_page( __( 'WooCommerce', 'woocommerce' ), __( 'WooCommerce', 'woocommerce' ), 'manage_woocommerce', 'woocommerce', null, null, '55.5' );
+		//add_menu_page( __( 'WooCommerce', 'woocommerce' ), __( 'WooCommerce', 'woocommerce' ), 'manage_woocommerce', 'woocommerce', null, null, '55.5' );
 
-		add_submenu_page( 'edit.php?post_type=product', __( 'Attributes', 'woocommerce' ), __( 'Attributes', 'woocommerce' ), 'manage_product_terms', 'product_attributes', array( $this, 'attributes_page' ) );
+		//add_submenu_page( 'edit.php?post_type=product', __( 'Attributes', 'woocommerce' ), __( 'Attributes', 'woocommerce' ), 'manage_product_terms', 'product_attributes', array( $this, 'attributes_page' ) );
 	}
 
 	/**
@@ -79,22 +79,22 @@ class WC_Admin_Menus {
 	public function settings_menu() {
 		$settings_page = add_submenu_page( 'woocommerce', __( 'WooCommerce Settings', 'woocommerce' ),  __( 'Settings', 'woocommerce' ) , 'manage_woocommerce', 'wc-settings', array( $this, 'settings_page' ) );
 
-		add_action( 'load-' . $settings_page, array( $this, 'settings_page_init' ) );
+		// add_action( 'load-' . $settings_page, array( $this, 'settings_page_init' ) );
 	}
 
 	/**
 	 * Loads gateways and shipping methods into memory for use within settings.
 	 */
-	public function settings_page_init() {
-		WC()->payment_gateways();
-		WC()->shipping();
-	}
+	// public function settings_page_init() {
+	// 	WC()->payment_gateways();
+	// 	WC()->shipping();
+	// }
 
 	/**
 	 * Add menu item
 	 */
 	public function status_menu() {
-		add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce' ),  __( 'System Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
+		// add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce' ),  __( 'System Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
 		register_setting( 'woocommerce_status_settings_fields', 'woocommerce_status_options' );
 	}
 
@@ -300,12 +300,12 @@ class WC_Admin_Menus {
 		}
 
 		// Add an option to visit the store
-		$wp_admin_bar->add_node( array(
-			'parent' => 'site-name',
-			'id'     => 'view-store',
-			'title'  => __( 'Visit Store', 'woocommerce' ),
-			'href'   => wc_get_page_permalink( 'shop' )
-		) );
+		// $wp_admin_bar->add_node( array(
+		// 	'parent' => 'site-name',
+		// 	'id'     => 'view-store',
+		// 	'title'  => __( 'Visit Store', 'woocommerce' ),
+		// 	'href'   => wc_get_page_permalink( 'shop' )
+		// ) );
 	}
 }
 

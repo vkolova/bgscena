@@ -59,7 +59,7 @@ class WC_Admin_Menus {
 
 		//add_menu_page( __( 'WooCommerce', 'woocommerce' ), __( 'WooCommerce', 'woocommerce' ), 'manage_woocommerce', 'woocommerce', null, null, '55.5' );
 
-		//add_submenu_page( 'edit.php?post_type=product', __( 'Attributes', 'woocommerce' ), __( 'Attributes', 'woocommerce' ), 'manage_product_terms', 'product_attributes', array( $this, 'attributes_page' ) );
+		add_submenu_page( 'edit.php?post_type=product', __( 'Attributes', 'woocommerce' ), __( 'Attributes', 'woocommerce' ), 'manage_product_terms', 'product_attributes', array( $this, 'attributes_page' ) );
 	}
 
 	/**
@@ -94,7 +94,7 @@ class WC_Admin_Menus {
 	 * Add menu item
 	 */
 	public function status_menu() {
-		// add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce' ),  __( 'System Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
+		//add_submenu_page( 'woocommerce', __( 'WooCommerce Status', 'woocommerce' ),  __( 'System Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
 		register_setting( 'woocommerce_status_settings_fields', 'woocommerce_status_options' );
 	}
 

@@ -130,6 +130,8 @@ class WC_Frontend_Scripts {
 		self::register_script( 'wc-single-product', $frontend_script_path . 'single-product' . $suffix . '.js' );
 		self::register_script( 'wc-country-select', $frontend_script_path . 'country-select' . $suffix . '.js' );
 		self::register_script( 'wc-address-i18n', $frontend_script_path . 'address-i18n' . $suffix . '.js' );
+		self::register_script( 'vk-change-user-play-status', $frontend_script_path . 'change-user-play-status' . '.js' );
+
 
 		// Register frontend scripts conditionally
 		if ( $ajax_cart_en ) {
@@ -158,6 +160,7 @@ class WC_Frontend_Scripts {
 		}
 		if ( is_product() ) {
 			self::enqueue_script( 'wc-single-product' );
+//			self::enqueue_script( 'vk-change-user-play-status' );
 		}
 		if ( 'geolocation_ajax' === get_option( 'woocommerce_default_customer_address' ) ) {
 			self::enqueue_script( 'wc-geolocation', $frontend_script_path . 'geolocation' . $suffix . '.js', array( 'jquery' ) );

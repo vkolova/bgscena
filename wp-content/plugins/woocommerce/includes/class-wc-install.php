@@ -384,7 +384,7 @@ CREATE TABLE {$wpdb->prefix}vk_user_play_status (
   status_id bigint(20) NOT NULL auto_increment,
 	user_id bigint(20) unsigned NULL,
 	play_id bigint(20) unsigned NULL,
-  status_value longtext NULL,
+  status_value int(11) NULL,
   PRIMARY KEY  (status_id),
 	KEY user_id (user_id),
 	KEY play_id (play_id)

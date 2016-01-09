@@ -1906,6 +1906,32 @@ if ( ! function_exists( 'woocommerce_single_variation_add_to_cart_button' ) ) {
 	}
 }
 
+if ( ! function_exists( 'add_status_buttons' ) ) {
+
+	/**
+	 * Output the add mark as seen and want to see buttons.
+	 * -vkolova
+	 */
+	function add_status_buttons() {
+		global $product;
+		do_action('vk_enqueue_scripts');
+
+		?>
+	<div class="btn-group btn-group-justified" role="group">
+		<div class="btn-group" role="group" >
+			<button type="submit" id="mark_as_seen_button" class="btn btn-default" ><?php echo esc_html( $product->mark_as_seen_text() ); ?></button>
+		</div>
+		<div class="btn-group" role="group">
+			<button type="submit" id="mark_as_want_to_see_button" class="btn btn-default" ><?php echo esc_html( $product->mark_as_want_to_see_text() ); ?></button>
+		</div>
+	</div>
+	<input type="hidden" id="play_id" value="<?php echo absint( $product->id ); ?>" />
+	<input type="hidden" id="user_id" value=" <?php echo get_current_user_id(); ?> "/>
+		<?php
+	}
+}
+
+
 if ( ! function_exists( 'wc_dropdown_variation_attribute_options' ) ) {
 
 	/**

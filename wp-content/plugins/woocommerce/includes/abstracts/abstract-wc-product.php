@@ -547,6 +547,24 @@ class WC_Product {
 	}
 
 	/**
+	 * Get the mark as seen button text
+	 * -vkolova
+	 * @return string
+	 */
+	public function mark_as_seen_text() {
+		return apply_filters( 'vk_mark_as_seen_text', __( 'Гледах я', 'woocommerce' ), $this );
+	}
+
+	/**
+	 * Get the mark as want to see button text
+	 * -vkolova
+	 * @return string
+	 */
+	public function mark_as_want_to_see_text() {
+		return apply_filters( 'vk_mark_as_want_to_see_text', __( 'Искам да я гледам', 'woocommerce' ), $this );
+	}
+
+	/**
 	 * Returns whether or not the product is stock managed.
 	 *
 	 * @return bool

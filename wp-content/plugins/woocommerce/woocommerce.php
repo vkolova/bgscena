@@ -209,6 +209,7 @@ final class WooCommerce {
 		include_once( 'includes/class-wc-comments.php' );
 		include_once( 'includes/class-wc-post-data.php' );
 		include_once( 'includes/class-wc-ajax.php' );
+		include_once( 'includes/vk-ajax.php' );
 
 		if ( $this->is_request( 'admin' ) ) {
 			include_once( 'includes/admin/class-wc-admin.php' );
@@ -260,7 +261,8 @@ final class WooCommerce {
 		include_once( 'includes/class-wc-customer.php' );                       // Customer class
 		include_once( 'includes/class-wc-shortcodes.php' );                     // Shortcodes class
 		include_once( 'includes/class-wc-https.php' );                          // https Helper
-		include_once( 'includes/class-wc-embed.php' );                          // Embeds
+		include_once( 'includes/class-wc-embed.php' );                 				  // Embeds
+
 	}
 
 	/**
@@ -268,6 +270,7 @@ final class WooCommerce {
 	 */
 	public function include_template_functions() {
 		include_once( 'includes/wc-template-functions.php' );
+		//include_once( 'includes/vk-ajax.php' );
 	}
 
 	/**

@@ -37,10 +37,8 @@ if ( ! empty( $status_options['uninstall_data'] ) ) {
 	// Tables
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_api_keys" );
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_attribute_taxonomies" );
-	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_downloadable_product_permissions" );
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_termmeta" );
-	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_tax_rates" );
-	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}woocommerce_tax_rate_locations" );
+	$wpd->query( "DROP TABLE IF EXISTS {$wpd->prefix}vk_user_play_status" );
 
 	// Delete options
 	$wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE 'woocommerce\_%';");

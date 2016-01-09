@@ -380,6 +380,15 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
   KEY woocommerce_term_id (woocommerce_term_id),
   KEY meta_key (meta_key)
 ) $collate;
+CREATE TABLE {$wpdb->prefix}vk_user_play_status (
+  status_id bigint(20) NOT NULL auto_increment,
+	user_id bigint(20) unsigned NULL,
+	play_id bigint(20) unsigned NULL,
+  status_value longtext NULL,
+  PRIMARY KEY  (status_id),
+	KEY user_id (user_id),
+	KEY play_id (play_id)
+) $collate;
 
 		";
 	}
@@ -496,7 +505,7 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
 			}
 		}
 
-		remove_role( 'theater_role' );	
+		remove_role( 'theater_role' );
 	}
 
 	/**

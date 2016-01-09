@@ -31,6 +31,7 @@ function mo_register_openid() {
 		<?php } ?>
 		<a class="nav-tab <?php echo $active_tab == 'login' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'login'), $_SERVER['REQUEST_URI'] ); ?>">Social Login</a>
 		<a class="nav-tab <?php echo $active_tab == 'share' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'share'), $_SERVER['REQUEST_URI'] ); ?>">Social Sharing</a>
+		<a class="nav-tab <?php echo $active_tab == 'comment' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'comment'), $_SERVER['REQUEST_URI'] ); ?>">Social Comments</a>
 		<a class="nav-tab <?php echo $active_tab == 'shortcode' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'shortcode'), $_SERVER['REQUEST_URI'] ); ?>">Shortcode</a>
 		<a class="nav-tab <?php echo $active_tab == 'pricing' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'pricing'), $_SERVER['REQUEST_URI'] ); ?>">Licensing Plans</a>
 		<a class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>" href="<?php echo add_query_arg( array('tab' => 'help'), $_SERVER['REQUEST_URI'] ); ?>">Help & Troubleshooting</a>
@@ -61,7 +62,9 @@ function mo_register_openid() {
 								}
 							} else if($active_tab == 'login'){
 								mo_openid_apps_config();
-							}else if($active_tab == 'shortcode') {
+							} else if($active_tab == 'comment'){
+								mo_openid_app_comment();
+							} else if($active_tab == 'shortcode') {
 								mo_openid_shortcode_info();
 							}else if($active_tab == 'pricing') {
 								mo_openid_pricing_info();
@@ -883,7 +886,6 @@ function mo_openid_apps_config() {
 						}
 						checkLoginButton();
 				</script>
-		
 		<tr>
 			<td>
 				<br/>
@@ -901,65 +903,56 @@ function mo_openid_apps_config() {
 			</td>
 		</tr>
 		<tr>
-					<td>
-						<br>
-							<hr>
-							<h3>Customize Text For Social Login Buttons / Icons</h3>
-							</td>
+			<td>
+				<br>
+				<hr>
+				<h3>Customize Text For Social Login Buttons / Icons</h3>
+			</td>
 		</tr>
 		</table>
 		<table class="mo_openid_display_table">
-		<tr>
-			<td><b>Enter text to show above login widget:</b></td>
-			<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_login_widget_customize_text" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_login_widget_customize_text'); ?>" /></td>
-		</tr>
-		
+			<tr>
+				<td><b>Enter text to show above login widget:</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_login_widget_customize_text" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_login_widget_customize_text'); ?>" /></td>
+			</tr>
+			<tr>
+				<td><b>Enter text to show on your login buttons (If you have selected shape 4 from 'Customize Login Icons' section):</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_login_button_customize_text" 
+					<?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_login_button_customize_text'); ?>"  /></td>
+			</tr>
 		
 			<tr>
-												<td><b>Enter text to show on your login buttons (If you have selected shape 4 from 'Customize Login Icons' section):</b></td>
-												<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_login_button_customize_text" 
-													<?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_login_button_customize_text'); ?>"  /></td>
-											</tr>
-		
-							<tr>
-											
-											<td><br /><input type="submit" name="submit" value="Save" style="width:100px;" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?>
-													class="button button-primary button-large" /></td>
-											</tr>
+				<td><br /><input type="submit" name="submit" value="Save" style="width:100px;" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> class="button button-primary button-large" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr>
+					<p>
+						<h3>Add Login Icons</h3>
+						You can add login icons in the following areas from <strong>Display Options</strong>. For other areas(widget areas), use Login Widget.
+					<ol>
+						<li>Default Login Form: This option places login icons below the default login form on wp-login.</li>
+						<li>Default Registration Form: This option places login icons below the default registration form.</li>
+						<li>Comment Form: This option places login icons above the comment section of all your posts.</li>
+					</ol>
+					
+						<h3>Add Login Icons as Widget</h3>
 
-
-								<tr>
-									<td colspan="2">
-										<hr>
-										<p>
-											<h3>Add Login Icons</h3>
-											You can add login icons in the following areas from <strong>Display Options</strong>. For other areas(widget areas), use Login Widget.
-										<ol>
-											<li>Default Login Form: This option places login icons below the default login form on wp-login.</li>
-											<li>Default Registration Form: This option places login icons below the default registration form.</li>
-											<li>Comment Form: This option places login icons above the comment section of all your posts.</li>
-										</ol>
-										
-											<h3>Add Login Icons as Widget</h3>
-
-										<ol>
-											<li>Go to Appearance->Widgets. Among the available widgets you
-												will find miniOrange Social Login Widget, drag it to the widget area where
-												you want it to appear.</li>
-											<li>Now logout and go to your site. You will see app icon for which you enabled login.</li>
-											<li>Click that app icon and login with your existing app account to wordpress.</li>
-										</ol>
-										</p>
-									</td>
-								</tr>
+					<ol>
+						<li>Go to Appearance->Widgets. Among the available widgets you
+							will find miniOrange Social Login Widget, drag it to the widget area where
+							you want it to appear.</li>
+						<li>Now logout and go to your site. You will see app icon for which you enabled login.</li>
+						<li>Click that app icon and login with your existing app account to wordpress.</li>
+					</ol>
+					</p>
+				</td>
+			</tr>
 		</table>
-		
-							
-		
-						</div>
-
-		</form>
-		<script>
+	</div>
+</form>
+<script>
 jQuery(function() {
 				jQuery('#tab2').removeClass('disabledTab');
 });
@@ -969,6 +962,126 @@ jQuery(function() {
 			<?php echo miniorange_openid_support(); ?>
 		</td>
 <?php
+}
+
+function mo_openid_app_comment() {
+?>
+	<td style="vertical-align:top;width:65%;">
+		<form name="f" method="post" id="comment_settings_form" action="">
+		<input type="hidden" name="option" value="mo_openid_save_comment_settings" />
+		<div class="mo_openid_table_layout">
+		
+		<?php if(!mo_openid_is_customer_registered()) { ?>
+			<div style="display:block;margin-top:10px;color:red;background-color:rgba(251, 232, 0, 0.15);padding:5px;border:solid 1px rgba(255, 0, 9, 0.36);">
+			Please <a href="<?php echo add_query_arg( array('tab' => 'register'), $_SERVER['REQUEST_URI'] ); ?>">Register or Login with miniOrange</a> to enable Social Login and Social Sharing. miniOrange takes care of creating applications for you so that you don't have to worry about creating applications in each social network.
+			</div>
+		<?php } ?>
+		
+		<table class="mo_openid_display_table">
+			<tr>
+				<td colspan="2">
+					<h3>Social Comments
+					<input type="submit" name="submit" value="Save" style="width:100px;float:right;margin-right:2%"
+					class="button button-primary button-large" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?>/>
+					</h3>
+					<b>Select applications to add Social Comments. These commenting applications will be added to your blog post pages at the location of your comments.</b>
+				</td>
+			</tr>
+		</table>
+		<table class="mo_openid_display_table">
+			<tr>
+				<td colspan="2">
+					<br/>
+					<hr>
+					<h3>Select Applications</h3>
+					If none of the below are selected, default WordPress comments will only be visible. Only selecting Default WordPress Comments will not result in any changes.
+				</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			</tr>
+				<td><input type="checkbox" id="mo_openid_social_comment_default" name="mo_openid_social_comment_default" value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_openid_social_comment_default') == 1 );?> /><b>Default WordPress Comments</b>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" id="mo_openid_social_comment_fb" name="mo_openid_social_comment_fb" value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_openid_social_comment_fb') == 1 );?> /><b>Facebook Comments</b>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" id="mo_openid_social_comment_google" name="mo_openid_social_comment_google" value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_openid_social_comment_google') == 1 );?> /><b>Google+ Comments</b>
+				</td>
+			<tr>
+		</table>
+		<table class="mo_openid_display_table">
+			<tr>
+				<td colspan="2">
+					<br>
+					<hr>
+					<h3>Display Options</h3>
+					Select the options where you want to add social comments.
+				</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td><input type="checkbox" id="mo_openid_social_comment_blogpost" name="mo_openid_social_comment_blogpost" value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_openid_social_comment_blogpost') == 1 );?> /><b>Blog Post</b>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" id="mo_openid_social_comment_static" name="mo_openid_social_comment_static" value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_openid_social_comment_static') == 1 );?> /><b>Static Pages</b>
+				</td>
+			<tr>
+		</table>
+		<table class="mo_openid_display_table">
+			<tr>
+				<td colspan="2">
+					<br>
+					<hr>
+					<h3>Customize Text For Social Comment Labels</h3>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Comment Section Heading:</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_social_comment_heading_label" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_social_comment_heading_label'); ?>" /></td>
+			</tr>
+			<tr>
+				<td><b>Comments - Default Label:</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_social_comment_default_label" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_social_comment_default_label'); ?>" /></td>
+			</tr>
+			<tr>
+				<td><b>Comments - Facebook Label:</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_social_comment_fb_label" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_social_comment_fb_label'); ?>" /></td>
+			</tr>
+			<tr>
+				<td><b>Comments - Google Label:</b></td>
+				<td><input class="mo_openid_table_textbox" type="text" name="mo_openid_social_comment_google_label" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> value="<?php echo get_option('mo_openid_social_comment_google_label'); ?>" /></td>
+			</tr>
+		
+			<tr>
+				<td><br /><input type="submit" name="submit" value="Save" style="width:100px;" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> class="button button-primary button-large" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<hr>
+					<p>
+						<h3>Enable Social Comments</h3>
+						To enable Social Comments, please select either Facebook Comments and/or Google+ Comments from <strong>Select Applications</strong>. Also select one or both of the options from <strong>Display Options</strong>.
+
+						<h3>Add Social Comments</h3>
+						You can add social comments in the following areas from <strong>Display Options</strong>. If you require a shortcode, please contact us from the Support form on the right.
+						<ol>
+							<li>Blog Post: This option enables Social Comments on Posts / Blog Post.</li>
+							<li>Static pages: This option places Social Comments on Pages / Static Pages with comments enabled.</li>
+						</ol>
+					</p>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</td>
+	<td style="vertical-align:top;padding-left:1%;">
+		<?php echo miniorange_openid_support(); ?>
+	</td>
+	<?php
 }
 
 function mo_openid_show_otp_verification(){
@@ -1637,6 +1750,15 @@ function mo_openid_other_settings(){
 			<td>
 				<input type="checkbox" id="mo_apps_home_page"  name="mo_share_options_home_page"  value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_enable_home_page') == 1 );?>>
 				Home Page
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_home_page_position" value="before" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_home_page_position') == 'before' );?>>
+				Before content
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_home_page_position" value="after" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_home_page_position') == 'after' );?>>
+				After content
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_home_page_position" value="both" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_home_page_position') == 'both' );?>>
+				Both before and after content
 			</td>
 		</tr>
 		<tr>
@@ -1658,6 +1780,15 @@ function mo_openid_other_settings(){
 			<td>
 				<input type="checkbox" id="mo_apps_static_page"  name="mo_share_options_static_pages"  value="1" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_enable_static_pages') == 1 );?>>
 				Static Pages
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_static_pages_position" value="before" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_static_pages_position') == 'before' );?>>
+				Before content
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_static_pages_position" value="after" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_static_pages_position') == 'after' );?>>
+				After content
+				<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="mo_apps_posts_options"  name="mo_share_options_static_pages_position" value="both" <?php if(!mo_openid_is_customer_registered()) echo 'disabled'?> <?php checked( get_option('mo_share_options_static_pages_position') == 'both' );?>>
+				Both before and after content
 			</td>
 		</tr>
 		<tr>
@@ -1866,24 +1997,24 @@ function mo_openid_pricing_info(){ ?>
 				<h3 class="mo_openid_pricing_header">Free - Forever</h3>
 				<h4 class="mo_openid_pricing_sub_header">(You are automatically on this plan)<br/><br/></h4>
 				<hr>
-				<p class="mo_openid_pricing_text">$0 - One Time Payment<br/>+<br/>$0 / year - Subscription</p>
+				<p class="mo_openid_pricing_text">$0 - One Time Payment<br/>+<br/>$0 / year - Subscription<br/></p>
 				<hr>
 				<p class="mo_openid_pricing_text">Logins (Not Applicable)</p>
-				<p class="mo_openid_pricing_text">Users (Not Applicable)<br/><br/></p> <!-- Popular among Personal Blogs -->
+				<p class="mo_openid_pricing_text">Users (Not Applicable)<br/><br/></p><p><br/></p><p><br/></p> <!-- Popular among Personal Blogs -->
 				<hr>
 				<p class="mo_openid_pricing_text">Social Sharing - free forever<br/><br/>
 					*30 day free trial for the following*<br/>
 					Social Login<br/>
+					Social Comments<br/>
 					All Social Apps<br/>
-					Setup in minutes (No Social app specific configuration)**<br/>
+					Setup in minutes (No Social app specific configuration)***<br/>
 					Icon customization<br/>
 					Login Widget & Shortcode<br/>
 					Redirect after Login & Logout<br/>
 					Optional Registration<br/>
 					Basic Data from Social Media<br/><br/>
 					* <a style="color:pink;text-decoration:underline;" onclick="upgradeform('wp_social_login_basic_plan')" >
-					Upgrade Now</a> for one time payment of $9 *</p>
-					<p></br></p>
+					Upgrade Now</a> *<br/><br/></p>
 				<hr/>
 				<p class="mo_openid_pricing_text">Get access to user data like Name, Email, Username, Display Picture<br/><br/></p>
 				<hr>
@@ -1894,23 +2025,22 @@ function mo_openid_pricing_info(){ ?>
 				<h4 class="mo_openid_pricing_sub_header" style="padding-bottom:8px !important;"><a class="button button-primary button-large"
 				 onclick="upgradeform('wp_social_login_basic_plan')" >Upgrade Now</a></h4>
 				<hr>
-				<p class="mo_openid_pricing_text">$9 - One Time Payment<br/>+<br/>$0 / year - Subscription</p>
+				<p class="mo_openid_pricing_text">$9 - One Time Payment<br/>+<br/>$9 / 10,000 logins / year</p>
 				<hr>
-				<p class="mo_openid_pricing_text">Upto 10,000 logins</p>
-				<p class="mo_openid_pricing_text">Recommended for<br/> upto 5000 users</p> <!-- Popular among Personal Blogs -->
+				<p class="mo_openid_pricing_text">*Upto 10,000 logins</p>
+				<p class="mo_openid_pricing_text">*Recommended for<br/> upto 5000 users<br/><br/>(Bigger plans are available,<br/> see below)</p> <!-- Popular among Personal Blogs -->
 				<hr>
 				<p class="mo_openid_pricing_text">Social Sharing<br/><br/><br/>
 					Social Login<br/>
+					Social Comments<br/>
 					All Social Apps<br/>
-					Setup in minutes (No Social app specific configuration)**<br/>
+					Setup in minutes (No Social app specific configuration)***<br/>
 					Icon customization<br/>
 					Login Widget & Shortcode<br/>
 					Redirect after Login & Logout<br/>
 					Optional Registration<br/>
-					Basic Data from Social Media</p>
-				<p><br/></p>
-				<p><br/></p>
-				<p><br/></p>
+					Basic Data from Social Media</p><br/>
+					<p><br/></p>
 				<hr/>
 				<p class="mo_openid_pricing_text">Get access to user data like Name, Email, Username, Display Picture<br/><br/></p>
 				<hr>
@@ -1920,56 +2050,49 @@ function mo_openid_pricing_info(){ ?>
 				<h3 class="mo_openid_pricing_header">Best Value</h3>				<h4 class="mo_openid_pricing_sub_header" style="padding-bottom:8px !important;"><a class="button button-primary button-large"
 				 onclick="upgradeform('wp_social_login_best_value_basic_plan')" >Upgrade Now</a></h4>
 				<hr>
-				<p class="mo_openid_pricing_text">$9 - One Time Payment<br/>+<br/>$49 / year - Subscription</p>
+				<p class="mo_openid_pricing_text">$19 - One Time Payment<br/>+<br/>$9 / 10,000 logins / year</p>
 				<hr>
-				<p class="mo_openid_pricing_text">Upto 100,000 logins</p>
-				<p class="mo_openid_pricing_text">Recommended for<br/> upto 50,000 users</p>
+				<p class="mo_openid_pricing_text">*Upto 10,000 logins</p>
+				<p class="mo_openid_pricing_text">*Recommended for<br/> upto 5000 users<br/><br/>(Bigger plans are available,<br/> see below)</p>
 				<hr>
-				<p class="mo_openid_pricing_text">Social Sharing<br/><br/><br/>
-					Social Login<br/>
-					All Social Apps<br/>
-					Setup in minutes (No Social app specific configuration)**<br/>
-					Icon customization<br/>
-					Login Widget & Shortcode<br/>
-					Redirect after Login & Logout<br/>
-					Optional Registration<br/>
+				<p class="mo_openid_pricing_text">All the features in the<br/>Do It Youself plan<br/><br/>
+					<span style="font-size:20px">PLUS</span><br/><br/>
 					Extended Profile Data<br/>
 					Social Analytics Dashboard Access<br/>
-					Custom Apps**</p>
+					Custom Apps***</p>
 				<p><br/><br/></p>
+				<p><br/><br/></p>
+				<p><br/></p>
+				<p><br/></p>
 				<hr/>
 				<p class="mo_openid_pricing_text">Get access to user data like Name, Email, Username, Display Picture and <a target="_blank" href="http://miniorange.com/social-data-from-social-sites" style="color:pink">Extended Profile Data</a></p>
 				<hr>
-				<p class="mo_openid_pricing_text">Basic Support by Email<br/><br/></p>
+				<p class="mo_openid_pricing_text">Premium Support<br/><br/></p>
 			</div></td>
 			<td><div class="mo_openid_thumbnail mo_openid_pricing_free_tab">
 				<h3 class="mo_openid_pricing_header">Premium</h3>
 				<h4 class="mo_openid_pricing_sub_header" style="padding-bottom:8px !important;"><a class="button button-primary button-large"
 				 onclick="upgradeform('wp_social_login_premium_plan')" >Upgrade Now</a></h4>
 				<hr>
-				<p class="mo_openid_pricing_text">$9 - One Time Payment<br/>+<br/>$99 / year - Subscription</p>
+				<p class="mo_openid_pricing_text">$29 - One Time Payment<br/>+<br/>$9 / 10,000 logins / year</p>
 				<hr>
-				<p class="mo_openid_pricing_text">More than 100,000 logins</p>
-				<p class="mo_openid_pricing_text">Recommended for<br/> more than 50,000 users</p>
+				<p class="mo_openid_pricing_text">*Upto 10,000 logins</p>
+				<p class="mo_openid_pricing_text">*Recommended for<br/> upto 5000 users<br/><br/>(Bigger plans are available,<br/> see below)</p>
 				<hr>
-				<p class="mo_openid_pricing_text">Social Sharing<br/><br/><br/>
-					Social Login<br/>
-					All Social Apps<br/>
-					Setup in minutes (No Social app specific configuration)**<br/>
-					Icon customization<br/>
-					Login Widget & Shortcode<br/>
-					Redirect after Login & Logout<br/>
-					Optional Registration<br/>
-					Extended Profile Data<br/>
-					Social Analytics Dashboard Access<br/>
-					Custom Apps**<br/>
+				<p class="mo_openid_pricing_text">All the features in the<br/>Best Value plan<br/><br/>
+					<span style="font-size:20px">PLUS</span><br/><br/>
 					Custom Integration
 				</p>
+				<p><br/><br/></p>
+				<p><br/></p>
+				<p><br/></p>
+				<p><br/></p>
+				<p><br/></p>
 				<p><br/></p>
 				<hr/>
 				<p class="mo_openid_pricing_text">Get access to user data like Name, Email, Username, Display Picture  and <a target="_blank" href="http://miniorange.com/social-data-from-social-sites" style="color:pink">Extended Profile Data</a></p>
 				<hr>
-				<p class="mo_openid_pricing_text">Premium Support Plans Available<br/> ($45 per hour)</p>
+				<p class="mo_openid_pricing_text">Premium Support<br/><br/></p>
 			</div></td>
 		</td>
 		</tr>
@@ -1988,8 +2111,9 @@ function mo_openid_pricing_info(){ ?>
 				jQuery('#loginform').submit();
 			}
 		</script>
-		<p><span style="color:rgba(255, 0, 0, 0.76);font-weight:bold;">* Free trial for 30 days</span> - The plugin uses miniOrange service for Social Login. This keeps the plugin light and delegates login to miniOrange servers thereby reducing the load on your website.</p>
-		<p>** Configuring applications for Social Media is cumbersome due to which miniOrange takes care of configuring these apps. Custom apps can be configured for each Social Media in Best Value and Premium plans.</p>
+		<p>* If you want to support more than 10000 logins per year or more than 5000 users per year, contact us at info@miniorange.com.</p>
+		<p><span style="color:rgba(255, 0, 0, 0.76);font-weight:bold;">** Free trial for 30 days</span> - The plugin uses miniOrange service for Social Login. This keeps the plugin light and delegates login to miniOrange servers thereby reducing the load on your website.</p>
+		<p>*** Configuring applications for Social Media is cumbersome due to which miniOrange takes care of configuring these apps. Custom apps can be configured for each Social Media in Best Value and Premium plans.</p>
 
 		<h3>Steps to upgrade to premium plugin -</h3>
 		<p>1. You will be redirected to miniOrange Login Console. Enter your password with which you created an account with us. After that you will be redirected to payment page.</p>
@@ -2114,6 +2238,15 @@ function mo_openid_troubleshoot_info(){ ?>
 					<h4><a  id="openid_question10" >Why is sharing with some applications not working?</a></h4>
 					<div  id="openid_question10_desc">
 						This issue arises if your website is not publicly hosted. Facebook, for example looks for the URL to generate its preview for sharing. That does not work on localhost or any privately hosted URL.
+					</div>
+					<hr>
+
+					<h4><a  id="openid_question13" >Facebook sharing is showing the wrong image. How do I change the image?</a></h4>
+					<div  id="openid_question13_desc">
+						The image is selected by Facebook and it is the part of Facebook sharing feature. We provide Facebook with webpage URL. It generates the entire preview of webpage using that URL.<br/><br/>
+						To set an image for the page, set it as a meta tag in <head> of your webpage.<br/>
+						<b>< meta property="og:image" content="http://example.com/image.jpg" ></b><br/><br/>
+						If the problem still persists, please contact us using the Support form on the right.
 					</div>
 					</div>
 					<hr>

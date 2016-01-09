@@ -1,28 +1,31 @@
 === Social Login, Social Sharing by miniOrange ===
 Contributors: miniOrange
 Donate link: http://miniorange.com
-Tags: accesspress, amazon, auto user registration, User Profile Data, auto-login, autologin, Facebook, facebook connect, Facebook Login, facebook share, floating buttons, free social sharing, google, google plus share, share page, Google Login, google social login, login with twitter, twitter social login, twitter login, login with vkontakte, vkontakte social login, vkontakte login, increase shares, instagram, linkedin, linkedin login, login, login widget, login with amazon, pinterest share, pinterest sharing, reddit share, reddit sharing, vkontakte share, vkontakte sharing, tumblr share, tumblr sharing, stumbleupon share, stumbleupon sharing, pocket share, pocket sharing, digg share, digg sharing, delicious share, delicious sharing, odnoklassniki share, odnoklassniki sharing, login with facebook, login with google, login with linkedin, login with microsoft, login with openid connect, login with salesforce, microsoft, oauth, openid, OpenID Connect, openid connect sso, post to social networks, Reddit, salesforce, salesforce login, salesforce openid connect, Share, share button, share buttons, share icons, share links, social connect, social login, social network login, social network share, social provider, social share, social sharing, social sharing widget, twitter, twitter share, user auto register, widget, windows live, woocommerce sharing, woocommerce, social media, social, woocommerce connect, comments, yahoo, twitter,plugin,wordpress multisite, SSO technology,social sign-in,Social Plugins, social media tools,social commenting,social authentication,social app, social api, Social Analytics, single sign-on, share post,OpenID integration,Online Identity, multisite, mailchimp, LoginRadius, Oneall, Login Radius, One all, Hubspot,capture social data, captcha, bbPress, buddypress, shortcode
+Tags: accesspress, amazon, auto user registration, User Profile Data, auto-login, autologin, Facebook, facebook connect, Facebook Login, facebook share, floating buttons, free social sharing, google, google plus share, share page, Google Login, google social login, login with twitter, twitter social login, twitter login, login with vkontakte, vkontakte social login, vkontakte login, increase shares, instagram, linkedin, linkedin login, login, login widget, login with amazon, pinterest share, pinterest sharing, reddit share, reddit sharing, vkontakte share, vkontakte sharing, tumblr share, tumblr sharing, stumbleupon share, stumbleupon sharing, pocket share, pocket sharing, digg share, digg sharing, delicious share, delicious sharing, odnoklassniki share, odnoklassniki sharing, login with facebook, login with google, login with linkedin, login with microsoft, login with openid connect, login with salesforce, microsoft, oauth, openid, OpenID Connect, openid connect sso, post to social networks, Reddit, salesforce, salesforce login, salesforce openid connect, Share, share button, share buttons, share icons, share links, social connect, social login,social media login, social network login, social network share, social provider, social share, social sharing, social sharing widget, twitter, twitter share, user auto register, widget, windows live, woocommerce sharing, woocommerce, social media, social, woocommerce connect, comments, yahoo, twitter,plugin,wordpress multisite, SSO technology,social sign-in,Social Plugins, social media tools,social commenting,social authentication, social media authentication, social app, social api,social media app, social media sharing, social media plugins, Social Analytics, single sign-on, share post, OpenID integration, multisite, mailchimp, capture social data, bbPress, buddypress, shortcode, social comment, social media comment, social comment facebook, social comment google
 Requires at least: 2.0.2
 Tested up to: 4.4
-Stable tag: 4.7.2
+Stable tag: 4.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Social Login, Social Sharing allows login, share, comment using any social network like Twitter, Google, Facebook, Vkontakte. EASIEST to configure.
+Social Login, Social Sharing allows login, share, comment using any social media like Twitter, Google, Facebook, Vkontakte. EASIEST to configure.
 
 == Description ==
 = Social Login, Social Sharing =
-Social Login, Social Sharing plugin is professionally developed by miniOrange and is a WordPress (BuddyPress compatible) plugin that allows your visitors to comment, share, login and register with many Social Networks like for example Facebook, Twitter, Vkontakte, Google, LinkedIn, WindowsLive, Instagram, Salesforce and Amazon.
+Social Login, Social Sharing plugin is professionally developed by miniOrange and is a WordPress (BuddyPress compatible) plugin that allows your visitors to comment, share, login and register with many Social Media applications like for example Facebook, Twitter, Vkontakte, Google, LinkedIn, WindowsLive, Instagram, Salesforce and Amazon.
 
 = Social Login =
-This plugin enables Social Login. Allow your visitors to choose from their favorite social login apps to login, comment, share and optionally auto-register with your website or blog.
+This plugin enables Social Login. Allow your visitors to choose from their favourite social login apps to login, comment, share and optionally auto-register with your website or blog.
 
-One-click login to your WordPress site using social login applications like Google, Twitter, Facebook, Vkontakte, LinkedIn, Instagram, Amazon, Salesforce, Windows Live. This means, if your user is logged in to Google, user can comment on any blog or site by simply clicking the `google icon` - no username or password is explicitly required! Simply enable Social Login, *no setup* of application is required and you are done.
+One-click login to your WordPress site using social login applications like Google, Twitter, Facebook, Vkontakte, LinkedIn, Instagram, Amazon, Salesforce, Windows Live. This means, if your user is logged in to Google, user can comment on any blog or site by simply clicking the `google icon` - no username or password is explicitly required! Simply enable Social Login, *no setup* of social media application is required and you are done.
 
 = Social Sharing =
 Allow anyone to easily share your website content using their favorite social sharing applications. Social Sharing applications include Facebook, Twitter, Google+, Pinterest, Reddit, Vkontakte, Tumblr, StumbleUpon, Pocket, Digg, Delicious, Odnoklassniki. Customize your social sharing buttons to suit to your website's theme. Social sharing on homepage includes sharing with content or excerpt. Simply enable Social Login, and you are done.
 
 See the <a href="https://wordpress.org/plugins/miniorange-login-openid/screenshots/">Screenshots</a> section for visuals on social sharing.
+
+= Social Comments =
+Allow users to comment on your website using supported social media commenting apps such as Facebook and Google. Social Comments does not require the users to be registered or logged in on your site for adding comments.
 
 = Easy Integration =
 Easy integration with your website with options to add Social login on login page, registration page and comments section. Add `miniOrange - Social Login` widget to add social login in widget area. Add shortcode [miniorange_social_login] to add social login in other places. Add social sharing applications to home page, posts, content pages, WooCommerce product page and anywhere on your site using widgets. For Social Sharing, use `miniOrange Sharing - Vertical` for floating vertical widget and `miniOrange Sharing - Horizontal` for horizontal widget to add social sharing in widget area. Add shortcode [miniorange_social_sharing] for horizontal sharing icons and [miniorange_social_sharing_vertical] for vertical sharing icons.
@@ -40,11 +43,12 @@ All other Social Login and Social Sharing applications are supported through a s
 *	Clean and easy to use WordPress admin UI
 *	**NO SETUP required for any social login or social sharing application**
 *	One-click login to your website using any social login app.
-*	Login to applications - Facebook, Google, Vkontakte, Twitter, LinkedIn, Instagram, Amazon, Salesforce, Windows Live.
+*	Login to social media applications - Facebook, Google, Vkontakte, Twitter, LinkedIn, Instagram, Amazon, Salesforce, Windows Live.
 *	Support for SHORTCODE for both social login and social sharing(horizontal & vertical)
 *	Set custom redirect option for social login to point your users to your desired page
 *	Optionally select from a range of logout URL options for social login
 *   Choose where to add the Social Login Icons: login page, registration page, comment form or anywhere on your site using our Social Login widget/ shortcode.
+*	Option to add Social Comment using Facebook and Google.
 *   Option to add social sharing icons on homepage, posts, feeds, content pages, WooCommerce product page etc.
 *	Option to add a horizontal social sharing widget and a floating vertical social sharing widget to website.
 *	Select from a range beautiful designs of social login buttons/icons and social sharing buttons/icons.
@@ -58,7 +62,7 @@ All other Social Login and Social Sharing applications are supported through a s
 *	**Support** using email and in-plugin support form
 
 = Registration - How is this plugin better than other plugins available =
-Our very simple and easy registration lets you register with miniOrange. miniOrange takes care of creating applications for you in Social Login. In any other social login plugin, if you are providing login with a social application, facebook for example, you will need an App ID for which you will need to create an entire application in facebook. So if you want to provide login with 10 different social applications then you need to go and create 10 applications in those social platforms. Using our plugin, Social Login, Social Sharing by miniOrange, you do not need to do that. Just by creating one registration with us, you get Social login plus other features.
+Our very simple and easy registration lets you register with miniOrange. miniOrange takes care of creating applications for you in Social Login. In any other social login plugin, if you are providing login with a social media application, facebook for example, you will need an App ID for which you will need to create an entire application in facebook. So if you want to provide login with 10 different social applications then you need to go and create 10 applications in those social platforms. Using our plugin, Social Login, Social Sharing by miniOrange, you do not need to do that. Just by creating one registration with us, you get Social login plus other features.
 
 = Website - =
 These additional features are available upon request. Send an email to info@miniorange.com if you need any of these features. 
@@ -94,7 +98,7 @@ For more support or info email us at info@miniorange.com or <a href="http://mini
 == Frequently Asked Questions ==
 
 = I need login with other Social Login apps like Vkontakte, Yahoo, Paypal etc. ? =
-Please email us at info@miniorange.com or <a href="http://miniorange.com/contact" >Contact us</a>. You can also submit your app request from plugin's configuration page.
+Please email us at info@miniorange.com. You can also submit your app request from plugin's configuration page.
 
 = I can't see any Social Login to enable. I only see Register with miniOrange? =
 Our very simple and easy registration lets you register with Social Login, Social Sharing by miniOrange works if you are connected to miniOrange. 
@@ -113,7 +117,7 @@ To add Social Login or Social Sharing icons to a custom location, use a Shortcod
 The vertical sharing widget for Social Sharing gives a couple of options to change its position in the page and also the space between icons. You can align the social sharing widget on the left or right side of the page. You can view these options from Appearance->Widgets or editing the widget options in Customizer.
 
 = For any other query/problem/request =
-Please email us at info@miniorange.com or <a href="http://miniorange.com/contact">Contact us</a>. You can also submit your query from the Social plugin's configuration page.
+Please email us at info@miniorange.com. You can also submit your query from the Social plugin's configuration page.
 
 == Screenshots ==
 
@@ -129,6 +133,23 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 
 
 == Changelog ==
+= 4.8.1 =
+*	Added extra options for licensing
+*	Fix - Disabling custom avatar now removes previously set picture from Social Login
+*	Fix - Avatar from Social Login was not getting fetched in all cases
+
+= 4.8 =
+*	Added Social Comments
+*	Added more position options for Homepage and Static page for Social Sharing
+*	Fix - Changed Google+ icons
+*	Fix - Background color of Social Login long buttons
+
+= 4.7.3 =
+*	Fix - Added alt for Social Login images
+*	Fix - Improved validation for Social Login
+*	Fix - Social Sharing Vertical widget sharing URL
+*	Added Troubleshooting questions
+
 = 4.7.2 =
 *	Added extra options for licensing
 
@@ -146,20 +167,20 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 
 = 4.5 =
 *	Get user information such as name, username after Social Login (Social Login)
-*	Provision of associating user profile picture with user profile (Social Login)
+*	Provision of associating social media profile picture with user profile(Social Login)
 *	Security fix - added encryption for incoming user data (Social Login)
 
 = 4.4.1 =
 *	Additional option of validating account using phone number
 
 = 4.4 =
-*	Added Social Login for Vkontakte
+*	Added Social media appliction Vkontakte on social login
 *	Added support for adding Social Share icons on WooCommerce Product Page
 *	Fix - logout redirect in Current Page option
 *	Fix - Sharing URL in horizontal Social Sharing widget
 
 = 4.3 =
-*	Added Social Sharing applications - Vkontakte, Tumblr, StumbleUpon, Pocket, Digg, Delicious, Odnoklassniki
+*	Added Social media applications - Vkontakte, Tumblr, StumbleUpon, Pocket, Digg, Delicious, Odnoklassniki for Social sharing
 *	Added title to Social Login and Social Sharing icons, visible on hover
 *	Redirect after logout is now optional
 *	Improved Help & Troubleshooting
@@ -179,7 +200,7 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 *	Change in troubleshooting instructions
 
 = 4.1 =
-*	Added social login for Twitter
+*	Added social media application Twitter on Social Login
 *	Added shortcode support for Social Login and Social Sharing(horizontal and vertical)
 *	Added Redirect URL for logout
 *	Added Troubleshooting section in plugin
@@ -207,31 +228,48 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 * Bug fix for Social Sharing.
 
 = 3.0.3 =
-* Added social login applications Instagram, Windows Live, Amazon to widgets
-* Added social sharing applications like Twitter, Pinterest and Reddit. 
+* Added social media applications Instagram, Windows Live, Amazon to social login widgets
+* Added social media applications like Twitter, Pinterest and Reddit on social sharing. 
 * Added more theme options to select Social Login and Social Sharing icons.
 
 = 3.0.2 =
-* Added Social login with Facebook, Linkedin. 
-* Added new social sharing buttons for social applications Facebook, Google, LinkedIn.
+* Added Social login for social media applications Facebook, Linkedin. 
+* Added new social sharing buttons for social media applications - Facebook, Google, LinkedIn.
 
 = 3.0.1 =
 * Bug fixes for Social Login.
 
 = 3.0 =
-* added Social login with Salesforce as app
+* added Social login with social media application Salesforce
 * Bug fixes
 
 = 2.0 =
 * bug fixes and changes for Social Login in user email verification.
 
 = 1.0.1 =
-* Social login with Google OpenID Connect added to the plugin.
+* Social login with social media application Google OpenID Connect added to the plugin.
 
 = 1.0 =
 * First version of Social Login, Social Sharing plugin.
 
 == Upgrade Notice ==
+= 4.8.1 =
+*	Added extra options for licensing
+*	Fix - Disabling custom avatar now removes previously set picture from Social Login
+*	Fix - Avatar from Social Login was not getting fetched in all cases
+
+= 4.8 =
+*	Added Social Comments
+*	Added more position options for Homepage and Static page for Social Sharing
+*	Fix - Changed Google+ icons
+*	Fix - Background color of Social Login long buttons
+
+= 4.7.3 =
+*	Fix - Added alt for Social Login images
+*	Fix - Improved validation for Social Login
+*	Fix - Social Sharing Vertical widget sharing URL
+*	Added Troubleshooting questions
+
 = 4.7.2 =
 *	Added extra options for licensing
 
@@ -249,20 +287,20 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 
 = 4.5 =
 *	Get user information such as name, username after Social Login (Social Login)
-*	Provision of associating user profile picture with user profile (Social Login)
+*	Provision of associating user profile picture with user profile on social media(Social Login)
 *	Security fix - added encryption for incoming user data (Social Login)
 
 = 4.4.1 =
 *	Additional option of validating account using phone number
 
 = 4.4 =
-*	Added Social Login for Vkontakte
+*	Added Social media application Vkontakte on social login
 *	Added support for adding Social Share icons on WooCommerce Product Page
 *	Fix - logout redirect in Current Page option
 *	Fix - Sharing URL in horizontal Social Sharing widget
 
 = 4.3 =
-*	Added Social Sharing applications - Vkontakte, Tumblr, StumbleUpon, Pocket, Digg, Delicious, Odnoklassniki
+*	Added Social media applications Vkontakte, Tumblr, StumbleUpon, Pocket, Digg, Delicious, Odnoklassnikiv on Social Sharing
 *	Added title to Social Login and Social Sharing icons, visible on hover
 *	Redirect after logout is now optional
 *	Improved Help & Troubleshooting
@@ -282,7 +320,7 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 *	Change in troubleshooting instructions
 
 = 4.1 =
-*	Added social login for Twitter
+*	Added social login on social media application Twitter
 *	Added shortcode support for Social Login and Social Sharing(horizontal and vertical)
 *	Added Redirect URL for logout
 *	Added Troubleshooting section in plugin
@@ -310,26 +348,26 @@ Please email us at info@miniorange.com or <a href="http://miniorange.com/contact
 * Bug fix for Social Sharing.
 
 = 3.0.3 =
-* Added social login applications Instagram, Windows Live, Amazon to widgets
-* Added social sharing applications like Twitter, Pinterest and Reddit. 
+* Added social media applications Instagram, Windows Live, Amazon to social login widgets
+* Added social media applications like Twitter, Pinterest and Reddit on social sharing. 
 * Added more theme options to select Social Login and Social Sharing icons.
 
 = 3.0.2 =
-* Added Social login with Facebook, Linkedin. 
-* Added new social sharing buttons for social applications Facebook, Google, LinkedIn.
+* Added Social login with social media applications Facebook, Linkedin. 
+* Added new social sharing buttons for social media applications - Facebook, Google, LinkedIn.
 
 = 3.0.1 =
 * Bug fixes for Social Login.
 
 = 3.0 =
-* added Social login with Salesforce as app
+* added Social login with social media application Salesforce
 * Bug fixes
 
 = 2.0 =
 * bug fixes and changes for Social Login in user email verification.
 
 = 1.0.1 =
-* Social login with Google OpenID Connect added to the plugin.
+* Social login with social media application Google OpenID Connect added to the plugin.
 
 = 1.0 =
 * First version of Social Login, Social Sharing plugin.

@@ -30,10 +30,6 @@ $url = $http . $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
 			$orientation = 'ver';
 		}
 	}
-	
-	if($orientation == 'ver') {
-		$url = get_site_url();
-	}
 ?>
 <script>
 	

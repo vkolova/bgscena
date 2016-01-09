@@ -49,6 +49,9 @@ jQuery(document).ready(function () {
 	jQuery("#openid_question12").click(function () {
     	jQuery("#openid_question12_desc").slideToggle(400);
     });
+    jQuery("#openid_question13").click(function () {
+        jQuery("#openid_question13_desc").slideToggle(400);
+    });
 	jQuery("#openid_question_curl").click(function () {
     	jQuery("#openid_question_curl_desc").slideToggle(400);
     });

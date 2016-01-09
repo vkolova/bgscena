@@ -4,7 +4,7 @@
 * Plugin Name: Social Login, Social Sharing by miniOrange
 * Plugin URI: http://miniorange.com
 * Description: Allow your users to login, comment and share with Facebook, Google, Twitter, LinkedIn etc using customizable buttons.
-* Version: 4.7.2
+* Version: 4.8.1
 * Author: miniOrange
 * Author URI: http://miniorange.com
 * License: GPL2
@@ -14,6 +14,7 @@ require('miniorange_openid_sso_settings_page.php');
 include_once dirname( __FILE__ ) . '/class-mo-openid-login-widget.php';
 require('class-mo-openid-sso-customer.php');
 require('class-mo-openid-sso-shortcode-buttons.php');
+require('class-mo-openid-social-comment.php');
 
 
 class Miniorange_OpenID_SSO {
@@ -75,11 +76,18 @@ class Miniorange_OpenID_SSO {
 				add_action('woocommerce_single_product_summary', array( $this, 'mo_openid_social_share' ));
 			}
 
+			if(get_option('mo_openid_social_comment_fb') == 1 || get_option('mo_openid_social_comment_google') == 1 ){
+				add_action('comment_form_top', array( $this, 'mo_openid_add_comment'));
+			}
+
 			add_filter( 'the_content', array( $this, 'mo_openid_add_social_share_links' ) );
 			add_filter( 'the_excerpt', array( $this, 'mo_openid_add_social_share_links' ) );
 			
 			//custom avatar
-			add_filter( 'get_avatar', array( $this, 'mo_social_login_custom_avatar' ), 10, 5 );
+			if(get_option('moopenid_social_login_avatar')) {
+				add_filter( 'get_avatar', array( $this, 'mo_social_login_custom_avatar' ), 15, 5 );
+				add_filter( 'get_avatar_url', array( $this, 'mo_social_login_custom_avatar_url' ), 15, 3);
+			}
 			
 			remove_action( 'admin_notices', array( $this, 'mo_openid_success_message') );
 		    remove_action( 'admin_notices', array( $this, 'mo_openid_error_message') );
@@ -89,28 +97,36 @@ class Miniorange_OpenID_SSO {
 			add_option( 'mo_openid_login_theme', 'longbutton' );
 			add_option( 'mo_openid_share_theme', 'oval' );
 			add_option( 'mo_share_options_enable_post_position', 'before');
+			add_option( 'mo_share_options_home_page_position', 'before');
+			add_option( 'mo_share_options_static_pages_position', 'before');
 			add_option( 'mo_openid_default_login_enable', '1');
 			add_option( 'mo_openid_login_widget_customize_text', 'Connect with:' );
 			add_option( 'mo_openid_share_widget_customize_text', 'Share with:' );
 			add_option( 'mo_openid_login_button_customize_text', 'Login with' );
-			add_option('mo_openid_share_widget_customize_direction_horizontal','1');
-			add_option('mo_sharing_icon_custom_size','35');
+			add_option( 'mo_openid_share_widget_customize_direction_horizontal','1' );
+			add_option( 'mo_sharing_icon_custom_size','35' );
 			add_option( 'mo_openid_share_custom_theme', 'default' );
 			add_option( 'mo_sharing_icon_custom_color', '000000' );
 			add_option( 'mo_sharing_icon_space', '4' );
 			add_option( 'mo_sharing_icon_custom_font', '000000' );
-			add_option('mo_login_icon_custom_size','35');
-			add_option('mo_login_icon_space','4');
-			add_option('mo_login_icon_custom_width','200');
-			add_option('mo_login_icon_custom_height','35');
+			add_option( 'mo_login_icon_custom_size','35' );
+			add_option( 'mo_login_icon_space','4' );
+			add_option( 'mo_login_icon_custom_width','200' );
+			add_option( 'mo_login_icon_custom_height','35' );
 			add_option( 'mo_openid_login_custom_theme', 'default' );
 			add_option( 'mo_login_icon_custom_color', '2B41FF' );
 			add_option( 'mo_openid_logout_redirection_enable', '0' );
 			add_option( 'mo_openid_logout_redirect', 'currentpage' );
 			add_option( 'mo_openid_auto_register_enable', '1');
 			add_option( 'mo_openid_register_disabled_message', 'Registration is disabled for this website. Please contact the administrator for any queries.' );
-			add_option('moopenid_social_login_avatar','1');
-			add_option('moopenid_user_attributes','0');
+			add_option( 'moopenid_social_login_avatar','1' );
+			add_option( 'moopenid_user_attributes','0' );
+			add_option( 'mo_openid_social_comment_blogpost','1' );
+			add_option( 'mo_openid_social_comment_default_label', 'Default Comments' );
+			add_option( 'mo_openid_social_comment_fb_label', 'Facebook Comments' );
+			add_option( 'mo_openid_social_comment_google_label', 'Google+ Comments' );
+			add_option( 'mo_openid_social_comment_disqus_label', 'Disqus Comments' );
+			add_option( 'mo_openid_social_comment_heading_label', 'Leave a Reply' );
 	}
 		
 	function mo_openid_deactivate() {
@@ -149,23 +165,33 @@ class Miniorange_OpenID_SSO {
 			$landscape = 'hor';
 			
 			if(is_front_page() && get_option('mo_share_options_enable_home_page')==1){
-					$html_content = mo_openid_share_shortcode('', $title);
+				$html_content = mo_openid_share_shortcode('', $title);
+
+				if ( get_option('mo_share_options_home_page_position') == 'before' ) {
 					return  $html_content . $post_content;
+				} else if ( get_option('mo_share_options_home_page_position') == 'after' ) {
+					 return   $post_content . $html_content;
+				} else if ( get_option('mo_share_options_home_page_position') == 'both' ) {
+					 return $html_content . $post_content . $html_content;
+				}
 			}else if(is_page() && get_option('mo_share_options_enable_static_pages')==1){
-					$html_content = mo_openid_share_shortcode('', $title);
+				$html_content = mo_openid_share_shortcode('', $title);
+
+				if ( get_option('mo_share_options_static_pages_position') == 'before' ) {
 					return  $html_content . $post_content;
+				} else if ( get_option('mo_share_options_static_pages_position') == 'after' ) {
+					 return   $post_content . $html_content;
+				} else if ( get_option('mo_share_options_static_pages_position') == 'both' ) {
+					 return $html_content . $post_content . $html_content;
+				}
 			}else if(is_single() && get_option('mo_share_options_enable_post') == 1 ){
 				$html_content = mo_openid_share_shortcode('', $title);
 				
 				if ( get_option('mo_share_options_enable_post_position') == 'before' ) {
 					return  $html_content . $post_content;
-				}
-
-				else if ( get_option('mo_share_options_enable_post_position') == 'after' ) {
+				} else if ( get_option('mo_share_options_enable_post_position') == 'after' ) {
 					 return   $post_content . $html_content;
-				}
-
-				else if ( get_option('mo_share_options_enable_post_position') == 'both' ) {
+				} else if ( get_option('mo_share_options_enable_post_position') == 'both' ) {
 					 return $html_content . $post_content . $html_content;
 				}
 			}
@@ -182,24 +208,39 @@ class Miniorange_OpenID_SSO {
 		echo mo_openid_share_shortcode('', $title);	
 	}
 
+
+	function mo_openid_add_comment(){
+		global $post;
+		if(isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'){
+			$http = "https://";
+		} else {
+			$http = "http://";
+		}
+		$url = $http . $_SERVER["HTTP_HOST"] . $_SERVER['REQUEST_URI'];
+		if(is_single() && get_option('mo_openid_social_comment_blogpost') == 1 ) {
+			mo_openid_social_comment($post, $url);
+		} else if(is_page() && get_option('mo_openid_social_comment_static')==1) {
+			mo_openid_social_comment($post, $url);
+		}
+	}
+
 		
 	function mo_custom_login_stylesheet()
 	{
-					   
-						 wp_enqueue_style( 'mo-wp-style',plugins_url('includes/css/mo_openid_style.css?version=2.0', __FILE__), false );
-						  wp_enqueue_style( 'mo-wp-bootstrap-social',plugins_url('includes/css/bootstrap-social.css', __FILE__), false );
-						  wp_enqueue_style( 'mo-wp-bootstrap-main',plugins_url('includes/css/bootstrap.min.css', __FILE__), false );
-						  wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.min.css', __FILE__), false );
-						wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.css', __FILE__), false );
+		wp_enqueue_style( 'mo-wp-style',plugins_url('includes/css/mo_openid_style.css?version=4.8', __FILE__), false );
+		wp_enqueue_style( 'mo-wp-bootstrap-social',plugins_url('includes/css/bootstrap-social.css', __FILE__), false );
+		wp_enqueue_style( 'mo-wp-bootstrap-main',plugins_url('includes/css/bootstrap.min.css', __FILE__), false );
+		wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.min.css?version=4.8', __FILE__), false );
+		wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.css?version=4.8', __FILE__), false );
 	}	
 		
 	function mo_openid_plugin_settings_style() {
-			wp_enqueue_style( 'mo_openid_admin_settings_style', plugins_url('includes/css/mo_openid_style.css?version=2.0', __FILE__));
+			wp_enqueue_style( 'mo_openid_admin_settings_style', plugins_url('includes/css/mo_openid_style.css?version=4.8', __FILE__));
 			wp_enqueue_style( 'mo_openid_admin_settings_phone_style', plugins_url('includes/css/phone.css', __FILE__));				
 			wp_enqueue_style( 'mo-wp-bootstrap-social',plugins_url('includes/css/bootstrap-social.css', __FILE__), false );
 			wp_enqueue_style( 'mo-wp-bootstrap-main',plugins_url('includes/css/bootstrap.min-preview.css', __FILE__), false );
-			wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.min.css', __FILE__), false );
-			wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.css', __FILE__), false );
+			wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.min.css?version=4.8', __FILE__), false );
+			wp_enqueue_style( 'mo-wp-font-awesome',plugins_url('includes/css/font-awesome.css?version=4.8', __FILE__), false );
 			
 	}
 
@@ -485,9 +526,11 @@ class Miniorange_OpenID_SSO {
 				//auto register
 				update_option( 'mo_openid_auto_register_enable', isset( $_POST['mo_openid_auto_register_enable']) ? $_POST['mo_openid_auto_register_enable'] : 0);
 				update_option( 'mo_openid_register_disabled_message', $_POST['mo_openid_register_disabled_message']);
-				
+
+				//Customized text
 			    update_option('mo_openid_login_widget_customize_text',$_POST['mo_openid_login_widget_customize_text'] );
 			    update_option( 'mo_openid_login_button_customize_text',$_POST['mo_openid_login_button_customize_text'] );
+
 			    update_option('mo_openid_login_theme',$_POST['mo_openid_login_theme'] );
 				update_option( 'mo_openid_message', 'Your settings are saved successfully.' );
 				
@@ -511,8 +554,33 @@ class Miniorange_OpenID_SSO {
 			} else {
 				update_option('mo_openid_message', 'Please register an account before trying to enable any app');
 				$this->mo_openid_show_error_message();
+			} 
+		} else if( isset( $_POST['option'] ) and $_POST['option'] == "mo_openid_save_comment_settings" ) {
+			if(mo_openid_is_customer_registered()) {
+
+				//commenting
+				update_option( 'mo_openid_social_comment_fb', isset( $_POST['mo_openid_social_comment_fb']) ? $_POST['mo_openid_social_comment_fb'] : 0);
+				update_option( 'mo_openid_social_comment_google', isset( $_POST['mo_openid_social_comment_google']) ? $_POST['mo_openid_social_comment_google'] : 0);
+				update_option( 'mo_openid_social_comment_default', isset( $_POST['mo_openid_social_comment_default']) ? $_POST['mo_openid_social_comment_default'] : 0);
+				
+				//comment position
+				update_option( 'mo_openid_social_comment_blogpost', isset( $_POST['mo_openid_social_comment_blogpost']) ? $_POST['mo_openid_social_comment_blogpost'] : 0);
+				update_option( 'mo_openid_social_comment_static', isset( $_POST['mo_openid_social_comment_static']) ? $_POST['mo_openid_social_comment_static'] : 0);
+
+				//comment labels
+				update_option('mo_openid_social_comment_default_label',$_POST['mo_openid_social_comment_default_label'] );
+			    update_option('mo_openid_social_comment_fb_label',$_POST['mo_openid_social_comment_fb_label'] );
+			    update_option('mo_openid_social_comment_google_label',$_POST['mo_openid_social_comment_google_label'] );
+			    update_option('mo_openid_social_comment_heading_label',$_POST['mo_openid_social_comment_heading_label'] );
+
+			    update_option( 'mo_openid_message', 'Your settings are saved successfully.' );
+			    $this->mo_openid_show_success_message();
+
+			} else {
+				update_option('mo_openid_message', 'Please register an account before trying to enable any app');
+				$this->mo_openid_show_error_message();
 			}
-		}else if( isset( $_POST['option'] ) and $_POST['option'] == "mo_openid_contact_us_query_option" ) {
+		} else if( isset( $_POST['option'] ) and $_POST['option'] == "mo_openid_contact_us_query_option" ) {
 			// Contact Us query
 			$email = $_POST['mo_openid_contact_us_email'];
 			$phone = $_POST['mo_openid_contact_us_phone'];
@@ -581,6 +649,8 @@ class Miniorange_OpenID_SSO {
 				update_option('mo_share_options_wc_sp_summary',isset( $_POST['mo_share_options_wc_sp_summary']) ? $_POST['mo_share_options_wc_sp_summary'] : 0);
 				update_option('mo_share_options_wc_sp_summary_top',isset( $_POST['mo_share_options_wc_sp_summary_top']) ? $_POST['mo_share_options_wc_sp_summary_top'] : 0);
 				update_option('mo_share_options_enable_post_position',$_POST['mo_share_options_enable_post_position'] );
+				update_option('mo_share_options_home_page_position',$_POST['mo_share_options_home_page_position'] );
+				update_option('mo_share_options_static_pages_position',$_POST['mo_share_options_static_pages_position'] );
 				update_option('mo_openid_share_theme',$_POST['mo_openid_share_theme'] );
 				
 				
@@ -693,7 +763,6 @@ class Miniorange_OpenID_SSO {
 	}
 	
 	
-	
 	function mo_social_login_custom_avatar( $avatar, $mixed, $size, $default, $alt = '' ) {
         $user = false;
 		
@@ -718,7 +787,25 @@ class Miniorange_OpenID_SSO {
             }
         }
         return $avatar;
-	}	
+	}
+
+	function mo_social_login_custom_avatar_url( $url, $id_or_email, $args = null ) {
+		$user = false;
+
+		if ( is_numeric( $id_or_email ) AND $id_or_email > 0 ) {	//Check if we have an user identifier
+			$user_id = $id_or_email;
+		} elseif ( is_string( $id_or_email ) AND ( $user = get_user_by( 'email', $id_or_email )) ) {	//Check if we have an user email
+			$user_id = $user->ID;
+		} elseif ( is_object( $id_or_email ) AND property_exists( $id_or_email, 'user_id' ) AND is_numeric( $id_or_email->user_id ) ) {		//Check if we have an user object
+			$user_id = $id_or_email->user_id;
+		} else {		//None found
+			$user_id = null;
+		}
+
+		$user_meta_thumbnail = get_user_meta( $user_id, 'moopenid_user_avatar', true );
+		$url = (!empty( $user_meta_thumbnail ) ? $user_meta_thumbnail : '');
+		return $url;
+	}
 }
 
 new Miniorange_OpenID_SSO;

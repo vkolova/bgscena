@@ -228,3 +228,24 @@ text-decoration:none !important;
 	background-color: rgba(251, 102, 0, 0.29) !important;
 	margin-left: 3px !important;
 }
+
+.mo_openid_comment_tab {
+	margin-left: 0px !important;
+	margin-bottom: 20px;
+	padding-left: 0px !important;
+}
+
+.mo_openid_comment_tab li{
+	color: grey;
+	margin-right: 5%;
+	margin-left: 0px !important;
+	list-style: none;
+	font-size: 14px;
+	cursor:pointer;
+	float: left;
+}
+
+.mo_openid_selected_tab{
+	color: black !important;
+	border-bottom: 2px solid #FF5A00;
+}

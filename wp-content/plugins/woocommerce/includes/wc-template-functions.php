@@ -1915,18 +1915,28 @@ if ( ! function_exists( 'add_status_buttons' ) ) {
 	function add_status_buttons() {
 		global $product;
 		do_action('vk_enqueue_scripts');
-
 		?>
-	<div class="btn-group btn-group-justified" role="group">
-		<div class="btn-group" role="group" >
-			<button type="submit" id="mark_as_seen_button" class="btn btn-default" ><?php echo esc_html( $product->mark_as_seen_text() ); ?></button>
-		</div>
-		<div class="btn-group" role="group">
-			<button type="submit" id="mark_as_want_to_see_button" class="btn btn-default" ><?php echo esc_html( $product->mark_as_want_to_see_text() ); ?></button>
-		</div>
+	<input type="hidden" id="play_id" value="<?php $play_id = absint( $product->id ); echo $play_id; ?>" />
+	<input type="hidden" id="user_id" value=" <?php $user_id = get_current_user_id(); echo $user_id; ?> "/>
+	<?php
+			global $wpdb;
+		 	$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = " . $user_id . " AND play_id = " . $play_id));
+	?>
+	<!-- Split button -->
+	<div class="btn-group">
+	  <button type="button" class="btn btn-<?php
+			echo ( !count($result) ? "success" : "default" ); ?>"  id="<?php echo ( $result->status_value ? "have_seen" : "want_to_see"); ?>">
+			<?php echo ( $result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?>
+		</button>
+	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    <span class="caret"></span>
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><a id="<?php echo ( !$result->status_value ? "have_seen" : "want_to_see"); ?>" ><?php echo ( !$result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?></a></li>
+	  </ul>
 	</div>
-	<input type="hidden" id="play_id" value="<?php echo absint( $product->id ); ?>" />
-	<input type="hidden" id="user_id" value=" <?php echo get_current_user_id(); ?> "/>
+
 		<?php
 	}
 }

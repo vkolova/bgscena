@@ -10,8 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * -vkolova
  */
 
- add_action( 'vk_enqueue_scripts', 'vk_my_enqueue' );
- function vk_my_enqueue($hook) {
+
+add_action( 'vk_enqueue_scripts', 'vk_my_enqueue' );
+function vk_my_enqueue($hook) {
 	  wp_enqueue_script( 'vk-change-user-play-status' );
 		$ajax_nonce = wp_create_nonce( "vk-my-special-string" );
 		wp_localize_script( 'vk-change-user-play-status', 'vk_select_params', array(

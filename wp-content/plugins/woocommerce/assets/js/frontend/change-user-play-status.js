@@ -4,7 +4,7 @@
 */
 
 (function($) {
-  $( "#mark_as_seen_button" ).click(function() {
+  $( "#have_seen" ).click(function() {
       $.ajax({
 					url: vk_select_params.vk_ajax_url,
 					data: {

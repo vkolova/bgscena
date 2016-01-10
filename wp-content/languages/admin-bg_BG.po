@@ -16,79 +16,79 @@ msgstr "Благодарим, че обновихте! WordPress %s ви дав�
 
 #. translators: 1: WP_Term class name, WP_Comment class name, WP_Network class
 #. name
-#: wp-admin/about.php:177
+#: wp-admin/about.php:185
 msgid "New %1$s, %2$s, and %3$s objects make interacting with terms, comments, and networks more predictable and intuitive in code."
 msgstr "Новите обекти %1$s, %2$s и %3$s правят интеракциите с термини, коментари и мрежи в кода по-предвидими и интуитивни."
 
-#: wp-admin/about.php:174
+#: wp-admin/about.php:182
 msgid "Term, comment, and network objects"
 msgstr "Термини, коментари и обекти в мрежата"
 
 #. translators: WP_Comment_Query class name
-#: wp-admin/about.php:170
+#: wp-admin/about.php:178
 msgid "Comment queries now have cache handling to improve performance. New arguments in %s make crafting robust comment queries simpler."
 msgstr "Заявките за коментари вече имат кеш, който ги прави по-бързи. Нови аргументи в %s помагат за по-лесното създаване на ефективни заявки за коментарите. "
 
-#: wp-admin/about.php:167
+#: wp-admin/about.php:175
 msgid "Comment query improvements"
 msgstr "Подобрения в заявките за коментари"
 
 #. translators: WordPress REST API plugin link
-#: wp-admin/about.php:148
+#: wp-admin/about.php:156
 msgid "Infrastructure is the first part of a multi-stage rollout for the REST API. Inclusion of core endpoints is targeted for an upcoming release. To get a sneak peek of the core endpoints, and for more information on extending the REST API, check out the official %s plugin."
 msgstr "Инфраструктурата е първата част от няколко етапа, в които REST API ще се интегрира. Следващите версии предвиждат добавянето в ядрото на endpoints. Ако сте любопитни как ще се случи това и за повече информация за развитието на REST API, разгледайте официалното %s разширение."
 
 #. translators: 1: add_term_meta() docs link, 2: get_term_meta() docs link, 3:
 #. update_term_meta() docs link
-#: wp-admin/about.php:159
+#: wp-admin/about.php:167
 msgid "Terms now support metadata, just like posts. See %1$s, %2$s, and %3$s for more information."
 msgstr "Термините вече поддържат метадата също като публикациите. Разгледайте %1$s, %2$s и %3$s за повече информация."
 
-#: wp-admin/about.php:156
+#: wp-admin/about.php:164
 msgid "Term meta"
 msgstr "Мета термини"
 
-#: wp-admin/about.php:131
+#: wp-admin/about.php:139
 msgid "Infrastructure for the REST API has been integrated into core, marking a new era in developing with WordPress. The REST API serves to provide developers with a path forward for building and extending RESTful APIs on top of WordPress."
 msgstr "В ядрото вече е интегрирана инфраструктура за новото REST API. Това е нова ера за разработката с WordPress. REST API ще служи на разработчиците като основен инструмент за създаване и развиване на RESTful APIs върху WordPress."
 
-#: wp-admin/about.php:129
+#: wp-admin/about.php:137
 msgid "REST API infrastructure"
 msgstr "REST API инфраструктура"
 
-#: wp-admin/about.php:118
+#: wp-admin/about.php:126
 msgid "In addition to post embeds, WordPress 4.4 also adds support for five new oEmbed providers: Cloudup, Reddit&nbsp;Comments, ReverbNation, Speaker&nbsp;Deck, and VideoPress."
 msgstr "В допълнение към вграждането на публикации, WordPress 4.4 вгражда автоматично съдържанието на още пет нови услуги - Cloudup, Reddit&nbsp;Comments, ReverbNation, Speaker&nbsp;Deck и VideoPress."
 
-#: wp-admin/about.php:104
+#: wp-admin/about.php:112
 msgid "Now you can embed your posts on other sites, even other WordPress sites. Simply drop a post URL into the editor and see an instant embed preview, complete with the title, excerpt, and featured image if you&#8217;ve set one. We&#8217;ll even include your site icon and links for comments and sharing."
 msgstr "Съдържанието ви вече може да бъде вградено в други сайтове, дори в други сайтове на  WordPress. Просто поставете адреса на публикация в редактора и в реално време ще се появи каре със заглавието, откъса и основното изображение, ако сте задали такова. Включени са дори иконата на сайта и връзки към коментарите и бутоните за споделяне."
 
-#: wp-admin/about.php:117
+#: wp-admin/about.php:125
 msgid "Even more embed providers"
 msgstr "Още повече услуги за вграждане"
 
-#: wp-admin/about.php:103
+#: wp-admin/about.php:111
 msgid "Embed your WordPress content"
 msgstr "Вграждане на съдържание от WordPress"
 
-#: wp-admin/about.php:90
+#: wp-admin/about.php:98
 msgid "WordPress now takes a smarter approach to displaying appropriate image sizes on any device, ensuring a perfect fit every time. You don&#8217;t need to do anything to your theme, it just works."
 msgstr "WordPress вече се справя по-добре с визуализацията на правилни размери изображения на различни размери екрани. Няма нужда да добавяте нищо в темата си, гъвкавите изображения просто работят."
 
-#: wp-admin/about.php:89
+#: wp-admin/about.php:97
 msgid "Responsive images"
 msgstr "Отзивчиви изображения"
 
-#: wp-admin/about.php:67
+#: wp-admin/about.php:75
 msgid "Twenty Sixteen was built to look great on any device. A fluid grid design, flexible header, fun color schemes, and more, will make your content shine."
 msgstr "Twenty Sixteen е създадена, за да изглежда добре на всяко устройство. Динамичният дизайн, гъвкав хедър и забавни цветови схеми на тази тема помагат на съдържанието ви да заблести."
 
-#: wp-admin/about.php:66
+#: wp-admin/about.php:74
 msgid "Our newest default theme, Twenty Sixteen, is a modern take on a classic blog design."
 msgstr "Нашата нова тема по подразбиране, Twenty Sixteen, е модерен прочит на класическия дизайн за блогове."
 
-#: wp-admin/about.php:59
+#: wp-admin/about.php:67
 msgid "Twenty Sixteen"
 msgstr "Twenty Sixteen"
 
@@ -112,7 +112,7 @@ msgid "Welcome to %s. This is your first post. Edit or delete it, then start blo
 msgstr "Добре дошли в %s. Това е първата ви публикация. Изберете дали да я редактирате или изтриете. Можете да започнете да публикувате!"
 
 #. translators: %s: WordPress version number
-#: wp-admin/about.php:214
+#: wp-admin/about.php:222
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "<strong>Версия %s</strong> се премахва един проблем със сигурността."
 
@@ -129,15 +129,15 @@ msgstr "Може да смените снимката на профила си �
 msgid "Profile Picture"
 msgstr "Профилна снимка"
 
-#: wp-admin/about.php:211
+#: wp-admin/about.php:219
 msgid "Maintenance and Security Releases"
 msgstr "Версии за поддръжка и сигурност"
 
-#: wp-admin/about.php:208
+#: wp-admin/about.php:216
 msgid "Security Releases"
 msgstr "Версии за сигурност"
 
-#: wp-admin/about.php:205
+#: wp-admin/about.php:213
 msgid "Maintenance Releases"
 msgstr "Версии за поддръжка"
 
@@ -975,7 +975,7 @@ msgstr "В отговор на %s."
 msgid "You&rsquo;re using the auto-generated password for your account. Would you like to change it?"
 msgstr "Използвате автоматично генерирана парола за профила си. Желаете ли да я смените? "
 
-#: wp-admin/users.php:360
+#: wp-admin/users.php:361
 msgid "You have specified this user for removal:"
 msgstr "Избрали сте този потребител за премахване:"
 
@@ -1553,11 +1553,11 @@ msgid_plural "%d media attachments restored from the trash."
 msgstr[0] "%d файл беше възстановен от кошчето."
 msgstr[1] "%d файлове бяха възстановени от кошчето."
 
-#: wp-admin/users.php:241
+#: wp-admin/users.php:242
 msgid "You have specified these users for deletion:"
 msgstr "Посочили сте следните потребители за изтриване:"
 
-#: wp-admin/users.php:266
+#: wp-admin/users.php:267
 msgid "What should be done with content owned by these users?"
 msgstr "Какво да се случи със съдържанието на тези потребители?"
 
@@ -1567,7 +1567,7 @@ msgid_plural "%d media attachments permanently deleted."
 msgstr[0] "%d файл беше изтрит завинаги."
 msgstr[1] "%d файлове бяха изтрити завинаги."
 
-#: wp-admin/users.php:419
+#: wp-admin/users.php:420
 msgid "%s user deleted."
 msgid_plural "%s users deleted."
 msgstr[0] "%s потребител беше изтрит."
@@ -1971,7 +1971,7 @@ msgstr "Предложенията са на база другите разши�
 msgid "You can enable distraction-free writing mode using the icon to the right. This feature is not available for old browsers or devices with small screens, and requires that the full-height editor be enabled in Screen Options."
 msgstr "Режимът за спокойно писане се активира от иконата вдясно. Тази функционалност не се поддържа от браузъри със стари версии и устройства с малки екрани. За да я ползвате трябва да сте активирали опцията за пълна височина на зоната за писане (редактор)."
 
-#: wp-admin/about.php:65
+#: wp-admin/about.php:73
 msgid "Introducing Twenty Sixteen"
 msgstr "Представяме ви Twenty Fifteen"
 
@@ -2461,7 +2461,7 @@ msgstr "Добавяне на теми"
 msgid "Search Themes"
 msgstr "Търсене в темите"
 
-#: wp-admin/includes/ms.php:1055 wp-admin/users.php:270
+#: wp-admin/includes/ms.php:1055 wp-admin/users.php:271
 msgid "Delete all content."
 msgstr "Изтриване на цялото съдържание."
 
@@ -2478,11 +2478,11 @@ msgstr "Търсене в темите..."
 msgid "Delete brings you to the Delete Users screen for confirmation, where you can permanently remove a user from your site and delete their content. You can also delete multiple users at once by using Bulk Actions."
 msgstr "Изтриване ще ви отведе до екран за потвърждаване на изтриването. От там се премахват завинаги потребителят и съдържанието, което е създал. През масовите действия можете да изтриете няколко потребители едновременно."
 
-#: wp-admin/users.php:264
+#: wp-admin/users.php:265
 msgid "What should be done with content owned by this user?"
 msgstr "Какво да направим със съдържанието на този потребител?"
 
-#: wp-admin/includes/ms.php:1057 wp-admin/users.php:272
+#: wp-admin/includes/ms.php:1057 wp-admin/users.php:273
 msgid "Attribute all content to:"
 msgstr "Прехвърляне на съдържанието към:"
 
@@ -3784,19 +3784,19 @@ msgstr "Адрес на файла:"
 msgid "In the <strong>In Response To</strong> column, there are three elements. The text is the name of the post that inspired the comment, and links to the post editor for that entry. The View Post link leads to that post on your live site. The small bubble with the number in it shows the number of approved comments that post has received. If there are pending comments, a red notification circle with the number of pending comments is displayed. Clicking the notification circle will filter the comments screen to show only pending comments on that post."
 msgstr "В колоната <strong>В отговор на</strong> има три елемента. Текстът е името на публикацията, за която е коментарът и води към редактиране на публикацията. Препратката &quot;Преглед на публикацията&quot; води към съответната публикация в сайта. Малкото балонче с число показва броя на одобрените коментари, които е получила тази публикация. Ако то е синьо, значи има чакащи коментари. Натискане върху балончето ще филтрира екрана с коментари и ще покаже само коментарите от тази публикация."
 
-#: wp-admin/users.php:250
+#: wp-admin/users.php:251
 msgid "ID #%1$s: %2$s <strong>The current user will not be deleted.</strong>"
 msgstr "ID #%1$s: %2$s <strong>Настоящият потребител няма да бъде изтрит.</strong>"
 
-#: wp-admin/users.php:252 wp-admin/users.php:376
+#: wp-admin/users.php:253 wp-admin/users.php:377
 msgid "ID #%1$s: %2$s"
 msgstr "ID #%1$s: %2$s"
 
-#: wp-admin/users.php:374
+#: wp-admin/users.php:375
 msgid "ID #%1$s: %2$s <strong>You don't have permission to remove this user.</strong>"
 msgstr "ID #%1$s: %2$s <strong>Нямате право да премахнете този потребител.</strong>"
 
-#: wp-admin/users.php:372
+#: wp-admin/users.php:373
 msgid "ID #%1$s: %2$s <strong>The current user will not be removed.</strong>"
 msgstr "ID #%1$s: %2$s <strong>Настоящият потребител няма да бъде премахнат.</strong>"
 
@@ -3804,7 +3804,7 @@ msgstr "ID #%1$s: %2$s <strong>Настоящият потребител ням�
 msgid "Used: %1$s%% of %2$s"
 msgstr "Използвано: %1$s%% от %2$s"
 
-#: wp-admin/users.php:234
+#: wp-admin/users.php:235
 msgid "Please select an option."
 msgstr "Моля изберете опция."
 
@@ -4188,11 +4188,11 @@ msgstr "Вашият файл <code>wp-config.php</code> има празен п�
 msgid "Revert to the <strong>Browser Uploader</strong> by clicking the link below the drag and drop box."
 msgstr "Преминете към <strong>Мениджър за качване файлове на браузъра</strong> като натиснете върху връзката под карето за придърпване и пускане."
 
-#: wp-admin/users.php:425
+#: wp-admin/users.php:426
 msgid "New user created. <a href=\"%s\">Edit user</a>"
 msgstr "Нов потребител бе създаден. <a href=\"%s\">Редактиране на потребителя</a>"
 
-#: wp-admin/users.php:417
+#: wp-admin/users.php:418
 msgid "User deleted."
 msgstr "Потребителят бе изтрит."
 
@@ -4954,20 +4954,20 @@ msgid "Show Toolbar when viewing site"
 msgstr "Показване на лентата с инструменти в сайта"
 
 #. translators: 1: WordPress version number, 2: plural number of bugs.
-#: wp-admin/about.php:219
+#: wp-admin/about.php:227
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>Версия %1$s</strong> поправя %2$s бъг."
 msgstr[1] "<strong>Версия %1$s</strong> поправя %2$s бъга."
 
 #. translators: %s: Codex URL
-#: wp-admin/about.php:231
+#: wp-admin/about.php:55 wp-admin/about.php:239
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "За повече информация, вижте <a href=\"%s\">бележките към обновлението</a>."
 
 #. translators: 1: WordPress version number, 2: plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:223
+#: wp-admin/about.php:231
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>Версия %1$s</strong> решава проблем със сигурността и поправя %2$s бъг."
@@ -4975,7 +4975,7 @@ msgstr[1] "<strong>Версия %1$s</strong> решава проблем със
 
 #. translators: 1: WordPress version number, 2: plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:227
+#: wp-admin/about.php:53 wp-admin/about.php:235
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>Версия %1$s</strong> решава няколко проблема със сигурността и поправя %2$s бъг."
@@ -4986,21 +4986,23 @@ msgid "Welcome to your WordPress Dashboard! This is the screen you will see when
 msgstr "Добре дошли в таблото на WordPress! Това е екранът, който ще виждате, когато влизате във вашия сайт и който ви дава достъп до всички функции за управление на сайта. Може да получите помощ за всеки екран, като натиснете секцията \"Помощ\" в горния десен ъгъл."
 
 #. translators: %s: WordPress version number
-#: wp-admin/about.php:216
+#: wp-admin/about.php:224
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>Версия %1$s</strong> решава проблем със сигурността."
 
-#: wp-admin/about.php:207
+#: wp-admin/about.php:215
 msgid "Security Release"
 msgstr "Версия с добавки за защита"
 
-#: wp-admin/about.php:204
+#: wp-admin/about.php:212
 msgid "Maintenance Release"
 msgstr "Версия с добавки за поддръжка"
 
-#: wp-admin/about.php:210
+#: wp-admin/about.php:52 wp-admin/about.php:218
 msgid "Maintenance and Security Release"
-msgstr "Версия с добавки за поддръжка и защита"
+msgid_plural "Maintenance and Security Releases"
+msgstr[0] "Версия с добавки за поддръжка и защита"
+msgstr[1] "Версии с добавки за поддръжка и защита"
 
 #: wp-admin/about.php:46 wp-admin/credits.php:28 wp-admin/freedoms.php:27
 msgid "What&#8217;s New"
@@ -5014,7 +5016,7 @@ msgstr "Този екран ви дава възможност да промен
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 msgstr "Добре дошли в WordPress %1$s. <a href=\"%2$s\">Научете повече</a>."
 
-#: wp-admin/about.php:189
+#: wp-admin/about.php:197
 msgid "Return to Updates"
 msgstr "Обратно към новите версии"
 
@@ -5302,11 +5304,11 @@ msgstr "Вероятно е директното включване на wp-admi
 msgid "Welcome to WordPress %s"
 msgstr "Добре дошли в WordPress %s"
 
-#: wp-admin/about.php:189
+#: wp-admin/about.php:197
 msgid "Return to Dashboard &rarr; Updates"
 msgstr "Обратно към Табло &rarr; Обновления"
 
-#: wp-admin/about.php:192
+#: wp-admin/about.php:200
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Към таблото &rarr; Начало"
 
@@ -5318,7 +5320,7 @@ msgstr "WordPress се създава от международен екип о�
 msgid "Core Developers"
 msgstr "WordPress разработчици"
 
-#: wp-admin/about.php:125
+#: wp-admin/about.php:133
 msgid "Under the Hood"
 msgstr "Под капака"
 
@@ -5499,16 +5501,16 @@ msgstr "<strong>Придърпване и пускане</strong> - За да п
 msgid "Add Existing User"
 msgstr "Добавяне на съществуващ потребител"
 
-#: wp-admin/includes/ms.php:1085 wp-admin/users.php:286
+#: wp-admin/includes/ms.php:1085 wp-admin/users.php:287
 msgid "Confirm Deletion"
 msgstr "Потвърждаване на изтриването"
 
-#: wp-admin/users.php:444
+#: wp-admin/users.php:445
 msgid "User removed from this site."
 msgstr "Потребителят бе премахнат от сайта."
 
 #: wp-admin/menu.php:220 wp-admin/menu.php:222 wp-admin/user-edit.php:194
-#: wp-admin/users.php:474
+#: wp-admin/users.php:475
 msgctxt "user"
 msgid "Add New"
 msgstr "Нов"
@@ -5561,7 +5563,7 @@ msgstr "Преглед"
 msgid "Settings saved."
 msgstr "Настройките са запазени."
 
-#: wp-admin/users.php:433
+#: wp-admin/users.php:434
 msgid "Changed roles."
 msgstr "Ролите бяха променени."
 
@@ -5570,8 +5572,8 @@ msgstr "Ролите бяха променени."
 msgid "Add New User"
 msgstr "Добавяне на нов потребител"
 
-#: wp-admin/users.php:300 wp-admin/users.php:308 wp-admin/users.php:335
-#: wp-admin/users.php:343
+#: wp-admin/users.php:301 wp-admin/users.php:309 wp-admin/users.php:336
+#: wp-admin/users.php:344
 msgid "You can&#8217;t remove users."
 msgstr "Нямате право да премахвате потребители."
 
@@ -5667,7 +5669,7 @@ msgstr "Версия %s"
 #. translators: %s: search keywords
 #: wp-admin/edit-comments.php:197 wp-admin/edit-tags.php:311
 #: wp-admin/edit.php:307 wp-admin/link-manager.php:78 wp-admin/plugins.php:515
-#: wp-admin/upload.php:224 wp-admin/users.php:480
+#: wp-admin/upload.php:224 wp-admin/users.php:481
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Резултати от търсене за &#8220;%s&#8221;"
 
@@ -5686,7 +5688,7 @@ msgid "Click to view entire list of files which will be deleted"
 msgstr "Натиснете, за да видите целия списък с файлове, които ще бъдат изтрити"
 
 #: wp-admin/includes/dashboard.php:406 wp-admin/includes/dashboard.php:408
-#: wp-admin/users.php:487
+#: wp-admin/users.php:488
 msgid "Search Users"
 msgstr "Търсене в потребителите"
 
@@ -5993,7 +5995,7 @@ msgstr "Качени изображения"
 msgid "Layout"
 msgstr "Разположение"
 
-#: wp-admin/users.php:239
+#: wp-admin/users.php:240
 msgid "You have specified this user for deletion:"
 msgstr "Определили сте този потребител за изтриване:"
 
@@ -6028,7 +6030,7 @@ msgstr "Формат по подразбиране"
 msgid "You do not have sufficient permissions to update this site."
 msgstr "Нямате право да променяте този сайт."
 
-#: wp-admin/user-edit.php:196 wp-admin/users.php:476
+#: wp-admin/user-edit.php:196 wp-admin/users.php:477
 msgctxt "user"
 msgid "Add Existing"
 msgstr "Добавяне на съществуващ"
@@ -6630,7 +6632,7 @@ msgid "Home: %s"
 msgstr "Начало: %s"
 
 #: wp-admin/import.php:57 wp-admin/includes/network.php:105
-#: wp-admin/includes/network.php:122 wp-admin/users.php:234
+#: wp-admin/includes/network.php:122 wp-admin/users.php:235
 msgid "ERROR:"
 msgstr "Грешка:"
 
@@ -6999,7 +7001,7 @@ msgstr "Това ще върне първоначалната картинка. 
 msgid "WordPress Blog"
 msgstr "WordPress блог"
 
-#: wp-admin/users.php:357
+#: wp-admin/users.php:358
 msgid "Remove Users from Site"
 msgstr "Изтриване на потребители от сайта"
 
@@ -7147,23 +7149,23 @@ msgstr "Изтриването на потребители е непозволе
 msgid "You can&#8217;t delete that user."
 msgstr "Не можете да изтриете този потребител."
 
-#: wp-admin/users.php:384
+#: wp-admin/users.php:385
 msgid "Confirm Removal"
 msgstr "Потвърждаване на изтриването"
 
-#: wp-admin/users.php:448
+#: wp-admin/users.php:449
 msgid "Other users have been removed."
 msgstr "Други потребители са премахнати."
 
-#: wp-admin/users.php:362
+#: wp-admin/users.php:363
 msgid "You have specified these users for removal:"
 msgstr "Избрали сте тези потребители за изтриване:"
 
-#: wp-admin/users.php:386
+#: wp-admin/users.php:387
 msgid "There are no valid users selected for removal."
 msgstr "Няма валидни потребители избрани за изтриване."
 
-#: wp-admin/users.php:447
+#: wp-admin/users.php:448
 msgid "You can't remove the current user."
 msgstr " Не можете да изтриете текущия потребител."
 
@@ -7477,7 +7479,7 @@ msgstr "Моля въведете валидно име на менюто."
 msgid "Delete Plugin"
 msgstr "Изтриване на разширение"
 
-#: wp-admin/about.php:192
+#: wp-admin/about.php:200
 msgid "Go to Dashboard"
 msgstr "Към таблото"
 
@@ -7627,31 +7629,31 @@ msgstr "Нямате право да редактирате този потре�
 msgid "You can&#8217;t delete users."
 msgstr "Не можете да изтривате потребители."
 
-#: wp-admin/users.php:231
+#: wp-admin/users.php:232
 msgid "Delete Users"
 msgstr "Изтриване на потребители"
 
-#: wp-admin/users.php:288
+#: wp-admin/users.php:289
 msgid "There are no valid users selected for deletion."
 msgstr "Няма избрани валидни потребители за изтриване."
 
-#: wp-admin/users.php:429
+#: wp-admin/users.php:430
 msgid "New user created."
 msgstr "Създаден бе нов потребител"
 
-#: wp-admin/users.php:436
+#: wp-admin/users.php:437
 msgid "The current user&#8217;s role must have user editing capabilities."
 msgstr "Текущата потребителска роля трябва да има права за редактиране."
 
-#: wp-admin/users.php:437
+#: wp-admin/users.php:438
 msgid "Other user roles have been changed."
 msgstr "Променени са други потребителски роли."
 
-#: wp-admin/users.php:440
+#: wp-admin/users.php:441
 msgid "You can&#8217;t delete the current user."
 msgstr "Не можете да изтриете текущия потребител."
 
-#: wp-admin/users.php:441
+#: wp-admin/users.php:442
 msgid "Other users have been deleted."
 msgstr "Другите потребители бяха изтрити."
 

@@ -50,26 +50,18 @@ get_header(); ?>
 	'exclude_tree'       => '',
 	'include'            => '',
 	'hierarchical'       => 1,
-	'title_li'           => __( 'Categories' ),
+	'title_li'           => __( '' ),
 	'show_option_none'   => __( '' ),
 	'number'             => null,
 	'echo'               => 1,
 	'depth'              => 0,
 	'current_category'   => 0,
 	'pad_counts'         => 0,
-	'taxonomy'           => 'category',
+	'taxonomy'           => 'product_cat',
 	'walker'             => null
     );
     wp_list_categories( $args );
 ?>
-
-
-<div><?php
-foreach($categories as $cat) {
-    echo $cat-> name;
-}
-
- ?></div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

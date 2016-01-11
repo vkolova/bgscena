@@ -26,7 +26,7 @@ define('DB_NAME', 'bgscena');
 define('DB_USER', 'vkolova');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'vesity');
+define('DB_PASSWORD', 'vesselina');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

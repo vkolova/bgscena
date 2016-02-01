@@ -17,7 +17,8 @@ function vk_my_enqueue($hook) {
 		$ajax_nonce = wp_create_nonce( "vk-my-special-string" );
 		wp_localize_script( 'vk-change-user-play-status', 'vk_select_params', array(
 	 											 'vk_ajax_url'		=> admin_url( 'admin-ajax.php' ),
-												 'ajax_nonce'			=> wp_create_nonce( "vk-my-special-string" )
+												 'ajax_nonce'			=> wp_create_nonce( "vk-my-special-string" ),
+												 'plugin_url'			=> plugins_url()
 	  ) );
 
 	}
@@ -30,26 +31,34 @@ function update_seen_callback() {
 
 	$user_id = intval( $_POST['user_id'] );
 	$play_id = intval( $_POST['play_id'] );
+	$status_id = intval( $_POST['status_id'] );
 
 	$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d", $user_id, $play_id));
 
 	$res_count = count($result);
 
 	if ( $res_count && $result->status_value == 0) {
-		echo $result->status_value . " <-- ";
-		echo "There are results! :) ";
 		$wpdb->update(
-					$wpdb->prefix . 'vk_user_play_status',
-					array(
-						'status_value' => 1
-					),
-					array( 'status_id' => $result->status_id ),
-					array(
-						'%d'
-					)
-				);
-
-	} elseif(!$res_count) {
+			$wpdb->prefix . 'vk_user_play_status',
+			array(
+				'status_value' => 1
+			),
+			array( 'status_id' => $result->status_id ),
+			array(
+				'%d'
+			)
+		);
+		echo '1';
+	} elseif( $res_count && $result->status_value == 1) {
+		$wpdb->delete(
+			$wpdb->prefix . 'vk_user_play_status',
+			array(
+				'user_id' => $user_id,
+				'play_id' => $play_id
+			), array( '%d', '%d' )
+		);
+		echo '-1';
+	} else {
 		$wpdb->insert(
 					$wpdb->prefix . 'vk_user_play_status',
 					array(
@@ -63,7 +72,8 @@ function update_seen_callback() {
 						'%d'
 					)
 				);
-	} else {};
+	echo '1';
+	}
 	wp_die();
 }
 
@@ -75,13 +85,31 @@ function want_to_see_callback() {
 
 	$user_id = intval( $_POST['user_id'] );
 	$play_id = intval( $_POST['play_id'] );
+	$status_id = intval( $_POST['status_id'] );
 
-	$result = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d AND status_value = %d", $user_id, $play_id, 0));
+	$result = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d", $user_id, $play_id));
 
 	$res_count = count($result);
 
-	if ( $res_count) {
-		echo "There are results! :) ";
+	if ( $res_count && $result->status_value == 1) {
+		$wpdb->update(
+					$wpdb->prefix . 'vk_user_play_status',
+					array(
+						'status_value' => 0
+					),
+					array( 'status_id' => $status_id ),
+					array(
+						'%d'
+					)
+				);
+			echo '0';
+	} elseif ( $res_count && $result->status_value == 0 ) {
+	$wpdb->delete(
+		$wpdb->prefix . 'vk_user_play_status',
+		array('user_id' => $user_id,
+		'play_id' => $play_id), array( '%d', '%d' )
+	);
+		echo '-1';
 	} else {
 		$wpdb->insert(
 					$wpdb->prefix . 'vk_user_play_status',
@@ -96,6 +124,7 @@ function want_to_see_callback() {
 						'%d'
 					)
 				);
+		echo '0';
 	}
 	wp_die();
 }

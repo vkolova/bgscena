@@ -419,6 +419,7 @@ jQuery( function( $ ) {
 			security: woocommerce_admin_meta_boxes.save_attributes_nonce
 		};
 
+
 		$.post( woocommerce_admin_meta_boxes.ajax_url, data, function() {
 			// Reload variations panel
 			var this_page = window.location.toString();

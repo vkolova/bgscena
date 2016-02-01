@@ -31,14 +31,26 @@ function update_seen_callback() {
 	$user_id = intval( $_POST['user_id'] );
 	$play_id = intval( $_POST['play_id'] );
 
-	$result = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d AND status_value = %d", $user_id, $play_id, 1));
+	$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d", $user_id, $play_id));
 
 	$res_count = count($result);
 
-	if ( $res_count ) {
+	if ( $res_count && $result->status_value == 0) {
+		echo $result->status_value . " <-- ";
 		echo "There are results! :) ";
-	} else {
-		$resin = $wpdb->insert(
+		$wpdb->update(
+					$wpdb->prefix . 'vk_user_play_status',
+					array(
+						'status_value' => 1
+					),
+					array( 'status_id' => $result->status_id ),
+					array(
+						'%d'
+					)
+				);
+
+	} elseif(!$res_count) {
+		$wpdb->insert(
 					$wpdb->prefix . 'vk_user_play_status',
 					array(
 						'user_id' => $user_id,
@@ -51,11 +63,43 @@ function update_seen_callback() {
 						'%d'
 					)
 				);
-		echo $resin;
-	}
-
+	} else {};
 	wp_die();
 }
+
+add_action( 'wp_ajax_want_to_see', 'want_to_see_callback' );
+function want_to_see_callback() {
+	global $wpdb;
+
+	check_ajax_referer( 'vk-my-special-string', 'security' );
+
+	$user_id = intval( $_POST['user_id'] );
+	$play_id = intval( $_POST['play_id'] );
+
+	$result = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = %d AND play_id = %d AND status_value = %d", $user_id, $play_id, 0));
+
+	$res_count = count($result);
+
+	if ( $res_count) {
+		echo "There are results! :) ";
+	} else {
+		$wpdb->insert(
+					$wpdb->prefix . 'vk_user_play_status',
+					array(
+						'user_id' => $user_id,
+						'play_id' => $play_id,
+						'status_value' => 0
+					),
+					array(
+						'%d',
+						'%d',
+						'%d'
+					)
+				);
+	}
+	wp_die();
+}
+
 
 
 

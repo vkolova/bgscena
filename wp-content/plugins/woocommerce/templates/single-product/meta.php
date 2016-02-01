@@ -27,7 +27,7 @@ $tag_count = sizeof( get_the_terms( $post->ID, 'product_tag' ) );
 
 	<?php endif; ?>
 
-	<?php echo $product->get_categories( ', ', '<span class="posted_in">' . ' ', '</span>' ); ?>
+	<?php echo $product->get_categories( ', ', '<span class="posted_in">' . ' ', '</span></br>' ); ?>
 
 	<?php echo $product->get_tags( ', ', '<span class="tagged_as">' .  ' ', '</span>' ); ?>
 

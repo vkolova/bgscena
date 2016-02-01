@@ -1925,8 +1925,10 @@ if ( ! function_exists( 'add_status_buttons' ) ) {
 	<!-- Split button -->
 	<div class="btn-group">
 	  <button type="button" class="btn btn-<?php
-			echo ( !count($result) ? "success" : "default" ); ?>"  id="<?php echo ( $result->status_value ? "have_seen" : "want_to_see"); ?>">
-			<?php echo ( $result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?>
+			echo ( !count($result) ? "success" : "default" ); ?>" data-toggle="dropdown" id="<?php echo ( $result->status_value ? "have_seen" : "want_to_see"); ?>">
+			<?php
+			echo ( !count($result) ? "" : '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  ' );
+			echo ( $result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?>
 		</button>
 	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	    <span class="caret"></span>

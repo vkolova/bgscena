@@ -726,6 +726,14 @@ class WC_AJAX {
 
 		update_post_meta( $post_id, '_product_attributes', $attributes );
 
+		//set play attributes as tags 
+		$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
+
+		for ( $i = 0; $i <= count($tags); $i++ ) {
+			//$term = wp_insert_term( $tags[ $i ], 'product_tag');
+			wp_set_object_terms( $post_id, $tags[ $i ], 'product_tag', true );
+		}
+
 		die();
 	}
 

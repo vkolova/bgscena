@@ -58,8 +58,15 @@ ob_start();
 				} else {
 
 					// Convert pipes to commas and display values
-					$values = array_map( 'trim', explode( WC_DELIMITER, $attribute['value'] ) );
-					echo apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribute, $values );
+					$values = array_map( 'trim', explode( ',', $attribute['value'] ) );
+
+					foreach ($values as $key => &$value) {
+						$value =  '<a href="' . get_term_link( $value, 'product_tag' ) . '">' . $value . '</a>';
+					}
+
+					echo apply_filters( 'vk_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $values );
+
+				//	echo apply_filters( 'woocommerce_attribute', wpautop( wptexturize( implode( ', ', $values ) ) ), $attribut, $values );
 
 				}
 			?></td>

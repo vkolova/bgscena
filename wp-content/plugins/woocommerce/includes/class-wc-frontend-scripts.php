@@ -133,6 +133,9 @@ class WC_Frontend_Scripts {
 		self::register_script( 'vk-change-user-play-status', $frontend_script_path . 'change-user-play-status' . '.js' );
 
 
+		self::register_script( 'vk-bootstrap-js', $frontend_script_path . 'bootstrap' . '.js' );
+		wp_register_style( 'vk-bootstrap-css', $assets_path . 'css/bootstrap.css' );
+
 		// Register frontend scripts conditionally
 		if ( $ajax_cart_en ) {
 			self::enqueue_script( 'wc-add-to-cart', $frontend_script_path . 'add-to-cart' . $suffix . '.js' );
@@ -160,7 +163,6 @@ class WC_Frontend_Scripts {
 		}
 		if ( is_product() ) {
 			self::enqueue_script( 'wc-single-product' );
-//			self::enqueue_script( 'vk-change-user-play-status' );
 		}
 		if ( 'geolocation_ajax' === get_option( 'woocommerce_default_customer_address' ) ) {
 			self::enqueue_script( 'wc-geolocation', $frontend_script_path . 'geolocation' . $suffix . '.js', array( 'jquery' ) );

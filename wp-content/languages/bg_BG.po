@@ -671,7 +671,7 @@ msgctxt "adjective"
 msgid "Trash"
 msgstr "Боклук"
 
-#: wp-includes/comment-template.php:2143
+#: wp-includes/comment-template.php:2171
 msgid "<a href=\"%1$s\" aria-label=\"Logged in as %2$s. Edit your profile.\">Logged in as %2$s</a>. <a href=\"%3$s\">Log out?</a>"
 msgstr "<a href=\"%1$s\" aria-label=\"Влезли сте като %2$s. Редактиране на вашия профил.\">Влезли сте като %2$s</a>. <a href=\"%3$s\">Изход?</a>"
 
@@ -859,11 +859,11 @@ msgstr "Добавяне на ново изображение"
 msgid "Add new header image"
 msgstr "Добавяне на ново заглавно изображение"
 
-#: wp-includes/class-wp-customize-manager.php:1828
+#: wp-includes/class-wp-customize-manager.php:1830
 msgid "Site Icon"
 msgstr "Икона на сайта"
 
-#: wp-includes/class-wp-customize-manager.php:1829
+#: wp-includes/class-wp-customize-manager.php:1831
 msgid "The Site Icon is used as a browser and app icon for your site. Icons must be square, and at least 512px wide and tall."
 msgstr "Иконата на сайта се използва като икона на браузъра или апликейшъна. Иконите трябва да са квадратни, с ширина най-малко 512 пиксела."
 
@@ -871,7 +871,7 @@ msgstr "Иконата на сайта се използва като икона
 msgid "Expand Sidebar"
 msgstr "Разширяване на страничната колона"
 
-#: wp-includes/class-wp-customize-manager.php:1795
+#: wp-includes/class-wp-customize-manager.php:1797
 msgid "Site Identity"
 msgstr "Идентичност на сайта"
 
@@ -900,7 +900,7 @@ msgstr "Връзката за смяна на паролата е с изтек�
 msgid "Username may not be longer than 60 characters."
 msgstr "Потребителското име не трябва да бъде по-дълго от 60 символа. "
 
-#: wp-includes/pluggable.php:1780
+#: wp-includes/pluggable.php:1789
 msgid "To set your password, visit the following address:"
 msgstr "За да изберете парола, отидете на този адрес:"
 
@@ -1646,13 +1646,13 @@ msgid "Post type names must be between 1 and 20 characters in length."
 msgstr "Имената на типовете публикации трябва да бъдат между 1 и 20 символа."
 
 #. translators: 1: comment author, 2: author IP, 3: author domain
-#: wp-includes/pluggable.php:1486 wp-includes/pluggable.php:1634
+#: wp-includes/pluggable.php:1495 wp-includes/pluggable.php:1643
 msgid "Author: %1$s (IP: %2$s, %3$s)"
 msgstr "Автор: %1$s (IP: %2$s, %3$s)"
 
 #. translators: 1: website name, 2: website IP, 3: website hostname
-#: wp-includes/pluggable.php:1466 wp-includes/pluggable.php:1476
-#: wp-includes/pluggable.php:1619 wp-includes/pluggable.php:1627
+#: wp-includes/pluggable.php:1475 wp-includes/pluggable.php:1485
+#: wp-includes/pluggable.php:1628 wp-includes/pluggable.php:1636
 msgid "Website: %1$s (IP: %2$s, %3$s)"
 msgstr "Уебсайт: %1$s (IP: %2$s, %3$s)"
 
@@ -1666,7 +1666,7 @@ msgid "Drag and drop to reorder media files."
 msgstr "Файловете се пренареждат с придърпване и пускане."
 
 #. translators: 1: Number of comments 2: post title
-#: wp-includes/comment-template.php:1473
+#: wp-includes/comment-template.php:1485
 msgid "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
 msgid_plural "%1$s Comments<span class=\"screen-reader-text\"> on %2$s</span>"
 msgstr[0] "%1$s коментар<span class=\"screen-reader-text\"> за %2$s</span>"
@@ -1701,17 +1701,17 @@ msgid "The %1$s option is deprecated for the family of %2$s functions. Use the %
 msgstr "Настройката %1$s не се поддържа за %2$s функциите. Използвайте настройката %3$s вместо това."
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1463
+#: wp-includes/comment-template.php:1475
 msgid "No Comments<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Няма коментари<span class=\"screen-reader-text\"> за %s</span>"
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1479
+#: wp-includes/comment-template.php:1491
 msgid "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Коментарите са изключени<span class=\"screen-reader-text\"> за %s</span>"
 
 #. translators: %s: post title
-#: wp-includes/comment-template.php:1468
+#: wp-includes/comment-template.php:1480
 msgid "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "1 коментар<span class=\"screen-reader-text\"> за %s</span>"
 
@@ -1808,22 +1808,22 @@ msgctxt "noun"
 msgid "Trash"
 msgstr "Кошче"
 
-#: wp-includes/pluggable.php:1467 wp-includes/pluggable.php:1477
-#: wp-includes/pluggable.php:1488 wp-includes/pluggable.php:1620
-#: wp-includes/pluggable.php:1628 wp-includes/pluggable.php:1636
+#: wp-includes/pluggable.php:1476 wp-includes/pluggable.php:1486
+#: wp-includes/pluggable.php:1497 wp-includes/pluggable.php:1629
+#: wp-includes/pluggable.php:1637 wp-includes/pluggable.php:1645
 msgid "URL: %s"
 msgstr "Адрес: %s"
 
-#: wp-includes/pluggable.php:1468 wp-includes/pluggable.php:1478
-#: wp-includes/pluggable.php:1489 wp-includes/pluggable.php:1637
+#: wp-includes/pluggable.php:1477 wp-includes/pluggable.php:1487
+#: wp-includes/pluggable.php:1498 wp-includes/pluggable.php:1646
 msgid "Comment: %s"
 msgstr "Коментар: %s"
 
-#: wp-includes/pluggable.php:1479
+#: wp-includes/pluggable.php:1488
 msgid "You can see all pingbacks on this post here:"
 msgstr "Всички споменавания на тази публикация:"
 
-#: wp-includes/pluggable.php:1469
+#: wp-includes/pluggable.php:1478
 msgid "You can see all trackbacks on this post here:"
 msgstr "Всички връзки към тази публикация:"
 
@@ -1832,7 +1832,7 @@ msgctxt "verb"
 msgid "Trash"
 msgstr "Изтриване"
 
-#: wp-includes/pluggable.php:1490
+#: wp-includes/pluggable.php:1499
 msgid "You can see all comments on this post here:"
 msgstr "Всички коментари към публикацията:"
 
@@ -1959,7 +1959,7 @@ msgstr "Категория: %s"
 msgid "The following values do not describe a valid date: year %1$s, month %2$s, day %3$s."
 msgstr "Тези стойности не са валидна дата: година %1$s, месец %2$s, ден %3$s."
 
-#: wp-includes/comment-template.php:1570
+#: wp-includes/comment-template.php:1582
 msgid "Reply to %s"
 msgstr "Отговор на %s"
 
@@ -3967,11 +3967,11 @@ msgstr "Текстов редактор"
 msgid "Hex Value"
 msgstr "Код на цвета (hex)"
 
-#: wp-includes/class-wp-customize-manager.php:1862
+#: wp-includes/class-wp-customize-manager.php:1864
 msgid "Header Text Color"
 msgstr "Цвят на заглавния текст"
 
-#: wp-includes/class-wp-customize-manager.php:1839
+#: wp-includes/class-wp-customize-manager.php:1841
 msgid "Colors"
 msgstr "Цветове"
 
@@ -4006,7 +4006,7 @@ msgstr "Недостатъчен брой параметри, подадени �
 msgid "Sorry, you cannot stick a private post."
 msgstr "Лична публикация не може да бъде залепвана."
 
-#: wp-includes/class-wp-customize-manager.php:1885
+#: wp-includes/class-wp-customize-manager.php:1887
 #: wp-includes/customize/class-wp-customize-header-image-control.php:31
 msgid "Header Image"
 msgstr "Заглавно изображение"
@@ -4047,32 +4047,32 @@ msgstr "Въведете име на сайта."
 msgid "Please enter a username."
 msgstr "Въведете потребителско име."
 
-#: wp-includes/class-wp-customize-manager.php:2002
+#: wp-includes/class-wp-customize-manager.php:2004
 msgid "A static page"
 msgstr "Статична страница"
 
-#: wp-includes/class-wp-customize-manager.php:1877
+#: wp-includes/class-wp-customize-manager.php:1879
 msgid "Background Color"
 msgstr "Цвят на фона"
 
-#: wp-includes/class-wp-customize-manager.php:1905
+#: wp-includes/class-wp-customize-manager.php:1907
 #: wp-includes/customize/class-wp-customize-background-image-control.php:30
 msgid "Background Image"
 msgstr "Изображение за фон"
 
-#: wp-includes/class-wp-customize-manager.php:1927
+#: wp-includes/class-wp-customize-manager.php:1929
 msgid "Background Repeat"
 msgstr "Повторение на фона"
 
-#: wp-includes/class-wp-customize-manager.php:1855
+#: wp-includes/class-wp-customize-manager.php:1857
 msgid "Display Header Text"
 msgstr "Показване на заглавен текст"
 
-#: wp-includes/class-wp-customize-manager.php:1944
+#: wp-includes/class-wp-customize-manager.php:1946
 msgid "Background Position"
 msgstr "Разположение на фона"
 
-#: wp-includes/class-wp-customize-manager.php:1960
+#: wp-includes/class-wp-customize-manager.php:1962
 msgid "Background Attachment"
 msgstr "Закачване на фона"
 
@@ -4088,35 +4088,35 @@ msgstr "Премахване на изображението"
 msgid "Sorry, you are not allowed to edit this post type."
 msgstr "Нямате право да редактирате този вид публикация."
 
-#: wp-includes/class-wp-customize-manager.php:1964
+#: wp-includes/class-wp-customize-manager.php:1966
 msgid "Scroll"
 msgstr "Скролиращ"
 
-#: wp-includes/class-wp-customize-manager.php:1965
+#: wp-includes/class-wp-customize-manager.php:1967
 msgid "Fixed"
 msgstr "Неподвижен"
 
-#: wp-includes/class-wp-customize-manager.php:1931
+#: wp-includes/class-wp-customize-manager.php:1933
 msgid "No Repeat"
 msgstr "Без повтаряне"
 
-#: wp-includes/class-wp-customize-manager.php:1932
+#: wp-includes/class-wp-customize-manager.php:1934
 msgid "Tile"
 msgstr "Мозайка"
 
-#: wp-includes/class-wp-customize-manager.php:1934
+#: wp-includes/class-wp-customize-manager.php:1936
 msgid "Tile Vertically"
 msgstr "Вертикална мозайка"
 
-#: wp-includes/class-wp-customize-manager.php:1933
+#: wp-includes/class-wp-customize-manager.php:1935
 msgid "Tile Horizontally"
 msgstr "Хоризонтална мозайка"
 
-#: wp-includes/class-wp-customize-manager.php:2025
+#: wp-includes/class-wp-customize-manager.php:2027
 msgid "Posts page"
 msgstr "Страница с публикации"
 
-#: wp-includes/class-wp-customize-manager.php:2013
+#: wp-includes/class-wp-customize-manager.php:2015
 msgid "Front page"
 msgstr "Начална страница"
 
@@ -4232,23 +4232,23 @@ msgstr "ГРЕШКА: Директорията с темите е празна �
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; Избор &mdash;"
 
-#: wp-includes/class-wp-customize-manager.php:1986
+#: wp-includes/class-wp-customize-manager.php:1988
 msgid "Your theme supports a static front page."
 msgstr "Темата ви поддържа статична начална страница."
 
-#: wp-includes/class-wp-customize-manager.php:1983
+#: wp-includes/class-wp-customize-manager.php:1985
 msgid "Static Front Page"
 msgstr "Статична начална страница"
 
-#: wp-includes/class-wp-customize-manager.php:1817
+#: wp-includes/class-wp-customize-manager.php:1819
 msgid "Tagline"
 msgstr "Кратко описание"
 
-#: wp-includes/class-wp-customize-manager.php:1997
+#: wp-includes/class-wp-customize-manager.php:1999
 msgid "Front page displays"
 msgstr "Началната страница показва"
 
-#: wp-includes/class-wp-customize-manager.php:2001
+#: wp-includes/class-wp-customize-manager.php:2003
 msgid "Your latest posts"
 msgstr "Последни публикации"
 
@@ -4722,7 +4722,7 @@ msgstr "%1$ е извикана <strong>некоректно</strong>. %2$s %3$s
 msgid "Sorry, you cannot publish this post."
 msgstr "Нямате право да публикувате."
 
-#: wp-includes/pluggable.php:1496
+#: wp-includes/pluggable.php:1505
 msgid "Permalink: %s"
 msgstr "Постоянна връзка: %s"
 
@@ -4922,7 +4922,7 @@ msgstr "Невалидна публикация"
 msgid "Invalid taxonomy: %s."
 msgstr "Невалидна таксономия: %s"
 
-#: wp-includes/query.php:2549
+#: wp-includes/query.php:2552
 msgid "\"caller_get_posts\" is deprecated. Use \"ignore_sticky_posts\" instead."
 msgstr "\"caller_get_posts\" вече не трябва да се използва. Използвайте \"ignore_sticky_posts\" вместо нея."
 
@@ -5182,7 +5182,7 @@ msgstr "Константата <code>VHOST</code> <strong>не трябва да
 msgid "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username."
 msgstr "<strong>Грешка</strong>: потребителското име е невалидно, защото използва непозволени символи. Моля, въведете валидно потребителско име."
 
-#: wp-includes/comment-template.php:2127
+#: wp-includes/comment-template.php:2155
 msgid "Required fields are marked %s"
 msgstr "Задължителните полета са отбелязани с %s"
 
@@ -5251,7 +5251,7 @@ msgstr "Кратко описание"
 msgid "You are not allowed access to details about this site."
 msgstr "Нямате право да достъпвате подробностите за този сайт."
 
-#: wp-includes/pluggable.php:1754
+#: wp-includes/pluggable.php:1763
 msgid "New user registration on your site %s:"
 msgstr "Нов потребител във вашия сайт %s:"
 
@@ -5349,7 +5349,7 @@ msgstr "Възникна грешка при добавянето ви към т
 msgid "This file is too big. Files must be less than %d KB in size."
 msgstr "Файлът е прекалено голям. Файловете трябва да бъдат по-малки от %d KB."
 
-#: wp-includes/comment-template.php:2144
+#: wp-includes/comment-template.php:2172
 msgid "Your email address will not be published."
 msgstr "Вашият имейл адрес няма да бъде публикуван."
 
@@ -5519,11 +5519,11 @@ msgstr "Сайтове, на които сте член:"
 msgid "Site registration has been disabled."
 msgstr "Регистрацията на нови сайтове е преустановена."
 
-#: wp-includes/pluggable.php:1484
+#: wp-includes/pluggable.php:1493
 msgid "New comment on your post \"%s\""
 msgstr "Нов коментар за \"%s\""
 
-#: wp-includes/pluggable.php:1464
+#: wp-includes/pluggable.php:1473
 msgid "New trackback on your post \"%s\""
 msgstr "Ново споменаване на \"%s\""
 
@@ -5535,19 +5535,19 @@ msgstr "Ако вие управлявате тази мрежа провере�
 msgid "If your site does not display, please contact the owner of this network."
 msgstr "Ако не виждате сайта си, свържете се с администратора на мрежата."
 
-#: wp-includes/pluggable.php:1474
+#: wp-includes/pluggable.php:1483
 msgid "New pingback on your post \"%s\""
 msgstr "Ново споменаване на \"%s\""
 
-#: wp-includes/pluggable.php:1616
+#: wp-includes/pluggable.php:1625
 msgid "A new trackback on the post \"%s\" is waiting for your approval"
 msgstr "Ново споменаване на \"%s\" очаква одобрение"
 
-#: wp-includes/pluggable.php:1624
+#: wp-includes/pluggable.php:1633
 msgid "A new pingback on the post \"%s\" is waiting for your approval"
 msgstr "Ново споменаване на \"%s\" очаква одобрение"
 
-#: wp-includes/pluggable.php:1632
+#: wp-includes/pluggable.php:1641
 msgid "A new comment on the post \"%s\" is waiting for your approval"
 msgstr "Нов коментар към \"%s\" очаква одобрение"
 
@@ -6083,54 +6083,54 @@ msgid "<strong>ERROR</strong>: Invalid username or incorrect password."
 msgstr "<strong>Грешка</strong>: невалидно потребителско име или парола."
 
 #. translators: 1: blog name, 2: post title
-#: wp-includes/pluggable.php:1492
+#: wp-includes/pluggable.php:1501
 msgid "[%1$s] Comment: \"%2$s\""
 msgstr "[%1$s] Коментар: \"%2$s\""
 
 #. translators: 1: blog name, 2: post title
-#: wp-includes/pluggable.php:1471
+#: wp-includes/pluggable.php:1480
 msgid "[%1$s] Trackback: \"%2$s\""
 msgstr "[%1$s] Trackback: \"%2$s\""
 
 #. translators: 1: blog name, 2: post title
-#: wp-includes/pluggable.php:1481
+#: wp-includes/pluggable.php:1490
 msgid "[%1$s] Pingback: \"%2$s\""
 msgstr "[%1$s] Pingback: \"%2$s\""
 
-#: wp-includes/pluggable.php:1502 wp-includes/pluggable.php:1645
+#: wp-includes/pluggable.php:1511 wp-includes/pluggable.php:1654
 msgid "Delete it: %s"
 msgstr "Изтриване: %s"
 
-#: wp-includes/pluggable.php:1504 wp-includes/pluggable.php:1646
+#: wp-includes/pluggable.php:1513 wp-includes/pluggable.php:1655
 msgid "Spam it: %s"
 msgstr "Това е спам: %s"
 
-#: wp-includes/pluggable.php:1621
+#: wp-includes/pluggable.php:1630
 msgid "Trackback excerpt: "
 msgstr "Откъс от trackback: "
 
-#: wp-includes/pluggable.php:1629
+#: wp-includes/pluggable.php:1638
 msgid "Pingback excerpt: "
 msgstr "Откъс от pingback: "
 
-#: wp-includes/pluggable.php:1641
+#: wp-includes/pluggable.php:1650
 msgid "Approve it: %s"
 msgstr "Одобряване: %s"
 
-#: wp-includes/pluggable.php:1652
+#: wp-includes/pluggable.php:1661
 msgid "[%1$s] Please moderate: \"%2$s\""
 msgstr "[%1$s] За одобрение: \"%2$s\""
 
-#: wp-includes/pluggable.php:1715
+#: wp-includes/pluggable.php:1724
 msgid "Password Lost and Changed for user: %s"
 msgstr "Променена е паролата за потребител: %s"
 
-#: wp-includes/pluggable.php:1755 wp-includes/pluggable.php:1779
+#: wp-includes/pluggable.php:1764 wp-includes/pluggable.php:1788
 #: wp-login.php:324
 msgid "Username: %s"
 msgstr "Потребителско име: %s"
 
-#: wp-includes/pluggable.php:1758
+#: wp-includes/pluggable.php:1767
 msgid "[%s] New User Registration"
 msgstr "[%s] Регистриране на нов потребител"
 
@@ -6962,7 +6962,7 @@ msgstr "Не може да се създаде потребител, ако по
 msgid "%1$s was called with an argument that is <strong>deprecated</strong> since version %2$s with no alternative available."
 msgstr "%1$s е извикана с параметър, който <strong>не трябва да се използва</strong> от версия %2$s."
 
-#: wp-includes/comment-template.php:2157
+#: wp-includes/comment-template.php:2185
 msgid "Cancel reply"
 msgstr "Отказ"
 
@@ -7087,7 +7087,7 @@ msgstr "Само потребителско име."
 msgid "Registration Form"
 msgstr "Формуляр за регистриране"
 
-#: wp-includes/pluggable.php:1500 wp-includes/pluggable.php:1643
+#: wp-includes/pluggable.php:1509 wp-includes/pluggable.php:1652
 msgid "Trash it: %s"
 msgstr "Към кошчето: %s"
 
@@ -7210,7 +7210,7 @@ msgstr "%1$s за %2$s"
 msgid "Recent Posts"
 msgstr "Последни публикации"
 
-#: wp-includes/comment-template.php:2158
+#: wp-includes/comment-template.php:2186
 msgid "Post Comment"
 msgstr "Публикуване"
 
@@ -7234,13 +7234,13 @@ msgstr "По Гринуич"
 msgid "Strikethrough"
 msgstr "Зачеркнат"
 
-#: wp-includes/pluggable.php:1648
+#: wp-includes/pluggable.php:1657
 msgid "Currently %s comment is waiting for approval. Please visit the moderation panel:"
 msgid_plural "Currently %s comments are waiting for approval. Please visit the moderation panel:"
 msgstr[0] "В момента %s коментар чака одобрение. Моля, посетете страницата за модериране:"
 msgstr[1] "В момента %s коментара чакат одобрение. Моля, посетете страницата за модериране:"
 
-#: wp-includes/pluggable.php:1719
+#: wp-includes/pluggable.php:1728
 msgid "[%s] Password Lost/Changed"
 msgstr "[%s] Загубена/Сменена парола"
 
@@ -7291,7 +7291,7 @@ msgstr "Скрити коментари: Въведете парола, за д�
 msgid "What do I do now?"
 msgstr "Сега накъде?"
 
-#: wp-includes/pluggable.php:1785
+#: wp-includes/pluggable.php:1794
 msgid "[%s] Your username and password info"
 msgstr "[%s] Информация за вашите потребителско име и парола"
 
@@ -7353,28 +7353,28 @@ msgstr[1] "%s теми"
 msgid "Feed for all posts filed under %s"
 msgstr "RSS хранилка за всички публикации в %s"
 
-#: wp-includes/comment-template.php:1571
+#: wp-includes/comment-template.php:1583
 msgid "Log in to Reply"
 msgstr "Влезте, за да отговорите"
 
-#: wp-includes/comment-template.php:1682
+#: wp-includes/comment-template.php:1694
 msgid "Leave a Comment"
 msgstr "Вашият коментар"
 
-#: wp-includes/comment-template.php:1683
+#: wp-includes/comment-template.php:1695
 msgid "Log in to leave a Comment"
 msgstr "Влезте, за да оставите коментар"
 
-#: wp-includes/comment-template.php:1751
+#: wp-includes/comment-template.php:1763
 msgid "Click here to cancel reply."
 msgstr "Отказване на отговора"
 
-#: wp-includes/comment-template.php:1838 wp-includes/comment-template.php:2151
+#: wp-includes/comment-template.php:1850 wp-includes/comment-template.php:2179
 #: wp-includes/theme-compat/comments.php:75
 msgid "Leave a Reply"
 msgstr "Вашият коментар"
 
-#: wp-includes/comment-template.php:1839 wp-includes/comment-template.php:2152
+#: wp-includes/comment-template.php:1851 wp-includes/comment-template.php:2180
 #: wp-includes/theme-compat/comments.php:75
 msgid "Leave a Reply to %s"
 msgstr "Вашият отговор на %s"
@@ -7388,7 +7388,7 @@ msgstr "<cite class=\"fn\">%s</cite> <span class=\"says\">казва:</span>"
 msgid "Powered by WordPress, state-of-the-art semantic personal publishing platform."
 msgstr "Задвижвано от WordPress - система за публикуване на лично съдържание."
 
-#: wp-includes/comment-template.php:1488
+#: wp-includes/comment-template.php:1500
 msgid "Enter your password to view comments."
 msgstr "Въведете вашата паролата, за да видите коментарите."
 
@@ -7401,7 +7401,7 @@ msgstr "Няма коментари"
 msgid "Edit This"
 msgstr "Редактиране"
 
-#: wp-includes/comment-template.php:2141
+#: wp-includes/comment-template.php:2169
 #: wp-includes/theme-compat/comments.php:82
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "Трябва да <a href=\"%s\">влезете</a>, за да публикувате коментар."
@@ -7460,7 +7460,7 @@ msgstr "Нямате право да триете тази публикация.
 msgid "(required)"
 msgstr "(задължително)"
 
-#: wp-includes/comment-template.php:2123
+#: wp-includes/comment-template.php:2151
 #: wp-includes/theme-compat/comments.php:102
 msgid "Website"
 msgstr "Интернет страница"
@@ -7620,7 +7620,7 @@ msgstr "Няма публикации, които да отговарят на �
 msgid "This page validates as XHTML 1.0 Transitional"
 msgstr "Страницата е с валиден XHTML 1.0 Transitional код"
 
-#: wp-includes/class-wp-customize-manager.php:1806
+#: wp-includes/class-wp-customize-manager.php:1808
 #: wp-includes/class-wp-xmlrpc-server.php:467
 msgid "Site Title"
 msgstr "Заглавие на сайта"
@@ -7645,7 +7645,7 @@ msgstr "1 коментар"
 msgid "<strong>ERROR</strong>: This email is already registered, please choose another one."
 msgstr "<strong>Грешка</strong>: Имейл адресът вече е регистриран, моля изберете друг."
 
-#: wp-includes/comment-template.php:2121
+#: wp-includes/comment-template.php:2149
 #: wp-includes/theme-compat/comments-popup.php:81 wp-login.php:720
 msgid "Email"
 msgstr "Имейл"
@@ -7838,19 +7838,19 @@ msgstr "Файлът &#8222;%s&#8220; не е картинка."
 msgid "Saved."
 msgstr "Успешен запис."
 
-#: wp-includes/class-wp-customize-manager.php:1948
+#: wp-includes/class-wp-customize-manager.php:1950
 #: wp-includes/class-wp-editor.php:988 wp-includes/media-template.php:613
 #: wp-includes/media-template.php:844 wp-includes/media-template.php:910
 msgid "Left"
 msgstr "Ляво"
 
-#: wp-includes/class-wp-customize-manager.php:1949
+#: wp-includes/class-wp-customize-manager.php:1951
 #: wp-includes/class-wp-editor.php:989 wp-includes/media-template.php:616
 #: wp-includes/media-template.php:847 wp-includes/media-template.php:913
 msgid "Center"
 msgstr "Център"
 
-#: wp-includes/class-wp-customize-manager.php:1950
+#: wp-includes/class-wp-customize-manager.php:1952
 #: wp-includes/class-wp-editor.php:990 wp-includes/media-template.php:619
 #: wp-includes/media-template.php:850 wp-includes/media-template.php:916
 msgid "Right"
@@ -7893,7 +7893,7 @@ msgstr "Запис като чернова"
 msgid "No comments yet."
 msgstr "Все още няма коментари."
 
-#: wp-includes/comment-template.php:1569 wp-includes/script-loader.php:488
+#: wp-includes/comment-template.php:1581 wp-includes/script-loader.php:488
 msgid "Reply"
 msgstr "Отговор"
 
@@ -8042,7 +8042,7 @@ msgstr "Запис"
 msgid "Advanced"
 msgstr "Допълнителни"
 
-#: wp-includes/comment-template.php:2119
+#: wp-includes/comment-template.php:2147
 #: wp-includes/theme-compat/comments-popup.php:76
 #: wp-includes/theme-compat/comments.php:96
 msgid "Name"
@@ -8092,8 +8092,8 @@ msgstr "Заглавна картинка"
 msgid "Content"
 msgstr "Съдържание"
 
-#: wp-includes/pluggable.php:1487 wp-includes/pluggable.php:1635
-#: wp-includes/pluggable.php:1756
+#: wp-includes/pluggable.php:1496 wp-includes/pluggable.php:1644
+#: wp-includes/pluggable.php:1765
 msgid "Email: %s"
 msgstr "Електронна поща: %s"
 
@@ -8101,7 +8101,7 @@ msgstr "Електронна поща: %s"
 msgid "Add Media"
 msgstr "Добавяне на файл"
 
-#: wp-includes/comment-template.php:1041 wp-includes/comment-template.php:2139
+#: wp-includes/comment-template.php:1041 wp-includes/comment-template.php:2167
 msgctxt "noun"
 msgid "Comment"
 msgstr "Коментар:"

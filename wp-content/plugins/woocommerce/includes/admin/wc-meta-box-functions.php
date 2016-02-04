@@ -253,3 +253,34 @@ function woocommerce_wp_radio( $field ) {
 
 	echo '</fieldset>';
 }
+
+
+
+
+function vk_dates_output($post) {
+  wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+	?>
+	<p>Моля, въведете датите за пиесата във формат ДД/ММ/ГГГГ, разделени със запетайки:</p>
+	<p>
+		<input type="text"  name = "vk_date_input" id="vk_date_input" value="" size="30" />
+	</p>
+<?php
+}
+
+add_action( 'save_post', 'vk_dates_save', 10, 3 );
+function vk_dates_save( $product_type, $post_id) {
+	global $post, $thepostid;
+	$thepostid = $post->ID;
+
+	update_post_meta( $post_id, 'vk_date_input', $_POST['vk_date_input'] );
+
+	if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
+			return $post_id;
+
+	$meta_box_text_value = "";
+
+	if(isset($_POST["vk_date_input"])) {
+			$meta_box_text_value = $_POST["vk_date_input"];
+	}
+	update_post_meta($thepostid, "_vk_date_input", $meta_box_text_value);
+}

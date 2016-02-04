@@ -86,7 +86,7 @@ class WC_Meta_Box_Product_Data {
 					do_action( 'woocommerce_product_write_panel_tabs' );
 				?>
 			</ul>
-			
+
 			<div id="inventory_product_data" class="panel woocommerce_options_panel">
 
 				<?php
@@ -733,6 +733,12 @@ class WC_Meta_Box_Product_Data {
 						}
 
 						wp_set_object_terms( $post_id, $values, $attribute_names[ $i ] );
+
+						$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
+				 		for ( $i = 0; $i <= count($tags); $i++ ) {
+				 			wp_set_object_terms( $post_id, $tags[ $i ], 'product_tag', true );
+				 		}
+
 					}
 
 					if ( ! empty( $values ) ) {

@@ -152,6 +152,7 @@ function activello_scripts() {
 
   // Add Font Awesome stylesheet
   wp_enqueue_style( 'activello-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+	wp_enqueue_style( 'breezi-icons', get_template_directory_uri().'/inc/css/breezi-font.css' );
 
   // Add Google Fonts
   wp_enqueue_style( 'activello-fonts', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Montserrat:400,700|Maven+Pro:400,700');
@@ -174,7 +175,7 @@ function activello_scripts() {
   if( ( is_home() || is_front_page() ) && get_theme_mod('activello_featured_hide') == 1 ) {
     wp_register_script( 'flexslider-js', get_template_directory_uri() . '/inc/js/flexslider.min.js', array('jquery'), '20140222', true );
   }
-  
+
   // Main theme related functions
   wp_enqueue_script( 'activello-functions', get_template_directory_uri() . '/inc/js/functions.min.js', array('jquery') );
 
@@ -183,9 +184,9 @@ function activello_scripts() {
 
   // Add instafeed/instagram
   if( is_active_widget( false, false, 'activello-instagram', true ) ){
-    wp_enqueue_script('activello-instafeedjs', get_template_directory_uri().'/inc/js/instafeed.min.js', array('jquery') );	
+    wp_enqueue_script('activello-instafeedjs', get_template_directory_uri().'/inc/js/instafeed.min.js', array('jquery') );
   }
-	
+
   // Threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
     wp_enqueue_script( 'comment-reply' );

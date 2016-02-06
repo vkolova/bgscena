@@ -1,0 +1,16 @@
+@font-face {
+  font-family:'Breezi Icon Set';
+  src: url('../fonts/breezi_font-webfont.ttf');
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+.map-icon {
+  font-family: 'Breezi Icon Set';
+  font-size: 16px;
+  display: inline;
+  padding-top: 10px;
+  padding-bottom: -5px;
+
+}

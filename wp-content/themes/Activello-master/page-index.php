@@ -43,7 +43,8 @@ $querystr = "
     FROM $wpdb->posts, $wpdb->postmeta
     WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id
     AND $wpdb->postmeta.meta_key = '_vk_date_input'
-    AND $wpdb->postmeta.meta_value = " . "'" . $today_date . "'";
+    AND $wpdb->postmeta.meta_value LIKE " . "'%" . $today_date . "%'";
+echo $querystr;
 
  $pageposts = $wpdb->get_results($querystr, OBJECT);
 ?>
@@ -63,11 +64,11 @@ $querystr = "
 	 		}
 	 		?>
 	 <div class="col-xs-6 col-md-4">
-	       <a href="<?php the_permalink() ?>" ><img class="img-top" src="<?php echo $img_src; ?>" width="300" height="300" alt="<?php the_title(); ?>"></А>
+	       <a href="<?php the_permalink() ?>" ><img class="img-top" src="<?php echo $img_src; ?>" width="300" height="300" alt="<?php the_title(); ?>"></a>
 	         <h4 class="title"><a href="<?php the_permalink() ?>" ><?php the_title(); ?></a></h4>
 	         <p class="text"><?php echo substr($post->post_content, 0, 140); ?></p>
 	         <p class="text"><small class="text-muted">
-						<?php echo get_the_term_list( $id, 'product_cat', '', ', ', '' ); ?>
+						<?php echo get_the_term_list( $id, 'product_cat', '<span class="map-icon">g</span>    ', ', ', '' ); ?>
 				 	</small></p>
 	</div>
 	<?php  if ($count == 3) {
@@ -77,7 +78,7 @@ $querystr = "
 					?>
  <?php endforeach;
 
- if(count($pageposts) % 2 == 0) {
+ if(count($pageposts) % 2 == 0 || count($pageposts) == 1) {
  	echo "</div>";
  }
   ?>
@@ -99,7 +100,7 @@ $querystr = "
 			    FROM $wpdb->posts, $wpdb->postmeta
 			    WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id
 			    AND $wpdb->postmeta.meta_key = '_vk_date_input'
-			    AND $wpdb->postmeta.meta_value = " . "'" . $tomorrow_date . "'";
+			    AND $wpdb->postmeta.meta_value LIKE " . "'%" . $tomorrow_date . "%'";
 
 			 $pageposts = $wpdb->get_results($querystr, OBJECT);
 			?>
@@ -131,7 +132,7 @@ $querystr = "
 											$count++;
 								?>
 			 <?php endforeach;
-			 if(count($pageposts) % 2 == 0) {
+			 if(count($pageposts) % 2 == 0 || count($pageposts) == 1) {
 			 	echo "</div>";
 			 }
  ?>

@@ -596,8 +596,8 @@ a.pp_close {
 div.ppt {
 	color: #fff !important;
 	font-weight: 700;
-	display: none;
-	font-size: 17px;
+	display: none !important;
+	font-size: 5px;
 	margin: 0 0 5px 15px;
 	z-index: 9999;
 }

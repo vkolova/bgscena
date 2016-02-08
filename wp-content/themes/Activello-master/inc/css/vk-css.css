@@ -14,3 +14,20 @@
   padding-bottom: -5px;
 
 }
+
+
+header#masthead {
+margin-bottom: -30px;
+}
+
+body {
+font-family: "Caliri", "Arial";
+}
+
+div.ppt {
+display: none;
+}
+
+.ppt {
+display: none;
+}

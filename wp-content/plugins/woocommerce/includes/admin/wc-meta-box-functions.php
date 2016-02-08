@@ -257,30 +257,55 @@ function woocommerce_wp_radio( $field ) {
 
 
 
-function vk_dates_output($post) {
+function vk_details_output($post) {
   wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+	$meta_dates = get_post_meta( $post->ID, '_vk_date_input', true );
+	$meta_time = get_post_meta( $post->ID, '_vk_time_input', true );
+	$meta_scene = get_post_meta( $post->ID, '_vk_scene_input', true );
+	$meta_tickets = get_post_meta( $post->ID, '_vk_tickets_input', true );
 	?>
-	<p>Моля, въведете датите за пиесата във формат ДД/ММ/ГГГГ, разделени със запетайки:</p>
-	<p>
-		<input type="text"  name = "vk_date_input" id="vk_date_input" value="" size="30" />
-	</p>
+	<p>Датите за пиесата във формат ДД/ММ/ГГГГ, разделени със запетайки: <input type="text"  name = "vk_date_input" id="vk_date_input" value="<?php echo $meta_dates;?>" size="30" /></p>
+	<p>Начален час: <input type="text"  name = "vk_time_input" id="vk_time_input" value="<?php echo $meta_time; ?>" size="30" /></p>
+	<p>Сцена: <input type="text"  name = "vk_scene_input" id="vk_scene_input" value="<?php echo $meta_scene; ?>" size="30" /></p>
+	<p>Билети: <input type="text"  name = "vk_tickets_input" id="vk_tickets_input" value="<?php echo $meta_tickets; ?>" size="30" /></p>
 <?php
 }
 
-add_action( 'save_post', 'vk_dates_save', 10, 3 );
-function vk_dates_save( $product_type, $post_id) {
+add_action( 'save_post', 'vk_info_save', 10, 3 );
+function vk_info_save( $product_type, $post_id) {
 	global $post, $thepostid;
 	$thepostid = $post->ID;
 
-	update_post_meta( $post_id, 'vk_date_input', $_POST['vk_date_input'] );
+	update_post_meta( $post_id, '_vk_date_input', $_POST['vk_date_input'] );
+	update_post_meta( $post_id, '_vk_time_input', $_POST['vk_time_input'] );
+	update_post_meta( $post_id, '_vk_scene_input', $_POST['vk_scene_input'] );
+	update_post_meta( $post_id, '_vk_tickets_input', $_POST['vk_tickets_input'] );
 
 	if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
 			return $post_id;
 
-	$meta_box_text_value = "";
+	$meta_box_date_value = "";
+	$meta_box_time_value = "";
+	$meta_box_scene_value = "";
+	$meta_box_tickets_value = "";
 
 	if(isset($_POST["vk_date_input"])) {
 			$meta_box_text_value = $_POST["vk_date_input"];
 	}
 	update_post_meta($thepostid, "_vk_date_input", $meta_box_text_value);
+
+	if(isset($_POST["vk_time_input"])) {
+			$meta_box_time_value = $_POST["vk_time_input"];
+	}
+	update_post_meta($thepostid, "_vk_time_input", $meta_box_time_value);
+
+	if(isset($_POST["vk_scene_input"])) {
+			$meta_box_scene_value = $_POST["vk_scene_input"];
+	}
+	update_post_meta($thepostid, "_vk_scene_input", $meta_box_scene_value);
+
+	if(isset($_POST["vk_tickets_input"])) {
+			$meta_box_tickets_value = $_POST["vk_tickets_input"];
+	}
+	update_post_meta($thepostid, "_vk_tickets_input", $meta_box_tickets_value);
 }

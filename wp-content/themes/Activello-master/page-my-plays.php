@@ -83,13 +83,13 @@ $querystr = "
 		 ?>
 		<div class="row">
 			<div class="col-md-2">
-				<a href="<?php echo the_permalink(); ?>" ><img class="img" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
+				<a href="<?php echo the_permalink(); ?>" ><img class="media-object" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
 			</div>
 			<div class="col-md-2">
 				<h3><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h3>
 			</div>
 			<div class="col-md-2">
-				<?php echo get_the_term_list( $id, 'product_cat', '<span class="map-icon">g</span>', ', ', '' ); ?></div>
+				<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
 			</div>
 			<div class="col-md-1"><?php echo $average_rating; ?>
 			</div>
@@ -164,7 +164,7 @@ $querystr = "
 					<h3><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h3>
 				</div>
 				<div class="col-md-2">
-					<?php echo get_the_term_list( $id, 'product_cat', '<span class="map-icon">g</span>', ', ', '' ); ?></div>
+					<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
 				</div>
 				<div class="col-md-1"><?php echo $average_rating; ?>
 				</div>

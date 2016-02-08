@@ -152,7 +152,7 @@ function activello_scripts() {
 
   // Add Font Awesome stylesheet
   wp_enqueue_style( 'activello-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
-	wp_enqueue_style( 'breezi-icons', get_template_directory_uri().'/inc/css/breezi-font.css' );
+	wp_enqueue_style( 'vk-styles', get_template_directory_uri().'/inc/css/vk-css.css' );
 
   // Add Google Fonts
   wp_enqueue_style( 'activello-fonts', '//fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Montserrat:400,700|Maven+Pro:400,700');

@@ -30,7 +30,7 @@ function activello_body_classes( $classes ) {
   if ( is_multi_author() ) {
     $classes[] = 'group-blog';
   }
-	
+
 	if ( get_theme_mod( 'activello_sidebar_position' ) == "pull-right" ) {
 		$classes[] = 'has-sidebar-left';
 	} else if ( get_theme_mod( 'activello_sidebar_position' ) == "no-sidebar" ) {
@@ -135,10 +135,10 @@ if ( ! function_exists( 'activello_featured_slider' ) ) :
  */
 function activello_featured_slider() {
   if ( ( is_home() || is_front_page() ) && get_theme_mod( 'activello_featured_hide' ) == 1 ) {
-		
+
 		wp_enqueue_style( 'flexslider-css' );
 		wp_enqueue_script( 'flexslider-js' );
-		
+
     echo '<div class="flexslider">';
       echo '<ul class="slides">';
 
@@ -175,7 +175,7 @@ endif;
  */
 function activello_footer_info() {
 global $activello_footer_info;
-  printf( esc_html__( 'Theme by %1$s Powered by %2$s', 'activello' ) , '<a href="http://colorlib.com/" target="_blank">Colorlib</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a>');
+  echo '© bgscena 2016';
 }
 
 
@@ -243,7 +243,7 @@ add_action( 'admin_head', 'activello_add_favicon', 0 );
 function activello_cats() {
 	$cats = array();
 	$cats[0] = "All";
-	
+
 	foreach ( get_categories() as $categories => $category ) {
 		$cats[$category->term_id] = $category->name;
 	}
@@ -334,7 +334,7 @@ if (!function_exists('get_activello_theme_setting'))  {
           .woocommerce input.button.alt:hover, .input-group-btn:last-child>.btn:hover, .scroll-to-top:hover,
           button, html input[type=button]:hover, input[type=reset]:hover, .comment-list li .comment-body:after, .page-links a:hover span, .page-links span,
           input[type=submit]:hover, .comment-form #submit:hover, .tagcloud a:hover,
-          .single .entry-content a:hover, .dropdown-menu > li > a:hover, 
+          .single .entry-content a:hover, .dropdown-menu > li > a:hover,
           .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
           .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus{background-color:' . get_theme_mod('accent_color') . '; }';
     }

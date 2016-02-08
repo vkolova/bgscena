@@ -586,6 +586,90 @@ function wc_recount_after_stock_change( $product_id ) {
 add_action( 'woocommerce_product_set_stock_status', 'wc_recount_after_stock_change' );
 
 
+
+function get_watched_number() {
+	global $wpdb;
+	$querystr = "SELECT SUM(status_value) FROM {$wpdb->prefix}vk_user_play_status";
+	$count = $wpdb->get_results($querystr, ARRAY_A);
+	foreach ( $count as $key ) {
+		echo  $key['SUM(status_value)'];
+	}
+}
+
+
+function play_info( $id ) {
+
+	$meta_time = get_post_meta( $id, '_vk_time_input', true );
+	if($meta_time)
+		echo '<span class="glyphicon glyphicon-time"></span> ' . $meta_time . '<br/>';
+
+	$meta_scene = get_post_meta( $id, '_vk_scene_input', true );
+	$meta_tickets = get_post_meta( $id, '_vk_tickets_input', true );
+
+	$meta_dates = get_post_meta( $id, '_vk_date_input', true );
+	$meta_dates = str_replace(' ', '', $meta_dates);
+	$meta_dates = explode( ',', $meta_dates );
+
+	//echo '<span class="glyphicon glyphicon-calendar"></span>  ';
+	//print_r($meta_dates);
+	foreach ($meta_dates as $value) {
+		$value = explode( '/', $value );
+
+		echo '<span class="glyphicon glyphicon-calendar"></span>  ';
+		echo $value[0] . ' ';
+		switch ($value[1]) {
+    case '01':
+        echo 'януари';
+        break;
+    case '02':
+        echo 'февруари';
+        break;
+    case '03':
+        echo 'март';
+        break;
+		case '04':
+				echo 'април';
+				break;
+		case '05':
+				echo 'май';
+				break;
+		case '06':
+				echo 'юни';
+				break;
+		case '07':
+				echo 'юли';
+				break;
+		case '08':
+        echo 'август';
+        break;
+		case '09':
+				echo 'септември';
+				break;
+		case '10':
+				echo 'октомври';
+				break;
+		case '11':
+				echo 'ноември';
+				break;
+		case '12':
+				echo 'декември';
+				break;
+    default:
+        echo "Уупс! Нещо се обърка! :/ Май няма скорошни пиеси? <br/><br/>";
+			}
+		if ($meta_scene) {
+			echo ' | ' . $meta_scene;
+		} else {
+			echo ' | ';
+		}
+		if($meta_tickets)
+			echo ' | <a href="' . $meta_tickets . '">Купи билет</a><br/>' ;
+	}
+
+	echo '<br/>';
+
+}
+
 /**
  * Overrides the original term count for product categories and tags with the product count
  * that takes catalog visibility into account.

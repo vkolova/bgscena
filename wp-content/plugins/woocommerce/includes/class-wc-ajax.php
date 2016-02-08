@@ -726,13 +726,23 @@ class WC_AJAX {
 
 		update_post_meta( $post_id, '_product_attributes', $attributes );
 
-		//set play attributes as tags 
+		//set play attributes as tags
 		$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
 
-		for ( $i = 0; $i <= count($tags); $i++ ) {
-			//$term = wp_insert_term( $tags[ $i ], 'product_tag');
-			wp_set_object_terms( $post_id, $tags[ $i ], 'product_tag', true );
+		// $tags = explode(',', $tags);
+		//
+		// foreach ($tags as $tag) {
+		// 	wp_set_object_terms( $post_id, $tag, 'product_tag', true );
+		// }
+
+		foreach ($tags as $tag) {
+			$bah = explode(',', $tag);
+			foreach ($bah as $value) {
+				wp_set_object_terms( $post_id, $value, 'product_tag', true );
+			}
+			// wp_set_object_terms( $post_id, $tag, 'product_tag', true );
 		}
+
 
 		die();
 	}

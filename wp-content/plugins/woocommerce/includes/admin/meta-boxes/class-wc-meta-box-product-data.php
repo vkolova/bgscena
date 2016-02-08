@@ -735,9 +735,15 @@ class WC_Meta_Box_Product_Data {
 						wp_set_object_terms( $post_id, $values, $attribute_names[ $i ] );
 
 						$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
-				 		for ( $i = 0; $i <= count($tags); $i++ ) {
-				 			wp_set_object_terms( $post_id, $tags[ $i ], 'product_tag', true );
-				 		}
+						//$tags = explode(',', $tags);
+
+						foreach ($tags as $tag) {
+							$bah = explode(',', $tag);
+							foreach ($bah as $value) {
+								wp_set_object_terms( $post_id, $value, 'product_tag', true );
+							}
+							// wp_set_object_terms( $post_id, $tag, 'product_tag', true );
+						}
 
 					}
 

@@ -147,6 +147,10 @@ add_filter( 'gallery_style', 'activello_remove_gallery_css' );
  */
 function activello_scripts() {
 
+	wp_register_script( 'vk-js-ui', get_template_directory_uri() . '/inc/js/jquery-ui.js');
+	wp_register_script( 'vk-calendar', get_template_directory_uri() . '/inc/js/calendar.js');
+
+
   // Add Bootstrap default CSS
   wp_enqueue_style( 'activello-bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
 

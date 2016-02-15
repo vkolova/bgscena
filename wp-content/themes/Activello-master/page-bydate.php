@@ -94,17 +94,17 @@ $city = 'София';
 
 
 <?php
-// $querystr = "
-// SELECT display_name, user_email
-// FROM $wpdb->users;
-// ";
-//
-// $users_info = $wpdb->get_results($querystr, OBJECT);
-// foreach (  $users_info as $user ) {
-//   $subject = "hello, " . $user->display_name;
-//   $content = "WordPress <b>knowledge<b>";
-//   wp_mail( $user->user_email, $subject, $content );
-// }
+$querystr = "
+SELECT display_name, user_email
+FROM $wpdb->users;
+";
+
+$users_info = $wpdb->get_results($querystr, OBJECT);
+foreach (  $users_info as $user ) {
+  $subject = "hello, " . $user->display_name;
+  $content = "WordPress <b>knowledge<b>";
+  wp_mail( $user->user_email, $subject, $content );
+}
 
 
 

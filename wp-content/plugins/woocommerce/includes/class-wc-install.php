@@ -414,19 +414,14 @@ CREATE TABLE {$wpdb->prefix}vk_user_play_status (
 			'read_private_pages'     => true,
 			'read_private_posts'     => true,
 			'edit_posts'             => true,
-			'edit_pages'             => true,
 			'edit_published_posts'   => true,
 			'edit_published_pages'   => true,
 			'edit_private_posts'     => true,
 			'publish_posts'          => true,
-			'publish_pages'          => true,
 			'manage_categories'      => true,
 			'manage_links'           => true,
-			'moderate_comments'      => true,
 			'unfiltered_html'        => true,
 			'upload_files'           => true,
-			'export'                 => true,
-			'import'                 => true,
 			'list_users'             => true
 		) );
 

@@ -211,19 +211,19 @@ class WC_Admin_Post_Types {
 		$columns['thumb'] = '<span class="wc-image tips" data-tip="' . esc_attr__( 'Image', 'woocommerce' ) . '">' . __( 'Image', 'woocommerce' ) . '</span>';
 		$columns['name']  = __( 'Name', 'woocommerce' );
 
-		if ( wc_product_sku_enabled() ) {
-			$columns['sku'] = __( 'SKU', 'woocommerce' );
-		}
+		// if ( wc_product_sku_enabled() ) {
+		// 	$columns['sku'] = __( 'SKU', 'woocommerce' );
+		// }
+		//
+		// if ( 'yes' == get_option( 'woocommerce_manage_stock' ) ) {
+		// 	$columns['is_in_stock'] = __( 'Stock', 'woocommerce' );
+		// }
 
-		if ( 'yes' == get_option( 'woocommerce_manage_stock' ) ) {
-			$columns['is_in_stock'] = __( 'Stock', 'woocommerce' );
-		}
-
-		$columns['price']        = __( 'Price', 'woocommerce' );
+		// $columns['price']        = __( 'Price', 'woocommerce' );
 		$columns['product_cat']  = __( 'Categories', 'woocommerce' );
 		$columns['product_tag']  = __( 'Tags', 'woocommerce' );
-		$columns['featured']     = '<span class="wc-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'woocommerce' ) . '">' . __( 'Featured', 'woocommerce' ) . '</span>';
-		$columns['product_type'] = '<span class="wc-type parent-tips" data-tip="' . esc_attr__( 'Type', 'woocommerce' ) . '">' . __( 'Type', 'woocommerce' ) . '</span>';
+		// $columns['featured']     = '<span class="wc-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'woocommerce' ) . '">' . __( 'Featured', 'woocommerce' ) . '</span>';
+		// $columns['product_type'] = '<span class="wc-type parent-tips" data-tip="' . esc_attr__( 'Type', 'woocommerce' ) . '">' . __( 'Type', 'woocommerce' ) . '</span>';
 		$columns['date']         = __( 'Date', 'woocommerce' );
 
 		return array_merge( $columns, $existing_columns );

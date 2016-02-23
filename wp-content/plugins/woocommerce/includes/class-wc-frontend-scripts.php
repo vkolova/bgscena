@@ -131,7 +131,6 @@ class WC_Frontend_Scripts {
 		self::register_script( 'wc-country-select', $frontend_script_path . 'country-select' . $suffix . '.js' );
 		self::register_script( 'wc-address-i18n', $frontend_script_path . 'address-i18n' . $suffix . '.js' );
 		self::register_script( 'vk-change-user-play-status', $frontend_script_path . 'change-user-play-status' . '.js' );
-		self::register_script( 'vk-geolocation', $frontend_script_path . 'vk-geolocation.js' );
 
 		self::register_script( 'vk-bootstrap-js', $frontend_script_path . 'bootstrap' . '.js' );
 		wp_register_style( 'vk-bootstrap-css', $assets_path . 'css/bootstrap.css' );

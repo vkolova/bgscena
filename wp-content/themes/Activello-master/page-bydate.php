@@ -21,10 +21,6 @@ get_header(); ?>
 	</article><!-- #post-## -->
 </div>
 
-<?php
-  wp_enqueue_script( 'vk-geolocation' );
-?>
-
 <input id="address" name="city" type="hidden"/>
 <?php
 $city = 'София';

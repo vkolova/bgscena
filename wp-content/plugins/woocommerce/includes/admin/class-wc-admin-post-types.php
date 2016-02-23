@@ -2036,7 +2036,7 @@ class WC_Admin_Post_Types {
 	public function enter_title_here( $text, $post ) {
 		switch ( $post->post_type ) {
 			case 'product' :
-				$text = __( 'Product name', 'woocommerce' );
+				$text = __( 'Име на постановката', 'woocommerce' );
 			break;
 			case 'shop_coupon' :
 				$text = __( 'Coupon code', 'woocommerce' );

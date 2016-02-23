@@ -1,9 +1,4 @@
-<?php
-/**
- * The template for displaying theathres.
- */
-
-get_header(); ?>
+<?php get_header(); ?>
 
 <?php the_post_thumbnail( 'activello-featured', array( 'class' => 'single-featured' )); ?>
 
@@ -48,45 +43,14 @@ $querystr = "
 		 $xpath = new DOMXPath(@DOMDocument::loadHTML($html));
 		 $img_src = $xpath->evaluate("string(//img/@src)");
 
-		 $ratings = $wpdb->get_var( $wpdb->prepare("
-			 SELECT SUM(meta_value) FROM $wpdb->commentmeta
-			 LEFT JOIN $wpdb->comments ON $wpdb->commentmeta.comment_id = $wpdb->comments.comment_ID
-			 WHERE meta_key = 'rating'
-			 AND comment_post_ID = %d
-			 AND comment_approved = '1'
-			 AND meta_value > 0
-		 ", $post->ID ) );
 
-		 $counts = array();
-
-		 $raw_counts = $wpdb->get_results( $wpdb->prepare("
-			 SELECT meta_value, COUNT( * ) as meta_value_count FROM $wpdb->commentmeta
-			 LEFT JOIN $wpdb->comments ON $wpdb->commentmeta.comment_id = $wpdb->comments.comment_ID
-			 WHERE meta_key = 'rating'
-			 AND comment_post_ID = %d
-			 AND comment_approved = '1'
-			 AND meta_value > 0
-			 GROUP BY meta_value
-		 ", $post->ID ) );
-		 //print_r( $raw_counts);
-
-		 foreach ( $raw_counts as $count ) {
-			 $counts[ $count->meta_value ] = $count->meta_value_count;
-		 }
-
-		 $count = count($counts);
-			if ($count) {
-				$average_rating = number_format( $ratings / $count, 2, '.', '' );
-			} else {
-				$average_rating = '0.00';
-			}
 		 ?>
 		<div class="row">
 			<div class="col-md-2">
 				<a href="<?php echo the_permalink(); ?>" ><img class="media-object" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
 			</div>
-			<div class="col-md-2">
-				<h3><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h3>
+			<div class="col-md-3">
+				<h4><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h4>
 			</div>
 			<div class="col-md-2">
 				<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
@@ -122,48 +86,15 @@ $querystr = "
 			 $html = woocommerce_get_product_thumbnail( 'shop_catalog' );
 			 $xpath = new DOMXPath(@DOMDocument::loadHTML($html));
 			 $img_src = $xpath->evaluate("string(//img/@src)");
-
-			 $ratings = $wpdb->get_var( $wpdb->prepare("
-				 SELECT SUM(meta_value) FROM $wpdb->commentmeta
-				 LEFT JOIN $wpdb->comments ON $wpdb->commentmeta.comment_id = $wpdb->comments.comment_ID
-				 WHERE meta_key = 'rating'
-				 AND comment_post_ID = %d
-				 AND comment_approved = '1'
-				 AND meta_value > 0
-			 ", $post->ID ) );
-
-			 $counts = array();
-
-			 $raw_counts = $wpdb->get_results( $wpdb->prepare("
-				 SELECT meta_value, COUNT( * ) as meta_value_count FROM $wpdb->commentmeta
-				 LEFT JOIN $wpdb->comments ON $wpdb->commentmeta.comment_id = $wpdb->comments.comment_ID
-				 WHERE meta_key = 'rating'
-				 AND comment_post_ID = %d
-				 AND comment_approved = '1'
-				 AND meta_value > 0
-				 GROUP BY meta_value
-			 ", $post->ID ) );
-			 //print_r( $raw_counts);
-
-			 foreach ( $raw_counts as $count ) {
-				 $counts[ $count->meta_value ] = $count->meta_value_count;
-			 }
-
-			 $count = count($counts);
-				if ($count) {
-					$average_rating = number_format( $ratings / $count, 2, '.', '' );
-				} else {
-					$average_rating = '0.00';
-				}
 			 ?>
 			<div class="row">
 				<div class="col-md-2">
 					<a href="<?php echo the_permalink(); ?>" ><img class="img" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
 				</div>
-				<div class="col-md-2">
-					<h3><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h3>
+				<div class="col-md-3">
+					<h4><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h4>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-3">
 					<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
 				</div>
 				<div class="col-md-1"><?php echo $average_rating; ?>

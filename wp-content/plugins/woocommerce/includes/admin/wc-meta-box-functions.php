@@ -258,7 +258,7 @@ function woocommerce_wp_radio( $field ) {
 
 
 function vk_details_output($post) {
-  wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+ wp_nonce_field(basename(__FILE__), "meta-box-nonce");
 	$meta_dates = get_post_meta( $post->ID, '_vk_date_input', true );
 	$meta_time = get_post_meta( $post->ID, '_vk_time_input', true );
 	$meta_scene = get_post_meta( $post->ID, '_vk_scene_input', true );
@@ -267,7 +267,7 @@ function vk_details_output($post) {
 	<p>Датите за пиесата във формат ДД/ММ/ГГГГ, разделени със запетайки: <input type="text"  name = "vk_date_input" id="vk_date_input" value="<?php echo $meta_dates;?>" size="30" /></p>
 	<p>Начален час: <input type="text"  name = "vk_time_input" id="vk_time_input" value="<?php echo $meta_time; ?>" size="30" /></p>
 	<p>Сцена: <input type="text"  name = "vk_scene_input" id="vk_scene_input" value="<?php echo $meta_scene; ?>" size="30" /></p>
-	<p>Билети: <input type="text"  name = "vk_tickets_input" id="vk_tickets_input" value="<?php echo $meta_tickets; ?>" size="30" /></p>
+	<p>Билети: <input type="url"  name = "vk_tickets_input" id="vk_tickets_input" value="<?php echo $meta_tickets; ?>" size="30" /></p>
 <?php
 }
 

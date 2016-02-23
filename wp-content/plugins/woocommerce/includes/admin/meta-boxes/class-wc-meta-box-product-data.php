@@ -211,10 +211,10 @@ class WC_Meta_Box_Product_Data {
 			<div id="product_attributes" class="panel wc-metaboxes-wrapper">
 				<div class="toolbar toolbar-top">
 					<span class="expand-close">
-						<a href="#" class="expand_all"><?php _e( 'Expand', 'woocommerce' ); ?></a> / <a href="#" class="close_all"><?php _e( 'Close', 'woocommerce' ); ?></a>
+						<a href="#" class="expand_all"><?php _e( 'Разшири', 'woocommerce' ); ?></a> / <a href="#" class="close_all"><?php _e( 'Затвори', 'woocommerce' ); ?></a>
 					</span>
 					<select name="attribute_taxonomy" class="attribute_taxonomy">
-						<option value=""><?php _e( 'Custom product attribute', 'woocommerce' ); ?></option>
+						<option value=""><?php _e( 'Атрибут', 'woocommerce' ); ?></option>
 						<?php
 							global $wc_product_attributes;
 
@@ -575,95 +575,6 @@ class WC_Meta_Box_Product_Data {
 	public static function save( $post_id, $post ) {
 		global $wpdb;
 
-		// Add any default post meta
-		add_post_meta( $post_id, 'total_sales', '0', true );
-
-		// Get types
-		$product_type    = empty( $_POST['product-type'] ) ? 'simple' : sanitize_title( stripslashes( $_POST['product-type'] ) );
-		$is_downloadable = isset( $_POST['_downloadable'] ) ? 'yes' : 'no';
-		$is_virtual      = isset( $_POST['_virtual'] ) ? 'yes' : 'no';
-
-		// Product type + Downloadable/Virtual
-		wp_set_object_terms( $post_id, $product_type, 'product_type' );
-		update_post_meta( $post_id, '_downloadable', $is_downloadable );
-		update_post_meta( $post_id, '_virtual', $is_virtual );
-
-		// Update post meta
-		if ( isset( $_POST['_regular_price'] ) ) {
-			update_post_meta( $post_id, '_regular_price', ( $_POST['_regular_price'] === '' ) ? '' : wc_format_decimal( $_POST['_regular_price'] ) );
-		}
-
-		if ( isset( $_POST['_sale_price'] ) ) {
-			update_post_meta( $post_id, '_sale_price', ( $_POST['_sale_price'] === '' ? '' : wc_format_decimal( $_POST['_sale_price'] ) ) );
-		}
-
-		if ( isset( $_POST['_tax_status'] ) ) {
-			update_post_meta( $post_id, '_tax_status', wc_clean( $_POST['_tax_status'] ) );
-		}
-
-		if ( isset( $_POST['_tax_class'] ) ) {
-			update_post_meta( $post_id, '_tax_class', wc_clean( $_POST['_tax_class'] ) );
-		}
-
-		if ( isset( $_POST['_purchase_note'] ) ) {
-			update_post_meta( $post_id, '_purchase_note', wp_kses_post( stripslashes( $_POST['_purchase_note'] ) ) );
-		}
-
-		// Featured
-		if ( update_post_meta( $post_id, '_featured', isset( $_POST['_featured'] ) ? 'yes' : 'no' ) ) {
-			delete_transient( 'wc_featured_products' );
-		}
-
-		// Dimensions
-		if ( 'no' == $is_virtual ) {
-
-			if ( isset( $_POST['_weight'] ) ) {
-				update_post_meta( $post_id, '_weight', ( '' === $_POST['_weight'] ) ? '' : wc_format_decimal( $_POST['_weight'] ) );
-			}
-
-			if ( isset( $_POST['_length'] ) ) {
-				update_post_meta( $post_id, '_length', ( '' === $_POST['_length'] ) ? '' : wc_format_decimal( $_POST['_length'] ) );
-			}
-
-			if ( isset( $_POST['_width'] ) ) {
-				update_post_meta( $post_id, '_width', ( '' === $_POST['_width'] ) ? '' : wc_format_decimal( $_POST['_width'] ) );
-			}
-
-			if ( isset( $_POST['_height'] ) ) {
-				update_post_meta( $post_id, '_height', ( '' === $_POST['_height'] ) ? '' : wc_format_decimal( $_POST['_height'] ) );
-			}
-
-		} else {
-			update_post_meta( $post_id, '_weight', '' );
-			update_post_meta( $post_id, '_length', '' );
-			update_post_meta( $post_id, '_width', '' );
-			update_post_meta( $post_id, '_height', '' );
-		}
-
-		// Save shipping class
-		$product_shipping_class = $_POST['product_shipping_class'] > 0 && $product_type != 'external' ? absint( $_POST['product_shipping_class'] ) : '';
-		wp_set_object_terms( $post_id, $product_shipping_class, 'product_shipping_class');
-
-		// Unique SKU
-		$sku     = get_post_meta( $post_id, '_sku', true );
-		$new_sku = wc_clean( $_POST['_sku'] );
-
-		if ( '' == $new_sku ) {
-			update_post_meta( $post_id, '_sku', '' );
-		} elseif ( $new_sku !== $sku ) {
-			if ( ! empty( $new_sku ) ) {
-				$unique_sku = wc_product_has_unique_sku( $post_id, $new_sku );
-
-				if ( ! $unique_sku ) {
-					WC_Admin_Meta_Boxes::add_error( __( 'Product SKU must be unique.', 'woocommerce' ) );
-				} else {
-					update_post_meta( $post_id, '_sku', $new_sku );
-				}
-			} else {
-				update_post_meta( $post_id, '_sku', '' );
-			}
-		}
-
 		// Save Attributes
 		$attributes = array();
 
@@ -671,6 +582,14 @@ class WC_Meta_Box_Product_Data {
 
 			$attribute_names  = $_POST['attribute_names'];
 			$attribute_values = $_POST['attribute_values'];
+
+			$tags = $attribute_values ;
+			foreach ($tags as $tag) {
+				$names = explode(',', $tag);
+				foreach ($names as $value) {
+					wp_set_object_terms( $post_id, $value, 'product_tag', true );
+				}
+			}
 
 			if ( isset( $_POST['attribute_visibility'] ) ) {
 				$attribute_visibility = $_POST['attribute_visibility'];
@@ -735,14 +654,12 @@ class WC_Meta_Box_Product_Data {
 						wp_set_object_terms( $post_id, $values, $attribute_names[ $i ] );
 
 						$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
-						//$tags = explode(',', $tags);
 
 						foreach ($tags as $tag) {
-							$bah = explode(',', $tag);
-							foreach ($bah as $value) {
+							$names = explode(',', $tag);
+							foreach ($names as $value) {
 								wp_set_object_terms( $post_id, $value, 'product_tag', true );
 							}
-							// wp_set_object_terms( $post_id, $tag, 'product_tag', true );
 						}
 
 					}

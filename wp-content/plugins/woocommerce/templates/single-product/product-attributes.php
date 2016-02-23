@@ -57,7 +57,6 @@ ob_start();
 
 				} else {
 
-					// Convert pipes to commas and display values
 					$values = array_map( 'trim', explode( ',', $attribute['value'] ) );
 
 					foreach ($values as $key => &$value) {

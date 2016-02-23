@@ -729,20 +729,12 @@ class WC_AJAX {
 		//set play attributes as tags
 		$tags = isset( $data['attribute_values'] ) ? $data['attribute_values'] : array();
 
-		// $tags = explode(',', $tags);
-		//
-		// foreach ($tags as $tag) {
-		// 	wp_set_object_terms( $post_id, $tag, 'product_tag', true );
-		// }
-
 		foreach ($tags as $tag) {
-			$bah = explode(',', $tag);
-			foreach ($bah as $value) {
+			$names = explode(',', $tag);
+			foreach ($names as $value) {
 				wp_set_object_terms( $post_id, $value, 'product_tag', true );
 			}
-			// wp_set_object_terms( $post_id, $tag, 'product_tag', true );
 		}
-
 
 		die();
 	}

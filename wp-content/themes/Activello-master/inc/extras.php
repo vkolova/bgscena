@@ -87,14 +87,14 @@ function activello_add_custom_table_class( $content ) {
     return str_replace( '<table>', '<table class="table table-hover">', $content );
 }
 
-
-// Filter wp_nav_menu() to add profile link
 add_filter( 'wp_nav_menu_items', 'my_nav_menu_profile_link' );
 function my_nav_menu_profile_link($menu) {
         if (!is_user_logged_in())
+                // $reglog = '<ul><li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page"><a title="Вход" href="' . wp_logout_url( get_site_url() ) . '">Вход/Регистрация</a></li></ul>';
+                // $menu = $menu . $reglog;
                 return $menu;
         else
-                $profilelink = '<li class="menu-item menu-item-type-post_type menu-item-object-page"><a data-toggle="dropdown"  class="dropdown-toggle" href="#">' . __('Моят профил') . '   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>' . '</a>
+                $profileextras = '<li class="menu-item menu-item-type-post_type menu-item-object-page"><a data-toggle="dropdown"  class="dropdown-toggle" href="#">' . __('Моят профил') . '   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>' . '</a>
                 <ul role="menu" class=" dropdown-menu">
                   <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page"><a title="Профил" href="' . bp_loggedin_user_domain( '/' ) . '">Профил</a></li>
                   <li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page"><a title="Съобщения" href="' . bp_loggedin_user_domain( '/' ) . 'messages/' . '">Съобщения</a></li>
@@ -105,7 +105,7 @@ function my_nav_menu_profile_link($menu) {
                 </ul>
                 </li>';
 
-                $menu = $menu . $profilelink;
+                $menu = $menu . $profileextras;
                 return $menu;
 }
 

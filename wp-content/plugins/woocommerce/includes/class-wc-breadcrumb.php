@@ -208,7 +208,7 @@ class WC_Breadcrumb {
 		$current_term = $GLOBALS['wp_query']->get_queried_object();
 
 		$this->prepend_shop_page();
-		$this->add_crumb( sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'woocommerce' ), $current_term->name ) );
+		$this->add_crumb( sprintf( __( 'Постановки с участието на %s', 'woocommerce' ), $current_term->name ) );
 	}
 
 	/**

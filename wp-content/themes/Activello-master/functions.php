@@ -150,7 +150,6 @@ function activello_scripts() {
 	wp_register_script( 'vk-js-ui', get_template_directory_uri() . '/inc/js/jquery-ui.js');
 	wp_register_script( 'vk-calendar', get_template_directory_uri() . '/inc/js/calendar.js');
 
-
   // Add Bootstrap default CSS
   wp_enqueue_style( 'activello-bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
 
@@ -325,3 +324,154 @@ function vk_search_distinct( $where ) {
     return $where;
 }
 add_filter( 'posts_distinct', 'vk_search_distinct' );
+
+
+function vk_add_custom_types( $query ) {
+  if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+    $query->set( 'post_type', array(
+     'post', 'nav_menu_item', 'product'
+		));
+	  return $query;
+	}
+}
+add_filter( 'pre_get_posts', 'vk_add_custom_types' );
+
+
+function vk_display_plays( $date, $city) {
+	global $wpdb;
+	$querystr = "
+	    SELECT $wpdb->posts.*
+	    FROM $wpdb->posts, $wpdb->postmeta, $wpdb->terms, $wpdb->term_relationships
+	    WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id
+	    AND $wpdb->postmeta.meta_key = '_vk_date_input'
+	    AND $wpdb->postmeta.meta_value LIKE '%" . $date . "%'
+					AND $wpdb->term_relationships.object_id = $wpdb->postmeta.post_id
+					AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->terms.term_id
+					AND $wpdb->terms.name ='" . $city . "'";
+
+			 $pageposts = $wpdb->get_results($querystr, OBJECT);
+				?>
+		</br>
+	<?php
+	$count = 1;
+	 if ($pageposts): ?>
+	 <?php global $post;?>
+	 <?php foreach ($pageposts as $post): ?>
+		 <?php
+			 $html = woocommerce_get_product_thumbnail( 'shop_catalog' );
+			 $xpath = new DOMXPath(@DOMDocument::loadHTML($html));
+			 $img_src = $xpath->evaluate("string(//img/@src)");
+		 ?>
+		 <?php  if ($count == 1) {
+		 			echo '<div class="row">';
+		 		}
+		 	?>
+		 <div class="col-xs-6 col-md-4">
+     <a href="<?php the_permalink() ?>" >
+						<img class="img-top" src="<?php echo $img_src; ?>" width="300" height="300" alt="<?php the_title(); ?>">
+					</a>
+     <h4 class="title"><a href="<?php the_permalink() ?>" ><?php the_title(); ?></a></h4>
+
+     <small class="text-muted">
+						<?php
+						$meta_time = get_post_meta( $post->ID, '_vk_time_input', true );
+
+						if($meta_time)
+							echo '<span class="glyphicon glyphicon-time"></span> ' . $meta_time . '<br/>';
+						$taxonomyName = "product_cat";
+						$parent_terms = wp_get_post_terms( $post->ID, $taxonomyName, array('parent' => 0, 'orderby' => 'slug', 'hide_empty' => false));
+						echo '<span class="glyphicon glyphicon-map-marker"></span>';
+
+						foreach ($parent_terms as $pterm) {
+			    $terms = wp_get_post_terms( $post->ID, $taxonomyName, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
+			    foreach ($terms as $term) {
+			        echo '<a href="' . get_term_link( $term->name, $taxonomyName ) . '">' . $term->name . '</a>';
+			    		}
+								}
+						?>
+			 	</small>
+					<hr/>
+		</div>
+		<?php  if ($count == 3) {
+					echo '</div>';
+					$count = 0;}
+					$count++; ?>
+	 <?php endforeach;
+	 if(count($pageposts) % 2 == 0 || count($pageposts) == 1) {
+	 	echo "</div>";
+	 }
+	  ?>
+	 <?php else : ?>
+	    <h2 class="center">Няма резултати</h2>
+	    <p class="center">Съжалявам, търсите нещо, което не е тук.</p>
+	    <?php include (TEMPLATEPATH . "/searchform.php"); ?>
+	 <?php endif;
+}
+
+function vk_process_date( $value ) {
+	$date = str_replace('/', '-', $value);
+	$time = strtotime( $date );
+	$timestamp = date( $time);
+	$dw = date( "w", $timestamp);
+	$day_of_week = array( 'неделя', 'понеделник', 'вторник', 'сряда', 'четвъртък', 'петък', 'събота');
+	echo $day_of_week[ $dw ] . ', ';
+	$value = explode( '/', $value );
+	echo $value[0] . ' ';
+	switch ($value[1]) {
+	case '01':
+			echo 'януари';
+			break;
+	case '02':
+			echo 'февруари';
+			break;
+	case '03':
+			echo 'март';
+			break;
+	case '04':
+			echo 'април';
+			break;
+	case '05':
+			echo 'май';
+			break;
+	case '06':
+			echo 'юни';
+			break;
+	case '07':
+			echo 'юли';
+			break;
+	case '08':
+			echo 'август';
+			break;
+	case '09':
+			echo 'септември';
+			break;
+	case '10':
+			echo 'октомври';
+			break;
+	case '11':
+			echo 'ноември';
+			break;
+	case '12':
+			echo 'декември';
+			break;
+	default:
+			echo "Упс! Нещо се обърка!<br/><br/>";
+	}
+
+}
+
+function vk_latin_cyrillic( $textlat ) {
+	if ($textlat = 'Sofia') {
+		return 'София';
+	} else {
+		$cyr  = array('а','б','в','г','д','e','ж','з','и','й','к','л','м','н','о','п','р','с','т','у',
+		'ф','х','ц','ч','ш','щ','ъ','ь', 'ю','я','А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У',
+		'Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ь', 'Ю','Я' );
+		$lat = array( 'a','b','v','g','d','e','zh','z','i','y','k','l','m','n','o','p','r','s','t','u',
+		'f' ,'h' ,'ts' ,'ch','sh' ,'sht' ,'a' ,'y' ,'yu' ,'ya', 'A','B','V','G','D','E','Zh',
+		'Z','I','Y','K','L','M','N','O','P','R','S','T','U',
+		'F' ,'H' ,'Ts' ,'Ch','Sh' ,'Sht' ,'A' ,'Y' ,'Yu' ,'Ya');
+		$textlat = str_replace($lat, $cyr, $textlat);
+		return $textlat;
+	}
+}

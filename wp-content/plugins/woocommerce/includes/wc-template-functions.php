@@ -1917,30 +1917,30 @@ if ( ! function_exists( 'add_status_buttons' ) ) {
 		do_action('vk_enqueue_scripts');
 		?>
 	<input type="hidden" id="play_id" value="<?php $play_id = absint( $product->id ); echo $play_id; ?>" />
-	<input type="hidden" value="<?php  echo the_ID();?>" />
-	<input type="hidden" id="user_id" value=" <?php $user_id = get_current_user_id(); echo $user_id; ?> "/>
+	<input type="hidden" id="user_id" value=" <?php $user_id = the_ID(); echo $user_id; ?> "/>
 	<?php
-			global $wpdb;
-		 	$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = " . $user_id . " AND play_id = " . $play_id));
-	?>
-	<!-- Split button -->
-	<div class="btn-group">
-	  <button type="button" class="btn btn-<?php
-			echo ( !count($result) ? "success" : "default" ); ?>" data-toggle="dropdown" id="<?php echo ( $result->status_value ? "have_seen" : "want_to_see"); ?>">
+	if(is_user_logged_in()) {
+				global $wpdb;
+			 	$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}vk_user_play_status WHERE user_id = " . $user_id . " AND play_id = " . $play_id));
+		?>
+		<!-- Split button -->
+		<div class="btn-group">
+		  <button type="button" class="btn btn-<?php
+				echo ( !count($result) ? "success" : "default" ); ?>" data-toggle="dropdown" id="<?php echo ( $result->status_value ? "have_seen" : "want_to_see"); ?>">
+				<?php
+				echo ( !count($result) ? "" : '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  ' );
+				echo ( $result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?>
+			</button>
+		  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <span class="caret"></span>
+		    <span class="sr-only">Toggle Dropdown</span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a id="<?php echo ( !$result->status_value ? "have_seen" : "want_to_see"); ?>" ><?php echo ( !$result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?></a></li>
+		  </ul>
+		</div>
 			<?php
-			echo ( !count($result) ? "" : '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  ' );
-			echo ( $result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?>
-		</button>
-	  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <span class="caret"></span>
-	    <span class="sr-only">Toggle Dropdown</span>
-	  </button>
-	  <ul class="dropdown-menu">
-	    <li><a id="<?php echo ( !$result->status_value ? "have_seen" : "want_to_see"); ?>" ><?php echo ( !$result->status_value ? esc_html( $product->mark_as_seen_text() ) : esc_html( $product->mark_as_want_to_see_text()) ); ?></a></li>
-	  </ul>
-	</div>
-
-		<?php
+	}
 	}
 }
 

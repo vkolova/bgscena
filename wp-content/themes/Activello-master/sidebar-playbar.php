@@ -13,22 +13,10 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
   AND status_value = $value
   ";
   $result = $wpdb->get_results($querystr, OBJECT_K);
-  // echo $querystr . "<br/><br/>";
-  // echo "<br/><br/>+++";
-  // print_r($result);
 
-//  $friends_list = array_merge($friends, $result);
   $frs = array();
   foreach ($result as $obj) {
-    // if(($obj->friend_user_id == $user_id) && ($obj->initiator_user_id != $obj->user_id)) {
-    //   array_push($friends, $obj->initiator_user_id);
-    // } else {
-    //  array_push($friends, $obj->friend_user_id);
-    // }
-    // echo "--";
-    // print_r($friends);
-    //
-    // echo "--";
+
     foreach ($friends as $frie) {
       if (in_array($obj->user_id, $frie)) {
        array_push($frs, $obj->user_id);
@@ -36,8 +24,7 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
     }
 
   }
-  // echo "....";
-  // print_r($frs);
+
   return array_unique($frs);
 
 }
@@ -60,18 +47,19 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
       </form>
 
       <?php
+
       if(isset($_POST['submit'])){
-        $to = $_POST['email']; // this is your Email address
-        $from = $user_info->email; // this is the sender's Email address
+        $to = $_POST['email'];
         $name = $_POST['name'];
         $subject = "Покана за театър";
-        $message = $name . "\n\n" . $_POST['message'];
+        $message = $_POST['message'];
 
-        $headers = "От:" . $from;
-        wp_mail($to, $subject, $message, $headers);
-
-        $subject = "Покана за театър от " . $name;
-        $content = "WordPress <b>knowledge<b>";
+        $subject = $name . ' Ви покани да гледате "' . get_the_title( $post->ID ) . '" заедно' ;
+        $content = '<h4>' . $name . ' Ви покани да гледате "' . get_the_title( $post->ID ) . '" заедно</h4>
+        <p>' . $message . '</p>
+        <p>Повече за пиесата може да научите <a href="' . "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . '">ТУК</a></p>
+       ';
+       
         wp_mail( $to, $subject, $content );
         echo "Съобщението е изпратено";
         }
@@ -86,9 +74,6 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
       WHERE friend_user_id = $user_id OR initiator_user_id = $user_id
     ";
     $friends_list = $wpdb->get_results($querystr, ARRAY_N);
-    // echo "</br><br/>" . $querystr . "-----";
-    //  echo "--::";
-    //  print_r($friends_list);
 
     $friends_watched = get_friends_who_list($user_id, $post_id, $friends_list, 1);
     $friends_want_to = get_friends_who_list($user_id, $post_id, $friends_list, 0);
@@ -123,9 +108,6 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
     <aside id="my_calendar" class="widget">
       <div id="calendar"></div>
     </aside>
-
-
-
 
   </div>
 <div>

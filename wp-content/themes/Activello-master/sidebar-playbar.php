@@ -56,12 +56,37 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
 
         $subject = $name . ' Ви покани да гледате "' . get_the_title( $post->ID ) . '" заедно' ;
         $content = '<h4>' . $name . ' Ви покани да гледате "' . get_the_title( $post->ID ) . '" заедно</h4>
-        <p>' . $message . '</p>
-        <p>Повече за пиесата може да научите <a href="' . "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . '">ТУК</a></p>
-       ';
-       
-        wp_mail( $to, $subject, $content );
-        echo "Съобщението е изпратено";
+        <p>' . $message . '</p>'  . get_post_field("post_content", $post->ID);
+
+        date_default_timezone_set('Etc/UTC');
+        require 'PHPMailer/PHPMailerAutoload.php';
+        $mail = new PHPMailer;
+
+        //$mail->SMTPDebug = 2;                               // Enable verbose debug output
+        $mail->Debugoutput = 'html';
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'makethemwild@gmail.com';                 // SMTP username
+        $mail->Password = 'vampireacademy';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->setFrom('makethemwild@gmail.com', 'bgscena');
+        $mail->addAddress( $to );     // Add a recipient
+
+        $mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = $subject;
+        $mail->Body    = $post->$content . '</br>' . $content;
+
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Съобщението бе изпратено';
+        }
+
         }
       ?>
     </aside>

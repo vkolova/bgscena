@@ -21,7 +21,6 @@ get_header(); ?>
 	</article><!-- #post-## -->
 </div>
 
-<input type="hidden" id="address" name="city" value="" />
 <?php
 	 require_once('geoplugin.class.php');
 

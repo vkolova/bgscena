@@ -63,7 +63,7 @@
 				</tr>
 				<tr>
 					<td>
-						<label><input type="checkbox" class="checkbox" <?php checked( $attribute['is_visible'], 1 ); ?> name="attribute_visibility[<?php echo $i; ?>]" value="1" /> <?php _e( 'Visible on the product page', 'woocommerce' ); ?></label>
+						<label><input type="checkbox" class="checkbox" <?php checked( $attribute['is_visible'], 1 ); ?> name="attribute_visibility[<?php echo $i; ?>]" value="1" /> <?php _e( 'Видимо на страницата на постановката', 'woocommerce' ); ?></label>
 					</td>
 				</tr>
 				<tr>

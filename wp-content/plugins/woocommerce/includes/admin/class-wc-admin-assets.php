@@ -223,7 +223,7 @@ class WC_Admin_Assets {
 				'click_to_toggle'               => __( 'Click to toggle', 'woocommerce' ),
 				'values_label'                  => __( 'Value(s)', 'woocommerce' ),
 				'text_attribute_tip'            => __( 'Enter some text, or some attributes by pipe (|) separating values.', 'woocommerce' ),
-				'visible_label'                 => __( 'Visible on the product page', 'woocommerce' ),
+				'visible_label'                 => __( 'Видимо на страницата на постановката', 'woocommerce' ),
 				'used_for_variations_label'     => __( 'Used for variations', 'woocommerce' ),
 				'new_attribute_prompt'          => __( 'Enter a name for the new attribute term:', 'woocommerce' ),
 				'calc_totals'                   => __( 'Calculate totals based on order items, discounts, and shipping?', 'woocommerce' ),

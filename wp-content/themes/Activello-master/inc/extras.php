@@ -90,7 +90,7 @@ function activello_add_custom_table_class( $content ) {
 add_filter( 'wp_nav_menu_items', 'my_nav_menu_profile_link' );
 function my_nav_menu_profile_link($menu) {
         if (!is_user_logged_in())
-                return $menu . '<li class="menu-item menu-item-type-post_type menu-item-object-page"><a data-toggle="dropdown"  class="dropdown-toggle" href="#">Вход/Регистрация</a>';
+                return $menu . '<li class="menu-item menu-item-type-post_type menu-item-object-page"><a title="Вход/Регистрация" href="' . wp_login_url( get_site_url() ) . '">Вход/Регистрация</a></li>';
         else
                 $profileextras = '<li id="menu-item" class="menu-item menu-item-type-post_type menu-item-object-page"><a title="Активност" href="' . get_site_url() . '/activity' .  '">Активност</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page"><a data-toggle="dropdown"  class="dropdown-toggle" href="#">' . __('Моят профил') . '   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>' . '</a>

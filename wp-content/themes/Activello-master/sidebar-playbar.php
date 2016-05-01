@@ -84,7 +84,7 @@ function get_friends_who_list($user_id, $play_id, $friends, $value) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-            echo 'Съобщението бе изпратено';
+            echo 'Съобщението бе изпратено.';
         }
 
         }

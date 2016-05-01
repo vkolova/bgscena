@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/1.0-alpha-1100\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
 "Project-Id-Version: Twenty Fifteen\n"
 
 #. translators: %s: post title
@@ -27,38 +27,17 @@ msgstr "Предишна публикация:"
 msgid "Next post:"
 msgstr "Следваща публикация:"
 
-#: inc/customizer.php:47 inc/customizer.php:63 inc/customizer.php:68
+#: inc/customizer.php:60 inc/customizer.php:76 inc/customizer.php:81
 msgid "Applied to the header on small screens and the sidebar on wide screens."
 msgstr "Приложено към заглавката на малки екрани и страничната колона на големи."
-
-#: single.php:36
-msgid "Previous"
-msgstr "Предишна"
 
 #: single.php:33
 msgid "Next"
 msgstr "Следваща"
 
-#: inc/template-tags.php:91 inc/template-tags.php:99
-msgctxt "Used between list items, there is a space after the comma."
-msgid ", "
-msgstr ", "
-
-#: image.php:24
-msgid "Previous Image"
-msgstr "Предишно изображение"
-
-#: image.php:24
-msgid "Next Image"
-msgstr "Следващо изображение"
-
-#: inc/template-tags.php:23
-msgid "Comment navigation"
-msgstr "Навигация в коментарите"
-
-#: search.php:18
-msgid "Search Results for: %s"
-msgstr "Резултати от търсене за: %s"
+#: single.php:36
+msgid "Previous"
+msgstr "Предишна"
 
 #. Author of the plugin/theme
 msgid "the WordPress team"
@@ -71,6 +50,10 @@ msgstr "Темата по подразбиране за 2015-та е изчис�
 #. Theme Name of the plugin/theme
 msgid "Twenty Fifteen"
 msgstr "Twenty Fifteen"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Резултати от търсене за: %s"
 
 #: inc/template-tags.php:113
 msgctxt "Used before full size attachment link."
@@ -86,6 +69,11 @@ msgstr "Етикети"
 msgctxt "Used before category names."
 msgid "Categories"
 msgstr "Категории"
+
+#: inc/template-tags.php:91 inc/template-tags.php:99
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
 
 #: inc/template-tags.php:85
 msgctxt "Used before post author name."
@@ -114,39 +102,43 @@ msgstr "По-нови коментари"
 msgid "Featured"
 msgstr "Избрано"
 
-#: inc/customizer.php:168
+#: inc/template-tags.php:23
+msgid "Comment navigation"
+msgstr "Навигация в коментарите"
+
+#: inc/customizer.php:205
 msgid "Blue"
 msgstr "Синьо"
 
-#: inc/customizer.php:157
+#: inc/customizer.php:194
 msgid "Purple"
 msgstr "Лилаво"
 
-#: inc/customizer.php:146
+#: inc/customizer.php:183
 msgid "Pink"
 msgstr "Розово"
 
-#: inc/customizer.php:124
+#: inc/customizer.php:161
 msgid "Dark"
 msgstr "Тъмно"
 
-#: inc/customizer.php:135
+#: inc/customizer.php:172
 msgid "Yellow"
 msgstr "Жълто"
 
-#: inc/customizer.php:113
+#: inc/customizer.php:150
 msgid "Default"
 msgstr "По подразбиране"
 
-#: inc/customizer.php:62
+#: inc/customizer.php:75
 msgid "Header and Sidebar Background Color"
 msgstr "Цвят на заглавката и фона на страничната колона"
 
-#: inc/customizer.php:31
+#: inc/customizer.php:44
 msgid "Base Color Scheme"
 msgstr "Основна цветова схема"
 
-#: inc/customizer.php:46
+#: inc/customizer.php:59
 msgid "Header and Sidebar Text Color"
 msgstr "Цвят на текста в заглавката и страничната колона"
 
@@ -154,65 +146,47 @@ msgstr "Цвят на текста в заглавката и странична
 msgid "Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again."
 msgstr "За да използвате Twenty Fifteen версията ви на WordPress трябва да бъде поне 4.1. В момента използвате версия %s. Опитайте отново след като обновите."
 
+#: image.php:24
+msgid "Previous Image"
+msgstr "Предишно изображение"
+
+#: image.php:24
+msgid "Next Image"
+msgstr "Следващо изображение"
+
 #: image.php:84
 msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Публикувано в</span><span class=\"post-title\">%title</span>"
 
-#: header.php:43
+#: header.php:45
 msgid "Menu and widgets"
 msgstr "Меню и джаджи"
 
-#: comments.php:53
-msgid "Comments are closed."
-msgstr "Коментарите са затворени."
+#: functions.php:269
+msgid "expand child menu"
+msgstr "разширяване на дъщерното меню"
 
-#: content-link.php:36 content-page.php:25 content.php:38 image.php:59
-msgid "Pages:"
-msgstr "Страници:"
-
-#: content-link.php:56 content-page.php:35 content-search.php:28
-#: content-search.php:33 content.php:57 image.php:71
-msgid "Edit"
-msgstr "Редактиране"
-
-#: footer.php:25
-msgid "Proudly powered by %s"
-msgstr "Създаден с %s"
-
-#: functions.php:85
-msgid "Primary Menu"
-msgstr "Главно меню"
+#: functions.php:270
+msgid "collapse child menu"
+msgstr "свиване на дъщерното меню"
 
 #: header.php:26
 msgid "Skip to content"
 msgstr "Към съдържанието"
 
-#: content-none.php:15
-msgid "Nothing Found"
-msgstr "Нищо не е открито"
-
-#: content-none.php:22
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Време е за първата ви публикация. <a href=\"%1$s\">Започнете от тук</a>."
-
-#: content-none.php:26
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr "Няма резултати, отговарящи на вашето търсене. Опитайте отново с други ключови думи. "
-
-#: content-none.php:31
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "Страницата не съществува. Пробвайте да потърсите каквото ви трябва."
-
-#. translators: %s: Name of current post
-#: content-link.php:31 content.php:33 inc/template-tags.php:238
-msgid "Continue reading %s"
-msgstr "Нататък %s"
+#. Translators: To add an additional character subset specific to your
+#. language, translate this to 'greek', 'cyrillic', 'devanagari' or
+#. 'vietnamese'. Do not translate into your own language.
+#: functions.php:199
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "cyrillic"
 
 #. Translators: If there are characters in your language that are not supported
 #. by Inconsolata, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:177
+#: functions.php:191
 msgctxt "Inconsolata font: on or off"
 msgid "on"
 msgstr "включен"
@@ -220,7 +194,7 @@ msgstr "включен"
 #. Translators: If there are characters in your language that are not supported
 #. by Noto Sans, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:161
+#: functions.php:175
 msgctxt "Noto Sans font: on or off"
 msgid "on"
 msgstr "включен"
@@ -228,28 +202,70 @@ msgstr "включен"
 #. Translators: If there are characters in your language that are not supported
 #. by Noto Serif, translate this to 'off'. Do not translate into your own
 #. language.
-#: functions.php:169
+#: functions.php:183
 msgctxt "Noto Serif font: on or off"
 msgid "on"
 msgstr "включен"
 
-#: functions.php:135
+#: functions.php:149
 msgid "Add widgets here to appear in your sidebar."
 msgstr "Джаджите, добавени тук, ще се появят в страничната ви колона."
 
-#: functions.php:133
+#: functions.php:147
 msgid "Widget Area"
 msgstr "Зона за джаджи"
+
+#: functions.php:85
+msgid "Primary Menu"
+msgstr "Главно меню"
 
 #: functions.php:86
 msgid "Social Links Menu"
 msgstr "Меню с линкове към социални мрежи"
 
-#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.4)  #-#-#-#-#
+#: footer.php:25
+msgid "Proudly powered by %s"
+msgstr "Създаден с %s"
+
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.5)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"
 msgstr "https://wordpress.org/"
+
+#: content-none.php:31
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Страницата не съществува. Пробвайте да потърсите каквото ви трябва."
+
+#: content-none.php:26
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Няма резултати, отговарящи на вашето търсене. Опитайте отново с други ключови думи. "
+
+#: content-none.php:22
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Време е за първата ви публикация. <a href=\"%1$s\">Започнете от тук</a>."
+
+#: content-none.php:15
+msgid "Nothing Found"
+msgstr "Нищо не е открито"
+
+#: content-link.php:56 content-page.php:35 content-search.php:28
+#: content-search.php:33 content.php:57 image.php:71
+msgid "Edit"
+msgstr "Редактиране"
+
+#: content-link.php:36 content-page.php:25 content.php:38 image.php:59
+msgid "Pages:"
+msgstr "Страници:"
+
+#. translators: %s: Name of current post
+#: content-link.php:31 content.php:33 inc/template-tags.php:238
+msgid "Continue reading %s"
+msgstr "Нататък %s"
+
+#: comments.php:53
+msgid "Comments are closed."
+msgstr "Коментарите са затворени."
 
 #: comments.php:28
 msgctxt "comments title"
@@ -257,26 +273,6 @@ msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "Един коментар към &ldquo;%2$s&rdquo;"
 msgstr[1] "%1$s коментара към &ldquo;%2$s&rdquo;"
-
-#: functions.php:255
-msgid "expand child menu"
-msgstr "разширяване на дъщерното меню"
-
-#: functions.php:256
-msgid "collapse child menu"
-msgstr "свиване на дъщерното меню"
-
-#. Translators: To add an additional character subset specific to your
-#. language, translate this to 'greek', 'cyrillic', 'devanagari' or
-#. 'vietnamese'. Do not translate into your own language.
-#: functions.php:185
-msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
-msgid "no-subset"
-msgstr "cyrillic"
-
-#: 404.php:21
-msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "Тук няма нищо. Опитайте с търсене?"
 
 #: author-bio.php:34
 msgid "View all posts by %s"
@@ -298,6 +294,10 @@ msgstr "Следваща страница"
 #: archive.php:49 index.php:46 search.php:38
 msgid "Previous page"
 msgstr "Предишна страница"
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Тук няма нищо. Опитайте с търсене?"
 
 #: 404.php:17
 msgid "Oops! That page can&rsquo;t be found."

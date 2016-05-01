@@ -30,42 +30,71 @@ $querystr = "
  $pageposts = $wpdb->get_results($querystr, OBJECT);
 ?>
 
-<div class="tab-content">
-
  <h3><?php echo 'Пиесите на ' . $current_user->display_name; ?></h3>
-	<div id="plays0" class="tab-pane fade in active">
 
-<?php if ($pageposts): ?>
- <?php global $post; ?>
- <?php foreach ($pageposts as $post): ?>
-	 <?php
-		 $html = woocommerce_get_product_thumbnail( 'shop_catalog' );
-		 $xpath = new DOMXPath(@DOMDocument::loadHTML($html));
-		 $img_src = $xpath->evaluate("string(//img/@src)");
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#wanna-see">Искам да видя</a></li>
+    <li><a data-toggle="tab" href="#seen">Гледани</a></li>
+</ul>
 
 
-		 ?>
+<div class="tab-content">
+		<div id="wanna-see" class="tab-pane fade in active">
+		</br>
 		<div class="row">
+			<div class="col-md-2">Плакат</div>
+			<div class="col-md-3"> Заглавие</div>
+			<div class="col-md-3">Къде?</div>
+			<div class="col-md-2">Моята оценка</div>
+		</div>
+		<hr>
+			<?php if ($pageposts): ?>
+	<?php global $post; ?>
+	<?php foreach ($pageposts as $post): ?>
+		<?php
+			$html = woocommerce_get_product_thumbnail( 'shop_catalog' );
+			$xpath = new DOMXPath(@DOMDocument::loadHTML($html));
+			$img_src = $xpath->evaluate("string(//img/@src)");
+			?>
+		<div class="row ttt3">
 			<div class="col-md-2">
-				<a href="<?php echo the_permalink(); ?>" ><img class="media-object" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
+				<a href="<?php echo the_permalink(); ?>" ><img class="img" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
 			</div>
 			<div class="col-md-3">
 				<h4><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h4>
 			</div>
-			<div class="col-md-2">
-				<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
+			<div class="col-md-3">
+				<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?>
 			</div>
-			<div class="col-md-1"><?php echo $average_rating; ?>
+			<div class="col-md-2"><?php
+			 global $wpdb;
+				$q = $wpdb->prepare("
+				SELECT meta_value FROM wp_commentmeta, wp_comments WHERE wp_commentmeta.comment_id = wp_comments.comment_ID
+				AND meta_key = 'rating'
+				AND comment_post_ID = " . get_the_ID() . "
+				AND comment_approved = '1'
+				AND wp_comments.user_id = " . get_current_user_id() .  "
+				");
+
+				$raw_counts = $wpdb->get_results( $q );
+
+				if ( !empty($raw_counts) ) {
+						echo $raw_counts[0]->meta_value;
+					} else {
+						echo "още не си оценил пиесата :<";
+					}
+		?>
+			</div>
 			</div>
 			<hr>
 
- <?php endforeach; ?>
- <?php else : ?>
-    <h2 class="center">Няма резултати</h2>
-    <p class="center">Съжалявам, търсите нещо, което не е тук.</p>
-    <?php include (TEMPLATEPATH . "/searchform.php"); ?>
- <?php endif; ?>
-</div>
+	<?php endforeach; ?>
+	<?php else : ?>
+				<h2 class="center">Няма резултати</h2>
+				<p class="center">Съжалявам, търсите нещо, което не е тук.</p>
+				<?php include (TEMPLATEPATH . "/searchform.php"); ?>
+	<?php endif; ?>
+		</div>
 
 
 <?php
@@ -78,15 +107,23 @@ $querystr = "
  $pageposts = $wpdb->get_results($querystr, OBJECT);
 ?>
 
-<div id="plays1" class="tab-pane fade">
+		<div id="seen" class="tab-pane fade">
+		</br>
+	<div class="row ttt3">
+		<div class="col-md-2">Плакат</div>
+		<div class="col-md-3"> Заглавие</div>
+		<div class="col-md-3">Къде?</div>
+		<div class="col-md-2">Моята оценка</div>
+	</div>
+	<hr>
 	<?php if ($pageposts): ?>
-	 <?php global $post; ?>
-	 <?php foreach ($pageposts as $post): ?>
-		 <?php
-			 $html = woocommerce_get_product_thumbnail( 'shop_catalog' );
-			 $xpath = new DOMXPath(@DOMDocument::loadHTML($html));
-			 $img_src = $xpath->evaluate("string(//img/@src)");
-			 ?>
+	<?php global $post; ?>
+	<?php foreach ($pageposts as $post): ?>
+		<?php
+			$html = woocommerce_get_product_thumbnail( 'shop_catalog' );
+			$xpath = new DOMXPath(@DOMDocument::loadHTML($html));
+			$img_src = $xpath->evaluate("string(//img/@src)");
+			?>
 			<div class="row">
 				<div class="col-md-2">
 					<a href="<?php echo the_permalink(); ?>" ><img class="img" src="<?php echo $img_src; ?>" width="95" height="95" alt="<?php the_title(); ?>"></a>
@@ -95,21 +132,39 @@ $querystr = "
 					<h4><a href="<?php echo the_permalink(); ?>" ><?php echo get_the_title(); ?></a></h4>
 				</div>
 				<div class="col-md-3">
-					<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?></div>
+					<?php echo get_the_term_list( $id, 'product_cat', '<span class="glyphicon glyphicon-map-marker"> </span> ', ', ', '' ); ?>
 				</div>
-				<div class="col-md-1"><?php echo $average_rating; ?>
-				</div>
-				<hr>
+				<div class="col-md-2"><?php
+					global $wpdb;
+					$q = $wpdb->prepare("
+					SELECT meta_value FROM wp_commentmeta, wp_comments WHERE wp_commentmeta.comment_id = wp_comments.comment_ID
+					AND meta_key = 'rating'
+					AND comment_post_ID = " . get_the_ID() . "
+					AND comment_approved = '1'
+					AND wp_comments.user_id = " . get_current_user_id() .  "
+					");
 
-	 <?php endforeach; ?>
-	 <?php else : ?>
-	    <h2 class="center">Няма резултати</h2>
-	    <p class="center">Съжалявам, търсите нещо, което не е тук.</p>
-	    <?php include (TEMPLATEPATH . "/searchform.php"); ?>
-	 <?php endif; ?>
+					$raw_counts = $wpdb->get_results( $q );
+
+					if ( !empty($raw_counts) ) {
+							echo $raw_counts[0]->meta_value;
+						} else {
+							echo "още не си оценил пиесата :<";
+						}
+			?>
+				</div>
+				</div>
+			<hr>
+
+	<?php endforeach; ?>
+	<?php else : ?>
+				<h2 class="center">Няма резултати</h2>
+				<p class="center">Съжалявам, търсите нещо, което не е тук.</p>
+				<?php include (TEMPLATEPATH . "/searchform.php"); ?>
+	<?php endif; ?>
+		</div>
+
 </div>
 
-</div>
-
-<?php	get_sidebar( 'navpills' ); ?>
+<?php	get_sidebar('empty'); ?>
 <?php get_footer(); ?>

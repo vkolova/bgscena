@@ -1917,7 +1917,7 @@ if ( ! function_exists( 'add_status_buttons' ) ) {
 		do_action('vk_enqueue_scripts');
 		?>
 	<input type="hidden" id="play_id" value="<?php $play_id = absint( $product->id ); echo $play_id; ?>" />
-	<input type="hidden" id="user_id" value=" <?php $user_id = the_ID(); echo $user_id; ?> "/>
+	<input type="hidden" id="user_id" value=" <?php $user_id = get_current_user_id(); echo $user_id; ?> "/>
 	<?php
 	if(is_user_logged_in()) {
 				global $wpdb;
